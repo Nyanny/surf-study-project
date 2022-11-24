@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter_template/config/app_config.dart';
-import 'package:flutter_template/config/environment/build_types.dart';
-import 'package:flutter_template/persistence/storage/config_storage/config_storage.dart';
+import 'package:surf_study_project/config/app_config.dart';
+import 'package:surf_study_project/config/environment/build_types.dart';
+import 'package:surf_study_project/persistence/storage/config_storage/config_storage.dart';
 
 /// Environment configuration.
 class Environment<T> implements Listenable {

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_template/config/app_config.dart';
-import 'package:flutter_template/config/environment/environment.dart';
-import 'package:flutter_template/features/app/di/app_scope.dart';
-import 'package:flutter_template/features/common/widgets/di_scope/di_scope.dart';
-import 'package:flutter_template/persistence/storage/config_storage/config_storage_impl.dart';
+import 'package:surf_study_project/config/app_config.dart';
+import 'package:surf_study_project/config/environment/environment.dart';
+import 'package:surf_study_project/features/app/di/app_scope.dart';
+import 'package:surf_study_project/features/common/widgets/di_scope/di_scope.dart';
+import 'package:surf_study_project/persistence/storage/config_storage/config_storage_impl.dart';
 
 /// App widget.
 class App extends StatefulWidget {

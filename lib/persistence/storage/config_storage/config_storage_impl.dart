@@ -1,4 +1,4 @@
-import 'package:flutter_template/persistence/storage/config_storage/config_storage.dart';
+import 'package:surf_study_project/persistence/storage/config_storage/config_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// Persistent storage for config settings.

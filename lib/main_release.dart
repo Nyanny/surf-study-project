@@ -1,8 +1,8 @@
-import 'package:flutter_template/config/app_config.dart';
-import 'package:flutter_template/config/environment/build_types.dart';
-import 'package:flutter_template/config/environment/environment.dart';
-import 'package:flutter_template/config/urls.dart';
-import 'package:flutter_template/runner.dart';
+import 'package:surf_study_project/config/app_config.dart';
+import 'package:surf_study_project/config/environment/build_types.dart';
+import 'package:surf_study_project/config/environment/environment.dart';
+import 'package:surf_study_project/config/urls.dart';
+import 'package:surf_study_project/runner.dart';
 
 /// Main entry point of app.
 void main() {

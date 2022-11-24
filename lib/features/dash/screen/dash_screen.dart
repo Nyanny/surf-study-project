@@ -1,6 +1,6 @@
 import 'package:elementary/elementary.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_template/features/dash/screen/dash_screen_wm.dart';
+import 'package:surf_study_project/features/dash/screen/dash_screen_wm.dart';
 
 /// Main widget for DashScreen feature
 class DashScreen extends ElementaryWidget<IDashScreenWidgetModel> {

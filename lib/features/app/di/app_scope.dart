@@ -3,10 +3,10 @@ import 'dart:ui';
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:elementary/elementary.dart';
-import 'package:flutter_template/config/app_config.dart';
-import 'package:flutter_template/config/environment/environment.dart';
-import 'package:flutter_template/features/navigation/service/router.dart';
-import 'package:flutter_template/util/default_error_handler.dart';
+import 'package:surf_study_project/config/app_config.dart';
+import 'package:surf_study_project/config/environment/environment.dart';
+import 'package:surf_study_project/features/navigation/service/router.dart';
+import 'package:surf_study_project/util/default_error_handler.dart';
 
 /// Scope of dependencies which need through all app's life.
 class AppScope implements IAppScope {

@@ -1,7 +1,7 @@
 import 'package:elementary/elementary.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_template/features/info/screen/info_screen.dart';
-import 'package:flutter_template/features/info/screen/info_screen_model.dart';
+import 'package:surf_study_project/features/info/screen/info_screen.dart';
+import 'package:surf_study_project/features/info/screen/info_screen_model.dart';
 
 /// Factory for [InfoScreenWidgetModel].
 InfoScreenWidgetModel infoScreenWmFactory(

@@ -1,13 +1,13 @@
 import 'package:elementary/elementary.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_template/config/app_config.dart';
-import 'package:flutter_template/config/environment/environment.dart';
-import 'package:flutter_template/config/urls.dart';
-import 'package:flutter_template/features/app/di/app_scope.dart';
-import 'package:flutter_template/features/debug/screens/debug_screen/debug_screen.dart';
-import 'package:flutter_template/features/debug/screens/debug_screen/debug_screen_model.dart';
-import 'package:flutter_template/features/navigation/service/router.dart';
-import 'package:flutter_template/persistence/storage/config_storage/config_storage_impl.dart';
+import 'package:surf_study_project/config/app_config.dart';
+import 'package:surf_study_project/config/environment/environment.dart';
+import 'package:surf_study_project/config/urls.dart';
+import 'package:surf_study_project/features/app/di/app_scope.dart';
+import 'package:surf_study_project/features/debug/screens/debug_screen/debug_screen.dart';
+import 'package:surf_study_project/features/debug/screens/debug_screen/debug_screen_model.dart';
+import 'package:surf_study_project/features/navigation/service/router.dart';
+import 'package:surf_study_project/persistence/storage/config_storage/config_storage_impl.dart';
 import 'package:provider/provider.dart';
 
 // ignore_for_file: avoid_positional_boolean_parameters

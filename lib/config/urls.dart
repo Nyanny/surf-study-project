@@ -1,5 +1,5 @@
-import 'package:flutter_template/config/app_config.dart';
-import 'package:flutter_template/config/environment/environment.dart';
+import 'package:surf_study_project/config/app_config.dart';
+import 'package:surf_study_project/config/environment/environment.dart';
 
 /// Server urls.
 abstract class Url {

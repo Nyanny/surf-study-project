@@ -1,11 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:elementary/elementary.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_template/features/dash/screen/dash_screen_export.dart';
-import 'package:flutter_template/features/debug/screens/debug_screen/debug_screen_export.dart';
-import 'package:flutter_template/features/info/screen/info_screen_export.dart';
-import 'package:flutter_template/features/navigation/domain/entity/temp/temp_routes.dart';
-import 'package:flutter_template/features/temp/screens/temp_screen/temp_screen_export.dart';
+import 'package:surf_study_project/features/dash/screen/dash_screen_export.dart';
+import 'package:surf_study_project/features/debug/screens/debug_screen/debug_screen_export.dart';
+import 'package:surf_study_project/features/info/screen/info_screen_export.dart';
+import 'package:surf_study_project/features/navigation/domain/entity/temp/temp_routes.dart';
+import 'package:surf_study_project/features/temp/screens/temp_screen/temp_screen_export.dart';
 
 part 'router.gr.dart';
 

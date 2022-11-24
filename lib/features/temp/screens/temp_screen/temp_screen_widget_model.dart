@@ -1,12 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:elementary/elementary.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_template/config/app_config.dart';
-import 'package:flutter_template/config/environment/environment.dart';
-import 'package:flutter_template/features/navigation/domain/entity/app_route_paths.dart';
-import 'package:flutter_template/features/navigation/service/router.dart';
-import 'package:flutter_template/features/temp/screens/temp_screen/temp_screen.dart';
-import 'package:flutter_template/features/temp/screens/temp_screen/temp_screen_model.dart';
+import 'package:surf_study_project/config/app_config.dart';
+import 'package:surf_study_project/config/environment/environment.dart';
+import 'package:surf_study_project/features/navigation/domain/entity/app_route_paths.dart';
+import 'package:surf_study_project/features/navigation/service/router.dart';
+import 'package:surf_study_project/features/temp/screens/temp_screen/temp_screen.dart';
+import 'package:surf_study_project/features/temp/screens/temp_screen/temp_screen_model.dart';
 
 /// Factory for [TempScreenWidgetModel].
 TempScreenWidgetModel initScreenWidgetModelFactory(

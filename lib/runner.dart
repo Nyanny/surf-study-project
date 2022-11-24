@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_template/features/app/app.dart';
-import 'package:flutter_template/util/crashlytics_strategy.dart';
+import 'package:surf_study_project/features/app/app.dart';
+import 'package:surf_study_project/util/crashlytics_strategy.dart';
 import 'package:surf_logger/surf_logger.dart';
 
 /// App launch.
