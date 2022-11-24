@@ -17,6 +17,7 @@ dependencies:
   retrofit: 3.0.1+1
   shared_preferences: 2.0.15
   surf_logger: 1.1.0
+  flutter_svg: 1.1.6
 
 dev_dependencies:
   auto_route_generator: 5.0.2
@@ -37,4 +38,7 @@ flutter:
   assets:
     - assets/fonts/
     - assets/icons/
+    - assets/icons/catalog/
+    - assets/icons/icon/
+    - assets/icons/tougle/
     - assets/images/
