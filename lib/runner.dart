@@ -13,7 +13,6 @@ Future<void> run() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   /// Fix orientation.
-  // TODO(init-project): change as needed or remove.
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
   _initLogger();
@@ -26,8 +25,7 @@ void _runApp() {
       runApp(const App());
     },
     (exception, stack) {
-      // TODO(init-project): Инициализировать Crashlytics.
-      // FirebaseCrashlytics.instance.recordError(exception, stack);
+      FirebaseCrashlytics.instance.recordError(exception, stack);
     },
   );
 }
