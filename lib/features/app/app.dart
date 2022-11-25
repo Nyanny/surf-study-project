@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:surf_study_project/assets/themes/app_themes.dart';
 import 'package:surf_study_project/config/app_config.dart';
 import 'package:surf_study_project/config/environment/environment.dart';
 import 'package:surf_study_project/features/app/di/app_scope.dart';
@@ -39,11 +40,13 @@ class _AppState extends State<App> {
         return _scope;
       },
       child: MaterialApp.router(
+        /// Themes
+        theme: AppThemes.lightTheme,
+        darkTheme: ThemeData.dark(),
         /// Localization.
         locale: _localizations.first,
         localizationsDelegates: _localizationsDelegates,
         supportedLocales: _localizations,
-
         /// This is for navigation.
         routeInformationParser: _scope.router.defaultRouteParser(),
         routerDelegate: _scope.router.delegate(),
