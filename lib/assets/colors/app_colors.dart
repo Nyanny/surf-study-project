@@ -20,7 +20,7 @@ class AppColors {
   static const redBlackTheme = _persianRed;
   static const whiteBlackTheme = _white;
 
-  static const DarkColorBlackTheme = _shark;
+  static const darkColorBlackTheme = _shark;
   static const mainColorBlackTheme = _charade;
   static const secondaryColorBlackTheme = _oxfordBlue;
   static const secondary2ColorBlackTheme = _waterloo;
