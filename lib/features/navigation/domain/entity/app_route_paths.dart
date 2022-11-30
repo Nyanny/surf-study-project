@@ -17,4 +17,7 @@ abstract class AppRoutePaths {
 
   ///Path to info screen
   static const String infoPath = 'info';
+
+  ///Path to onboarding screen
+  static const String onboardingPath = 'onboarding';
 }
