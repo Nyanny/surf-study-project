@@ -57,25 +57,31 @@ class OnboardingPageWidget extends StatelessWidget {
                 child: Column(
                   /// Picture
                   children: [
-                    SizedBox(
-                      height: 104,
-                      width: 104,
-                      child: picture,
-                    ),
-                    const Divider(
-                      color: Colors.transparent,
-                      height: 40,
+                    Expanded(
+                      child: SizedBox(
+                        height: 104,
+                        width: 104,
+                        child: picture,
+                      ),
                     ),
 
-                    /// Title
-                    title,
-                    const Divider(
-                      color: Colors.transparent,
-                      height: 8,
-                    ),
+                    /// Description block
+                    Padding(
+                      padding: const EdgeInsets.only(top: 40),
+                      child: Column(
+                        children: [
+                          /// Title
+                          title,
+                          const Divider(
+                            color: Colors.transparent,
+                            height: 8,
+                          ),
 
-                    /// Subtitle
-                    subtitle,
+                          /// Subtitle
+                          subtitle,
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),
