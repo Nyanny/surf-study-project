@@ -5,18 +5,26 @@ class AppThemes {
   static final ThemeData lightTheme = themeData(lightColorScheme);
   static final ThemeData darkTheme = themeData(darkColorScheme);
 
-  static ColorScheme lightColorScheme = const ColorScheme.light(
+  static ColorScheme lightColorScheme = const ColorScheme.light().copyWith(
     background: AppColors.whiteWhiteTheme,
     primary: AppColors.whiteWhiteTheme,
-    onPrimary: AppColors.greenWhiteTheme,
+    onPrimary: AppColors.mainColorWhiteTheme,
     onBackground: AppColors.mainColorWhiteTheme,
+    secondary: AppColors.greenWhiteTheme,
+    onSecondary: AppColors.whiteWhiteTheme,
+    tertiary: AppColors.secondary2WithOpactiryColorWhiteTheme,
+    onTertiary: AppColors.secondary2ColorWhiteTheme,
   );
 
-  static ColorScheme darkColorScheme = const ColorScheme.dark(
-    background: AppColors.darkColorBlackTheme,
-    primary: AppColors.darkColorBlackTheme,
-    onPrimary: AppColors.greenBlackTheme,
+  static ColorScheme darkColorScheme = const ColorScheme.dark().copyWith(
+    background: AppColors.mainColorBlackTheme,
+    primary: AppColors.mainColorBlackTheme,
+    onPrimary: AppColors.whiteBlackTheme,
     onBackground: AppColors.whiteBlackTheme,
+    secondary: AppColors.greenBlackTheme,
+    onSecondary: AppColors.whiteBlackTheme,
+    tertiary: AppColors.secondary2WithOpactiryColorBlackTheme,
+    onTertiary: AppColors.secondary2ColorBlackTheme,
   );
 
   static ThemeData themeData(ColorScheme colorScheme) {
@@ -25,9 +33,9 @@ class AppThemes {
       colorScheme: colorScheme,
       appBarTheme: AppBarTheme(
         backgroundColor: colorScheme.background,
-        foregroundColor: colorScheme.onPrimary,
+        foregroundColor: colorScheme.primary,
         elevation: 0,
-        iconTheme: IconThemeData(color: colorScheme.primary),
+        iconTheme: IconThemeData(color: colorScheme.secondary),
       ),
       iconTheme: IconThemeData(color: colorScheme.onPrimary),
       canvasColor: colorScheme.background,
