@@ -42,7 +42,7 @@ class _AppState extends State<App> {
       child: MaterialApp.router(
         /// Themes
         theme: AppThemes.lightTheme,
-        darkTheme: ThemeData.dark(),
+        darkTheme: AppThemes.darkTheme,
         /// Localization.
         locale: _localizations.first,
         localizationsDelegates: _localizationsDelegates,
