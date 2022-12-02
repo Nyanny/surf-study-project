@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:surf_study_project/assets/res/app_typography.dart';
-import 'package:surf_study_project/assets/strings/app_strings.dart';
+import 'package:surf_study_project/features/widgets/onboarding_widgets/skip_button_widget.dart';
+import 'package:surf_study_project/features/widgets/onboarding_widgets/start_button_widget.dart';
 
 /// Class [OnboardingPageWidget] is the page: [AppBar] with button that shows depends on [isLastPage], [SvgPicture], a description with [title] and [subtitle], [ElevatedButton] that shows depends on [isLastPage].
 class OnboardingPageWidget extends StatelessWidget {
@@ -21,23 +21,18 @@ class OnboardingPageWidget extends StatelessWidget {
   }) : super(key: key);
 
   @override
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
         actions: [
+          /// [SkipButtonWidget] - TextButton
           if (!isLastPage)
             Padding(
               padding: const EdgeInsets.only(right: 16),
-              child: TextButton(
+              child: SkipButtonWidget(
                 onPressed: onPressed,
-                child: Text(
-                  AppStrings.skipButton,
-                  style: AppTypography.text
-                      .copyWith(color: Theme.of(context).colorScheme.secondary),
-                ),
               ),
             ),
         ],
@@ -88,27 +83,10 @@ class OnboardingPageWidget extends StatelessWidget {
             ),
           ),
 
-          /// [ElevatedButton]
+          /// [StartButtonWidget] - ElevatedButton
           if (isLastPage)
-            Container(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 16,
-                vertical: 8,
-              ),
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  backgroundColor: Theme.of(context).colorScheme.secondary,
-                  minimumSize: const Size.fromHeight(48),
-                ),
-                onPressed: onPressed,
-                child: const Text(
-                  AppStrings.startButton,
-                  style: AppTypography.smallBoldText,
-                ),
-              ),
+            StartButtonWidget(
+              onPressed: onPressed,
             ),
         ],
       ),
