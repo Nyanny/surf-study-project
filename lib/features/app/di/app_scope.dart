@@ -3,9 +3,12 @@ import 'dart:ui';
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:elementary/elementary.dart';
+import 'package:surf_study_project/api/service/place_api.dart';
 import 'package:surf_study_project/config/app_config.dart';
 import 'package:surf_study_project/config/environment/environment.dart';
+import 'package:surf_study_project/features/common/domain/repository/place_repository.dart';
 import 'package:surf_study_project/features/navigation/service/router.dart';
+import 'package:surf_study_project/features/service/place_service.dart';
 import 'package:surf_study_project/util/default_error_handler.dart';
 
 /// Scope of dependencies which need through all app's life.
@@ -14,6 +17,9 @@ class AppScope implements IAppScope {
   late final ErrorHandler _errorHandler;
   late final VoidCallback _applicationRebuilder;
   late final AppRouter _router;
+  late final PlaceApi _placeApi;
+  late final PlaceRepository _placeRepository;
+  late final PlaceService _placeService;
 
   @override
   VoidCallback get applicationRebuilder => _applicationRebuilder;
@@ -27,6 +33,15 @@ class AppScope implements IAppScope {
   @override
   AppRouter get router => _router;
 
+  @override
+  PlaceApi get placeApi => _placeApi;
+
+  @override
+  PlaceRepository get placeRepository => _placeRepository;
+
+  @override
+  PlaceService get placeService => _placeService;
+
   /// Create an instance [AppScope].
   AppScope({
     required VoidCallback applicationRebuilder,
@@ -37,6 +52,10 @@ class AppScope implements IAppScope {
     _dio = _initDio(additionalInterceptors);
     _errorHandler = DefaultErrorHandler();
     _router = AppRouter.instance();
+
+    _placeApi = PlaceApi(dio);
+    _placeRepository = PlaceRepository(placeApi);
+    _placeService = PlaceService(placeRepository);
   }
 
   Dio _initDio(Iterable<Interceptor> additionalInterceptors) {
@@ -90,4 +109,13 @@ abstract class IAppScope {
 
   /// Class that coordinates navigation for the whole app.
   AppRouter get router;
+
+  /// Place API dependency
+  PlaceApi get placeApi;
+
+  /// Place Repository dependency
+  PlaceRepository get placeRepository;
+
+  /// Place Service dependency
+  PlaceService get placeService;
 }
