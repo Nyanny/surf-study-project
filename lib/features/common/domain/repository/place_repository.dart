@@ -19,10 +19,12 @@ class PlaceRepository implements IPlaceRepository {
   ) {
     return _apiClient
         .getFilteredPlaces(
-          PlaceMapper.placesFilterRequestDtoMapper(filteredPlacesEntity),
+          PlaceMapper.placesFilterRequestMapperFromFilteredPlaces(
+            filteredPlacesEntity,
+          ),
         )
         .then((value) => value
-            .map<Place>(PlaceMapper.placeEntityMapperFromPlaceDTO)
+            .map<Place>(PlaceMapper.placeMapperFromPlaceResponse)
             .toList());
   }
 
@@ -32,7 +34,7 @@ class PlaceRepository implements IPlaceRepository {
   Future<Place> getPlaceById({required int placeId}) {
     return _apiClient
         .getPlaceById(placeId.toString())
-        .then(PlaceMapper.placeEntityMapperFromPlace);
+        .then(PlaceMapper.placeMapperFromPlaceRequest);
   }
 
   /// Function argument are [count], [offset]
@@ -40,7 +42,7 @@ class PlaceRepository implements IPlaceRepository {
   @override
   Future<List<Place>> getPlaces({int count = 1, int offset = 0}) {
     return _apiClient.getPlace(count, offset).then((value) =>
-        value.map<Place>(PlaceMapper.placeEntityMapperFromPlace).toList());
+        value.map<Place>(PlaceMapper.placeMapperFromPlaceRequest).toList());
   }
 
   /// Function argument is [Place]
@@ -48,7 +50,7 @@ class PlaceRepository implements IPlaceRepository {
   @override
   Future<Place> postPlace(Place placeEntity) {
     return _apiClient
-        .postPlace(PlaceMapper.placeMapper(placeEntity))
-        .then<Place>(PlaceMapper.placeEntityMapperFromPlace);
+        .postPlace(PlaceMapper.placeRequestMapperFromPlace(placeEntity))
+        .then<Place>(PlaceMapper.placeMapperFromPlaceRequest);
   }
 }
