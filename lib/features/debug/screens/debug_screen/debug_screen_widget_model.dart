@@ -1,5 +1,6 @@
 import 'package:elementary/elementary.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:provider/provider.dart';
 import 'package:surf_study_project/config/app_config.dart';
 import 'package:surf_study_project/config/environment/environment.dart';
 import 'package:surf_study_project/config/urls.dart';
@@ -8,7 +9,6 @@ import 'package:surf_study_project/features/debug/screens/debug_screen/debug_scr
 import 'package:surf_study_project/features/debug/screens/debug_screen/debug_screen_model.dart';
 import 'package:surf_study_project/features/navigation/service/router.dart';
 import 'package:surf_study_project/persistence/storage/config_storage/config_storage_impl.dart';
-import 'package:provider/provider.dart';
 
 // ignore_for_file: avoid_positional_boolean_parameters
 

@@ -21,14 +21,14 @@ class _PlaceApi implements PlaceApi {
   String? baseUrl;
 
   @override
-  Future<List<PlaceDto>> getFilteredPlaces(response) async {
+  Future<List<PlaceResponse>> getFilteredPlaces(response) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(response.toJson());
-    final _result =
-        await _dio.fetch<List<dynamic>>(_setStreamType<List<PlaceDto>>(Options(
+    final _result = await _dio
+        .fetch<List<dynamic>>(_setStreamType<List<PlaceResponse>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -41,20 +41,20 @@ class _PlaceApi implements PlaceApi {
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     var value = _result.data!
-        .map((dynamic i) => PlaceDto.fromJson(i as Map<String, dynamic>))
+        .map((dynamic i) => PlaceResponse.fromJson(i as Map<String, dynamic>))
         .toList();
     return value;
   }
 
   @override
-  Future<Place> postPlace(request) async {
+  Future<PlaceRequest> postPlace(request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<Place>(Options(
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<PlaceRequest>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -66,12 +66,12 @@ class _PlaceApi implements PlaceApi {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = Place.fromJson(_result.data!);
+    final value = PlaceRequest.fromJson(_result.data!);
     return value;
   }
 
   @override
-  Future<List<Place>> getPlace(
+  Future<List<PlaceRequest>> getPlace(
     count,
     offset,
   ) async {
@@ -82,8 +82,8 @@ class _PlaceApi implements PlaceApi {
     };
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    final _result =
-        await _dio.fetch<List<dynamic>>(_setStreamType<List<Place>>(Options(
+    final _result = await _dio
+        .fetch<List<dynamic>>(_setStreamType<List<PlaceRequest>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -96,19 +96,19 @@ class _PlaceApi implements PlaceApi {
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     var value = _result.data!
-        .map((dynamic i) => Place.fromJson(i as Map<String, dynamic>))
+        .map((dynamic i) => PlaceRequest.fromJson(i as Map<String, dynamic>))
         .toList();
     return value;
   }
 
   @override
-  Future<Place> getPlaceById(id) async {
+  Future<PlaceRequest> getPlaceById(id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<Place>(Options(
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<PlaceRequest>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -120,7 +120,7 @@ class _PlaceApi implements PlaceApi {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = Place.fromJson(_result.data!);
+    final value = PlaceRequest.fromJson(_result.data!);
     return value;
   }
 

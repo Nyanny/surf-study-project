@@ -1,15 +1,15 @@
-import 'package:surf_study_project/api/data/place.dart';
-import 'package:surf_study_project/api/data/place_dto.dart';
-import 'package:surf_study_project/api/data/places_filter_request_dto.dart';
+import 'package:surf_study_project/api/data/place_request.dart';
+import 'package:surf_study_project/api/data/place_response.dart';
+import 'package:surf_study_project/api/data/places_filter_request.dart';
 import 'package:surf_study_project/features/common/domain/entity/filtered_places_entity.dart';
 import 'package:surf_study_project/features/common/domain/entity/place_entity.dart';
 import 'package:surf_study_project/features/common/domain/entity/place_type.dart';
 
 /// Mapper class for Place feature
 class PlaceMapper {
-  /// Converts [PlaceDto] to [PlaceEntity]
-  static PlaceEntity placeEntityMapperFromPlaceDTO(PlaceDto placeDTO) {
-    return PlaceEntity(
+  /// Converts [PlaceResponse] to [Place]
+  static Place placeEntityMapperFromPlaceDTO(PlaceResponse placeDTO) {
+    return Place(
       id: placeDTO.id,
       lat: placeDTO.lat,
       lng: placeDTO.lng,
@@ -21,9 +21,9 @@ class PlaceMapper {
     );
   }
 
-  /// Converts [Place] to [PlaceEntity]
-  static PlaceEntity placeEntityMapperFromPlace(Place place) {
-    return PlaceEntity(
+  /// Converts [PlaceRequest] to [Place]
+  static Place placeEntityMapperFromPlace(PlaceRequest place) {
+    return Place(
       id: place.id,
       lat: place.lat,
       lng: place.lng,
@@ -34,9 +34,9 @@ class PlaceMapper {
     );
   }
 
-  /// Converts [PlaceEntity] to [Place]
-  static Place placeMapper(PlaceEntity placeEntity) {
-    return Place(
+  /// Converts [Place] to [PlaceRequest]
+  static PlaceRequest placeMapper(Place placeEntity) {
+    return PlaceRequest(
       id: placeEntity.id,
       lat: placeEntity.lat,
       lng: placeEntity.lng,
@@ -47,9 +47,9 @@ class PlaceMapper {
     );
   }
 
-  /// Converts [PlaceEntity] to [PlaceDto]
-  static PlaceDto placeDTOMapper(PlaceEntity placeEntity) {
-    return PlaceDto(
+  /// Converts [Place] to [PlaceResponse]
+  static PlaceResponse placeDTOMapper(Place placeEntity) {
+    return PlaceResponse(
       id: placeEntity.id,
       lat: placeEntity.lat,
       lng: placeEntity.lng,
@@ -60,11 +60,11 @@ class PlaceMapper {
     );
   }
 
-  /// Converts [FilteredPlacesEntity] to [PlacesFilterRequestDto]
-  static PlacesFilterRequestDto placesFilterRequestDtoMapper(
-    FilteredPlacesEntity filteredPlacesEntity,
+  /// Converts [FilteredPlaces] to [PlacesFilterRequest]
+  static PlacesFilterRequest placesFilterRequestDtoMapper(
+    FilteredPlaces filteredPlacesEntity,
   ) {
-    return PlacesFilterRequestDto(
+    return PlacesFilterRequest(
       lat: filteredPlacesEntity.lat,
       lng: filteredPlacesEntity.lng,
       radius: filteredPlacesEntity.radius,
