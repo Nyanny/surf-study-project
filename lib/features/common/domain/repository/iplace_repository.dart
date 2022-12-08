@@ -15,9 +15,9 @@ abstract class IPlaceRepository {
   /// Requests [List] of [Place] from a source.
   /// [Place] has the specified [Place.distance]
   Future<List<Place>> getFilteredPlaces(
-    FilteredPlaces filteredPlacesEntity,
+    FilteredPlaces filteredPlaces,
   );
 
   /// Send [Place] to an external source
-  Future<Place> postPlace(Place placeEntity);
+  Future<Place> postPlace(Place place);
 }
