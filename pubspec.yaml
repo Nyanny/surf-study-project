@@ -42,3 +42,8 @@ flutter:
     - assets/icons/icon/
     - assets/icons/tougle/
     - assets/images/
+  fonts:
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/Roboto-Regular.ttf
+          style: normal
