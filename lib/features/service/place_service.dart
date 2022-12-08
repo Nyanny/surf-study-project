@@ -13,17 +13,17 @@ class PlaceService implements IPlaceService {
   /// Function argument is [Place]
   /// Returns [Place]
   @override
-  Future<Place> sendPlace(Place placeEntity) {
-    return _placeRepository.postPlace(placeEntity);
+  Future<Place> sendPlace(Place place) {
+    return _placeRepository.postPlace(place);
   }
 
   /// Function argument is [FilteredPlaces]
   /// Returns [List] of [Place]
   @override
   Future<List<Place>> getFilteredPlacesList(
-    FilteredPlaces filteredPlacesEntity,
+    FilteredPlaces filteredPlaces,
   ) {
-    return _placeRepository.getFilteredPlaces(filteredPlacesEntity);
+    return _placeRepository.getFilteredPlaces(filteredPlaces);
   }
 
   /// Function argument is [id]

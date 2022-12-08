@@ -4,7 +4,7 @@ import 'package:surf_study_project/features/common/domain/entity/place.dart';
 /// Basic Place service interface.
 abstract class IPlaceService {
   /// Send [Place].
-  Future<Place> sendPlace(Place placeEntity);
+  Future<Place> sendPlace(Place place);
 
   /// Gets [Place] specified by id.
   Future<Place> getPlace({required int id});
@@ -18,6 +18,6 @@ abstract class IPlaceService {
   /// Gets [List] of [Place]
   /// [Place] has the specified [Place.distance]
   Future<List<Place>> getFilteredPlacesList(
-    FilteredPlaces filteredPlacesEntity,
+    FilteredPlaces filteredPlaces,
   );
 }

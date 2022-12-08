@@ -15,12 +15,12 @@ class PlaceRepository implements IPlaceRepository {
   /// Returns [List] of [Place]
   @override
   Future<List<Place>> getFilteredPlaces(
-    FilteredPlaces filteredPlacesEntity,
+    FilteredPlaces filteredPlaces,
   ) {
     return _apiClient
         .getFilteredPlaces(
           PlaceMapper.placesFilterRequestMapperFromFilteredPlaces(
-            filteredPlacesEntity,
+            filteredPlaces,
           ),
         )
         .then((value) => value
@@ -48,9 +48,9 @@ class PlaceRepository implements IPlaceRepository {
   /// Function argument is [Place]
   /// Returns [Place]
   @override
-  Future<Place> postPlace(Place placeEntity) {
+  Future<Place> postPlace(Place place) {
     return _apiClient
-        .postPlace(PlaceMapper.placeRequestMapperFromPlace(placeEntity))
+        .postPlace(PlaceMapper.placeRequestMapperFromPlace(place))
         .then<Place>(PlaceMapper.placeMapperFromPlaceRequest);
   }
 }
