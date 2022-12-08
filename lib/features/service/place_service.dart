@@ -7,6 +7,7 @@ import 'package:surf_study_project/features/service/iplace_service.dart';
 class PlaceService implements IPlaceService {
   final PlaceRepository _placeRepository;
 
+  /// [PlaceService] constructor
   PlaceService(this._placeRepository);
 
   /// Function argument is [PlaceEntity]

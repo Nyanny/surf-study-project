@@ -11,6 +11,7 @@ part 'place_api.g.dart';
 /// Has got 3 POST, 2 GET
 @RestApi(baseUrl: ApiStrings.baseUrl)
 abstract class PlaceApi {
+  /// factory constructor
   factory PlaceApi(Dio dio, {String baseUrl}) = _PlaceApi;
 
   /// Запрос списка интересных мест с фильтром.

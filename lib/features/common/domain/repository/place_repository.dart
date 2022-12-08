@@ -8,6 +8,7 @@ import 'package:surf_study_project/features/common/domain/repository/place_mappe
 class PlaceRepository implements IPlaceRepository {
   final PlaceApi _apiClient;
 
+  /// constructor
   PlaceRepository(this._apiClient);
 
   /// Function argument is [FilteredPlacesEntity]

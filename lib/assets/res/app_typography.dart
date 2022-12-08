@@ -1,6 +1,7 @@
 import 'package:flutter/rendering.dart';
 import 'package:surf_study_project/assets/colors/app_colors.dart';
 
+/// Class [AppTypography] that holds all [TextStyle] used in the app
 class AppTypography {
   /// [largeTitle] defines Roboto font with color [AppColors.secondaryColorWhiteTheme], font size 32, line height 36, font weight 700
   static const largeTitle = TextStyle(
