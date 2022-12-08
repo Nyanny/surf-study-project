@@ -3,21 +3,21 @@ import 'package:surf_study_project/features/common/domain/entity/place_entity.da
 
 /// Basic Place service interface.
 abstract class IPlaceService {
-  /// Send [Place].
-  Future<Place> sendPlace(Place placeEntity);
+  /// Send [PlaceEntity].
+  Future<PlaceEntity> sendPlace(PlaceEntity placeEntity);
 
-  /// Gets [Place] specified by id.
-  Future<Place> getPlace({required int id});
+  /// Gets [PlaceEntity] specified by id.
+  Future<PlaceEntity> getPlace({required int id});
 
-  /// Gets [List] of [Place]
+  /// Gets [List] of [PlaceEntity]
   /// optional parameters
   /// [count] - count of places in the list
   /// [offset] - offset from the first Place
-  Future<List<Place>> getPlacesList({int count = 10, int offset = 0});
+  Future<List<PlaceEntity>> getPlacesList({int count = 10, int offset = 0});
 
-  /// Gets [List] of [Place]
-  /// [Place] has the specified [Place.distance]
-  Future<List<Place>> getFilteredPlacesList(
-    FilteredPlaces filteredPlacesEntity,
+  /// Gets [List] of [PlaceEntity]
+  /// [PlaceEntity] has the specified [PlaceEntity.distance]
+  Future<List<PlaceEntity>> getFilteredPlacesList(
+    FilteredPlacesEntity filteredPlacesEntity,
   );
 }

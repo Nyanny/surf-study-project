@@ -22,15 +22,6 @@ class OnboardingScreenWidgetModel
     implements IOnboardingScreenWidgetModel {
   final PageController _pageController = PageController();
 
-  final StateNotifier<bool> _isLastPage = StateNotifier<bool>(initValue: false);
-
-  @override
-  // ValueSetter<int> get onPageChanged => throw UnimplementedError();
-  ValueSetter<int> get onPageChanged => _onPageChanged;
-
-  @override
-  ListenableState<bool> get isLastPage => _isLastPage;
-
   @override
   int get itemCount => _pages.length;
 
@@ -40,12 +31,14 @@ class OnboardingScreenWidgetModel
   @override
   IndexedWidgetBuilder get itemBuilder => _itemBuilder;
 
+  /// The value may be seem weird, but it is the same on the left and right. like left and right 185.7
   @override
-  double get dotsPositionHorizontal => 0.0;
+  double get dotsPositionHorizontal =>
+      MediaQuery.of(context).size.width * 0.0000001;
 
   /// value based on design
   @override
-  double get dotsPaddingVerticalTop => 536;
+  double get dotsPaddingVerticalBottom => 136;
 
   @override
   Color get activeDotColor => Theme.of(context).colorScheme.secondary;
@@ -55,12 +48,6 @@ class OnboardingScreenWidgetModel
 
   @override
   double get dotSize => 8.0;
-
-  @override
-  VoidCallback get skipButtonAction => _onSkipButtonPressed;
-
-  @override
-  VoidCallback get startButtonAction => _onStartButtonPressed;
 
   List<Widget> _pages = [];
 
@@ -73,30 +60,20 @@ class OnboardingScreenWidgetModel
     super.initWidgetModel();
   }
 
-  void _onPageChanged(int pageIndex) {
-    _isLastPage.accept(pageIndex == itemCount - 1);
-  }
-
   /// transition to a next page
   void _onSkipButtonPressed() {
-    _animateToNextPage();
-  }
-
-  void _animateToNextPage() {
     _pageController.nextPage(
       duration: const Duration(milliseconds: 300),
       curve: Curves.easeIn,
     );
   }
 
-  /// action on StartButton
-  void _onStartButtonPressed() {}
-
   /// pages initialisation
   void _initOnboardingPages() {
     _pages = [
       /// first page - "map"
       OnboardingPageWidget(
+        isLastPage: false,
         picture: _picture(AppAssets.roadSign),
         title: _title(AppStrings.onboardingScreenMapPageTitle),
         subtitle: _subtitle(AppStrings.onboardingScreenMapPageSubitle),
@@ -105,6 +82,7 @@ class OnboardingScreenWidgetModel
 
       /// second page - "routes"
       OnboardingPageWidget(
+        isLastPage: false,
         picture: _picture(AppAssets.backpack),
         title: _title(AppStrings.onboardingScreenRoutePageTitle),
         subtitle: _subtitle(AppStrings.onboardingScreenRoutePageSubitle),
@@ -113,6 +91,7 @@ class OnboardingScreenWidgetModel
 
       /// last page - "tap"
       OnboardingPageWidget(
+        isLastPage: true,
         picture: _picture(AppAssets.tap),
         title: _title(AppStrings.onboardingScreenPlacesPageTitle),
         subtitle: _subtitle(AppStrings.onboardingScreenPlacesPageSubitle),
@@ -157,13 +136,6 @@ class OnboardingScreenWidgetModel
 
 /// Interface of [IOnboardingScreenWidgetModel].
 abstract class IOnboardingScreenWidgetModel extends IWidgetModel {
-  /// last page flag
-  ListenableState<bool> get isLastPage;
-
-  /// onPageChanged for page_view
-  ValueSetter<int> get onPageChanged;
-
-  /// PageController for page_view
   PageController get pageController;
 
   /// Itembuilder that builds content of [OnboardingScreen]
@@ -177,7 +149,7 @@ abstract class IOnboardingScreenWidgetModel extends IWidgetModel {
   double get dotsPositionHorizontal;
 
   /// Dots padding from the bottom
-  double get dotsPaddingVerticalTop;
+  double get dotsPaddingVerticalBottom;
 
   /// dots inactive color
   Color get dotColor;
@@ -187,10 +159,4 @@ abstract class IOnboardingScreenWidgetModel extends IWidgetModel {
 
   /// dots size
   double get dotSize;
-
-  /// action for SkipButton
-  VoidCallback get skipButtonAction;
-
-  /// action for StartButton
-  VoidCallback get startButtonAction;
 }
