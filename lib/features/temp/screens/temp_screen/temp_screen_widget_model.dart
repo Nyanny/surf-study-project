@@ -42,7 +42,8 @@ class TempScreenWidgetModel extends WidgetModel<TempScreen, ITempScreenModel>
   List<BottomNavigationBarItem> get navigationBarItems => _navigationBarItems;
 
   List<PageRouteInfo> get _routes {
-    final defaultRoutes = <PageRouteInfo>[DashRouter(), InfoRouter()];
+    // final defaultRoutes = <PageRouteInfo>[DashRouter(), InfoRouter()];
+    final defaultRoutes = <PageRouteInfo>[OnboardingRouter(), InfoRouter()];
     if (_isDebugMode) defaultRoutes.add(DebugRouter());
     return defaultRoutes;
   }
