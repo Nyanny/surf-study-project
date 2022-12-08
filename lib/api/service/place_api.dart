@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:surf_study_project/api/api_strings.dart';
-import 'package:surf_study_project/api/data/place.dart';
-import 'package:surf_study_project/api/data/place_dto.dart';
-import 'package:surf_study_project/api/data/places_filter_request_dto.dart';
+import 'package:surf_study_project/api/data/place_request.dart';
+import 'package:surf_study_project/api/data/place_response.dart';
+import 'package:surf_study_project/api/data/places_filter_request.dart';
 
 part 'place_api.g.dart';
 
@@ -11,36 +11,37 @@ part 'place_api.g.dart';
 /// Has got 3 POST, 2 GET
 @RestApi(baseUrl: ApiStrings.baseUrl)
 abstract class PlaceApi {
+  /// factory constructor
   factory PlaceApi(Dio dio, {String baseUrl}) = _PlaceApi;
 
   /// Запрос списка интересных мест с фильтром.
-  /// Фильтр задается в теле запроса, список параметров смотри в [PlacesFilterRequestDto].
-  /// Ответ в виде списка типа [PlaceDto].
+  /// Фильтр задается в теле запроса, список параметров смотри в [PlacesFilterRequest].
+  /// Ответ в виде списка типа [PlaceResponse].
   /// Если в запросе были указаны координаты точки и радиус, то в ответе будет расстояние между точкой и местом.
   @POST(ApiStrings.filteredPlaces)
-  Future<List<PlaceDto>> getFilteredPlaces(
-    @Body() PlacesFilterRequestDto response,
+  Future<List<PlaceResponse>> getFilteredPlaces(
+    @Body() PlacesFilterRequest response,
   );
 
-  /// POST [Place]
+  /// POST [PlaceRequest]
   @POST(ApiStrings.place)
-  Future<Place> postPlace(
-    @Body() Place request,
+  Future<PlaceRequest> postPlace(
+    @Body() PlaceRequest request,
   );
 
-  /// GET [List] of [Place]
+  /// GET [List] of [PlaceRequest]
   /// [count] - count of places in the list
-  /// [offset] - offset from the first [Place] in the API
+  /// [offset] - offset from the first [PlaceRequest] in the API
   @GET(ApiStrings.place)
-  Future<List<Place>> getPlace(
+  Future<List<PlaceRequest>> getPlace(
     @Query('count') int count,
     @Query('offset') int offset,
   );
 
-  /// GET [Place]
+  /// GET [PlaceRequest]
   /// [id] - id of the required Place
   @GET('${ApiStrings.place}/{id}')
-  Future<Place> getPlaceById(
+  Future<PlaceRequest> getPlaceById(
     @Path('id') String id,
   );
 

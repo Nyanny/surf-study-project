@@ -1,23 +1,23 @@
-import 'package:surf_study_project/features/common/domain/entity/filtered_places_entity.dart';
-import 'package:surf_study_project/features/common/domain/entity/place_entity.dart';
+import 'package:surf_study_project/features/common/domain/entity/filtered_places.dart';
+import 'package:surf_study_project/features/common/domain/entity/place.dart';
 
 /// Basic Place service interface.
 abstract class IPlaceService {
-  /// Send [PlaceEntity].
-  Future<PlaceEntity> sendPlace(PlaceEntity placeEntity);
+  /// Send [Place].
+  Future<Place> sendPlace(Place place);
 
-  /// Gets [PlaceEntity] specified by id.
-  Future<PlaceEntity> getPlace({required int id});
+  /// Gets [Place] specified by id.
+  Future<Place> getPlace({required int id});
 
-  /// Gets [List] of [PlaceEntity]
+  /// Gets [List] of [Place]
   /// optional parameters
   /// [count] - count of places in the list
   /// [offset] - offset from the first Place
-  Future<List<PlaceEntity>> getPlacesList({int count = 10, int offset = 0});
+  Future<List<Place>> getPlacesList({int count = 10, int offset = 0});
 
-  /// Gets [List] of [PlaceEntity]
-  /// [PlaceEntity] has the specified [PlaceEntity.distance]
-  Future<List<PlaceEntity>> getFilteredPlacesList(
-    FilteredPlacesEntity filteredPlacesEntity,
+  /// Gets [List] of [Place]
+  /// [Place] has the specified [Place.distance]
+  Future<List<Place>> getFilteredPlacesList(
+    FilteredPlaces filteredPlaces,
   );
 }

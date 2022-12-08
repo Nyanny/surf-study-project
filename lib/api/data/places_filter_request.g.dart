@@ -1,14 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'places_filter_request_dto.dart';
+part of 'places_filter_request.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-PlacesFilterRequestDto _$PlacesFilterRequestDtoFromJson(
-        Map<String, dynamic> json) =>
-    PlacesFilterRequestDto(
+PlacesFilterRequest _$PlacesFilterRequestFromJson(Map<String, dynamic> json) =>
+    PlacesFilterRequest(
       lat: (json['lat'] as num?)?.toDouble(),
       lng: (json['lng'] as num?)?.toDouble(),
       radius: (json['radius'] as num?)?.toDouble(),
@@ -18,8 +17,8 @@ PlacesFilterRequestDto _$PlacesFilterRequestDtoFromJson(
       nameFilter: json['nameFilter'] as String?,
     );
 
-Map<String, dynamic> _$PlacesFilterRequestDtoToJson(
-        PlacesFilterRequestDto instance) =>
+Map<String, dynamic> _$PlacesFilterRequestToJson(
+        PlacesFilterRequest instance) =>
     <String, dynamic>{
       'lat': instance.lat,
       'lng': instance.lng,

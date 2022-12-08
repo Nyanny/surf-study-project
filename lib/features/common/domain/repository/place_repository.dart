@@ -1,6 +1,6 @@
 import 'package:surf_study_project/api/service/place_api.dart';
-import 'package:surf_study_project/features/common/domain/entity/filtered_places_entity.dart';
-import 'package:surf_study_project/features/common/domain/entity/place_entity.dart';
+import 'package:surf_study_project/features/common/domain/entity/filtered_places.dart';
+import 'package:surf_study_project/features/common/domain/entity/place.dart';
 import 'package:surf_study_project/features/common/domain/repository/iplace_repository.dart';
 import 'package:surf_study_project/features/common/domain/repository/place_mapper.dart';
 
@@ -8,47 +8,49 @@ import 'package:surf_study_project/features/common/domain/repository/place_mappe
 class PlaceRepository implements IPlaceRepository {
   final PlaceApi _apiClient;
 
+  /// constructor
   PlaceRepository(this._apiClient);
 
-  /// Function argument is [FilteredPlacesEntity]
-  /// Returns [List] of [PlaceEntity]
+  /// Function argument is [FilteredPlaces]
+  /// Returns [List] of [Place]
   @override
-  Future<List<PlaceEntity>> getFilteredPlaces(
-    FilteredPlacesEntity filteredPlacesEntity,
+  Future<List<Place>> getFilteredPlaces(
+    FilteredPlaces filteredPlaces,
   ) {
     return _apiClient
         .getFilteredPlaces(
-          PlaceMapper.placesFilterRequestDtoMapper(filteredPlacesEntity),
+          PlaceMapper.placesFilterRequestMapperFromFilteredPlaces(
+            filteredPlaces,
+          ),
         )
         .then((value) => value
-            .map<PlaceEntity>(PlaceMapper.placeEntityMapperFromPlaceDTO)
+            .map<Place>(PlaceMapper.placeMapperFromPlaceResponse)
             .toList());
   }
 
   /// Function argument is [placeId]
-  /// Returns [PlaceEntity]
+  /// Returns [Place]
   @override
-  Future<PlaceEntity> getPlaceById({required int placeId}) {
+  Future<Place> getPlaceById({required int placeId}) {
     return _apiClient
         .getPlaceById(placeId.toString())
-        .then(PlaceMapper.placeEntityMapperFromPlace);
+        .then(PlaceMapper.placeMapperFromPlaceRequest);
   }
 
   /// Function argument are [count], [offset]
-  /// Returns [List] of [PlaceEntity]
+  /// Returns [List] of [Place]
   @override
-  Future<List<PlaceEntity>> getPlaces({int count = 1, int offset = 0}) {
-    return _apiClient.getPlace(count, offset).then((value) => value
-        .map<PlaceEntity>(PlaceMapper.placeEntityMapperFromPlace)
-        .toList());
+  Future<List<Place>> getPlaces({int count = 1, int offset = 0}) {
+    return _apiClient.getPlace(count, offset).then((value) =>
+        value.map<Place>(PlaceMapper.placeMapperFromPlaceRequest).toList());
   }
 
-  /// Function argument is [PlaceEntity]
-  /// Returns [PlaceEntity]
+  /// Function argument is [Place]
+  /// Returns [Place]
   @override
-  Future<PlaceEntity> postPlace(PlaceEntity placeEntity) {
+  Future<Place> postPlace(Place place) {
     return _apiClient
-        .postPlace(PlaceMapper.placeMapper(placeEntity))
-        .then<PlaceEntity>(PlaceMapper.placeEntityMapperFromPlace);
+        .postPlace(PlaceMapper.placeRequestMapperFromPlace(place))
+        .then<Place>(PlaceMapper.placeMapperFromPlaceRequest);
   }
 }

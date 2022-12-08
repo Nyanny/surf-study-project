@@ -6,9 +6,12 @@ import 'package:surf_study_project/assets/strings/app_strings.dart';
 /// Presents [ElevatedButton]
 /// [onPressed] is a [VoidCallback] that is supplied with the class initialization
 class StartButtonWidget extends StatelessWidget {
-  const StartButtonWidget({Key? key, required this.onPressed})
-      : super(key: key);
+  /// callback for the button [StartButtonWidget]
   final VoidCallback? onPressed;
+
+  /// [StartButtonWidget] constructor
+  const StartButtonWidget({required this.onPressed, Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

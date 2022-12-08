@@ -1,75 +1,75 @@
-import 'package:surf_study_project/api/data/place.dart';
-import 'package:surf_study_project/api/data/place_dto.dart';
-import 'package:surf_study_project/api/data/places_filter_request_dto.dart';
-import 'package:surf_study_project/features/common/domain/entity/filtered_places_entity.dart';
-import 'package:surf_study_project/features/common/domain/entity/place_entity.dart';
+import 'package:surf_study_project/api/data/place_request.dart';
+import 'package:surf_study_project/api/data/place_response.dart';
+import 'package:surf_study_project/api/data/places_filter_request.dart';
+import 'package:surf_study_project/features/common/domain/entity/filtered_places.dart';
+import 'package:surf_study_project/features/common/domain/entity/place.dart';
 import 'package:surf_study_project/features/common/domain/entity/place_type.dart';
 
 /// Mapper class for Place feature
 class PlaceMapper {
-  /// Converts [PlaceDto] to [PlaceEntity]
-  static PlaceEntity placeEntityMapperFromPlaceDTO(PlaceDto placeDTO) {
-    return PlaceEntity(
-      id: placeDTO.id,
-      lat: placeDTO.lat,
-      lng: placeDTO.lng,
-      distance: placeDTO.distance,
-      name: placeDTO.name,
-      placeType: placeTypeMapper(placeDTO.placeType),
-      description: placeDTO.description,
-      urls: placeDTO.urls,
+  /// Converts [PlaceResponse] to [Place]
+  static Place placeMapperFromPlaceResponse(PlaceResponse placeResponse) {
+    return Place(
+      id: placeResponse.id,
+      lat: placeResponse.lat,
+      lng: placeResponse.lng,
+      distance: placeResponse.distance,
+      name: placeResponse.name,
+      placeType: placeTypeMapper(placeResponse.placeType),
+      description: placeResponse.description,
+      urls: placeResponse.urls,
     );
   }
 
-  /// Converts [Place] to [PlaceEntity]
-  static PlaceEntity placeEntityMapperFromPlace(Place place) {
-    return PlaceEntity(
+  /// Converts [PlaceRequest] to [Place]
+  static Place placeMapperFromPlaceRequest(PlaceRequest placeRequest) {
+    return Place(
+      id: placeRequest.id,
+      lat: placeRequest.lat,
+      lng: placeRequest.lng,
+      name: placeRequest.name,
+      placeType: placeTypeMapper(placeRequest.placeType),
+      description: placeRequest.description,
+      urls: placeRequest.urls,
+    );
+  }
+
+  /// Converts [Place] to [PlaceRequest]
+  static PlaceRequest placeRequestMapperFromPlace(Place place) {
+    return PlaceRequest(
       id: place.id,
       lat: place.lat,
       lng: place.lng,
       name: place.name,
-      placeType: placeTypeMapper(place.placeType),
+      placeType: place.placeType.name,
       description: place.description,
       urls: place.urls,
     );
   }
 
-  /// Converts [PlaceEntity] to [Place]
-  static Place placeMapper(PlaceEntity placeEntity) {
-    return Place(
-      id: placeEntity.id,
-      lat: placeEntity.lat,
-      lng: placeEntity.lng,
-      name: placeEntity.name,
-      placeType: placeEntity.placeType.name,
-      description: placeEntity.description,
-      urls: placeEntity.urls,
+  /// Converts [Place] to [PlaceResponse]
+  static PlaceResponse placeResponseMapperFromPlace(Place place) {
+    return PlaceResponse(
+      id: place.id,
+      lat: place.lat,
+      lng: place.lng,
+      name: place.name,
+      placeType: place.placeType.name,
+      description: place.description,
+      urls: place.urls,
     );
   }
 
-  /// Converts [PlaceEntity] to [PlaceDto]
-  static PlaceDto placeDTOMapper(PlaceEntity placeEntity) {
-    return PlaceDto(
-      id: placeEntity.id,
-      lat: placeEntity.lat,
-      lng: placeEntity.lng,
-      name: placeEntity.name,
-      placeType: placeEntity.placeType.name,
-      description: placeEntity.description,
-      urls: placeEntity.urls,
-    );
-  }
-
-  /// Converts [FilteredPlacesEntity] to [PlacesFilterRequestDto]
-  static PlacesFilterRequestDto placesFilterRequestDtoMapper(
-    FilteredPlacesEntity filteredPlacesEntity,
+  /// Converts [FilteredPlaces] to [PlacesFilterRequest]
+  static PlacesFilterRequest placesFilterRequestMapperFromFilteredPlaces(
+    FilteredPlaces filteredPlaces,
   ) {
-    return PlacesFilterRequestDto(
-      lat: filteredPlacesEntity.lat,
-      lng: filteredPlacesEntity.lng,
-      radius: filteredPlacesEntity.radius,
-      typeFilter: filteredPlacesEntity.typeFilter?.map((e) => e.name).toList(),
-      nameFilter: filteredPlacesEntity.nameFilter,
+    return PlacesFilterRequest(
+      lat: filteredPlaces.lat,
+      lng: filteredPlaces.lng,
+      radius: filteredPlaces.radius,
+      typeFilter: filteredPlaces.typeFilter?.map((e) => e.name).toList(),
+      nameFilter: filteredPlaces.nameFilter,
     );
   }
 

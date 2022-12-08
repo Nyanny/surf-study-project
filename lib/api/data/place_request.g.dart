@@ -1,12 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'place.dart';
+part of 'place_request.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-Place _$PlaceFromJson(Map<String, dynamic> json) => Place(
+PlaceRequest _$PlaceRequestFromJson(Map<String, dynamic> json) => PlaceRequest(
       id: json['id'] as int,
       lat: (json['lat'] as num).toDouble(),
       lng: (json['lng'] as num).toDouble(),
@@ -16,7 +16,8 @@ Place _$PlaceFromJson(Map<String, dynamic> json) => Place(
       description: json['description'] as String,
     );
 
-Map<String, dynamic> _$PlaceToJson(Place instance) => <String, dynamic>{
+Map<String, dynamic> _$PlaceRequestToJson(PlaceRequest instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'lat': instance.lat,
       'lng': instance.lng,

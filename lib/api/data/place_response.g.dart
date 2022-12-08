@@ -1,12 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'place_dto.dart';
+part of 'place_response.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-PlaceDto _$PlaceDtoFromJson(Map<String, dynamic> json) => PlaceDto(
+PlaceResponse _$PlaceResponseFromJson(Map<String, dynamic> json) =>
+    PlaceResponse(
       id: json['id'] as int,
       lat: (json['lat'] as num).toDouble(),
       lng: (json['lng'] as num).toDouble(),
@@ -17,7 +18,8 @@ PlaceDto _$PlaceDtoFromJson(Map<String, dynamic> json) => PlaceDto(
       distance: (json['distance'] as num?)?.toDouble(),
     );
 
-Map<String, dynamic> _$PlaceDtoToJson(PlaceDto instance) => <String, dynamic>{
+Map<String, dynamic> _$PlaceResponseToJson(PlaceResponse instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'lat': instance.lat,
       'lng': instance.lng,
