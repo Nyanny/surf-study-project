@@ -1,15 +1,14 @@
-// ignore_for_file: public_member_api_docs
 import 'package:flutter/foundation.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-part 'place_response.g.dart';
+part 'place_dto.g.dart';
 
 // Модель данных ответа на запрос фильтра мест.
 // От модели данных места Place отличается наличием поля distance,
 // в котором при ответе будет расстояние от запрошенной точки
 @JsonSerializable()
 @immutable
-class PlaceResponse {
+class PlaceDto {
   final int id;
   final double lat;
   final double lng;
@@ -19,7 +18,7 @@ class PlaceResponse {
   final String description;
   final double? distance;
 
-  const PlaceResponse({
+  const PlaceDto({
     required this.id,
     required this.lat,
     required this.lng,
@@ -30,8 +29,8 @@ class PlaceResponse {
     this.distance,
   });
 
-  factory PlaceResponse.fromJson(Map<String, dynamic> json) =>
-      _$PlaceResponseFromJson(json);
+  factory PlaceDto.fromJson(Map<String, dynamic> json) =>
+      _$PlaceDtoFromJson(json);
 
-  Map<String, dynamic> toJson() => _$PlaceResponseToJson(this);
+  Map<String, dynamic> toJson() => _$PlaceDtoToJson(this);
 }

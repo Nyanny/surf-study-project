@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:surf_study_project/features/app/di/app_scope.dart';
+import 'package:provider/provider.dart';
 
 /// Factory that returns the dependency scope.
 typedef ScopeFactory<T> = T Function();

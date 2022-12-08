@@ -7,37 +7,36 @@ import 'package:surf_study_project/features/service/iplace_service.dart';
 class PlaceService implements IPlaceService {
   final PlaceRepository _placeRepository;
 
-  /// [PlaceService] constructor
   PlaceService(this._placeRepository);
 
-  /// Function argument is [Place]
-  /// Returns [Place]
+  /// Function argument is [PlaceEntity]
+  /// Returns [PlaceEntity]
   @override
-  Future<Place> sendPlace(Place placeEntity) {
+  Future<PlaceEntity> sendPlace(PlaceEntity placeEntity) {
     return _placeRepository.postPlace(placeEntity);
   }
 
-  /// Function argument is [FilteredPlaces]
-  /// Returns [List] of [Place]
+  /// Function argument is [FilteredPlacesEntity]
+  /// Returns [List] of [PlaceEntity]
   @override
-  Future<List<Place>> getFilteredPlacesList(
-    FilteredPlaces filteredPlacesEntity,
+  Future<List<PlaceEntity>> getFilteredPlacesList(
+    FilteredPlacesEntity filteredPlacesEntity,
   ) {
     return _placeRepository.getFilteredPlaces(filteredPlacesEntity);
   }
 
   /// Function argument is [id]
-  /// Returns [Place]
+  /// Returns [PlaceEntity]
   @override
-  Future<Place> getPlace({required int id}) {
+  Future<PlaceEntity> getPlace({required int id}) {
     return _placeRepository.getPlaceById(placeId: id);
   }
 
   /// Fu
   /// Function argument are [count], [offset]
-  /// Returns [List] of [Place]
+  /// Returns [List] of [PlaceEntity]
   @override
-  Future<List<Place>> getPlacesList({int count = 10, int offset = 0}) {
+  Future<List<PlaceEntity>> getPlacesList({int count = 10, int offset = 0}) {
     return _placeRepository.getPlaces(count: count, offset: offset);
   }
 }

@@ -6,11 +6,9 @@ import 'package:surf_study_project/assets/strings/app_strings.dart';
 /// Presents [TextButton]
 /// [onPressed] is a [VoidCallback] that is supplied with the class initialization
 class SkipButtonWidget extends StatelessWidget {
-  /// callback for the button [SkipButtonWidget]
   final VoidCallback? onPressed;
 
-  /// [SkipButtonWidget] constructor
-  const SkipButtonWidget({required this.onPressed, Key? key}) : super(key: key);
+  const SkipButtonWidget({Key? key, required this.onPressed}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

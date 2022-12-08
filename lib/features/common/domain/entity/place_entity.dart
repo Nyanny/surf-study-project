@@ -1,10 +1,9 @@
-// ignore_for_file: public_member_api_docs
 import 'package:flutter/foundation.dart';
 import 'package:surf_study_project/features/common/domain/entity/place_type.dart';
 
 /// Entity of Place
 @immutable
-class Place {
+class PlaceEntity {
   final int id;
   final double lat;
   final double lng;
@@ -14,14 +13,14 @@ class Place {
   final String description;
   final List<String> urls;
 
-  const Place({
+  PlaceEntity({
     required this.id,
     required this.lat,
     required this.lng,
+    this.distance,
     required this.name,
     required this.placeType,
     required this.description,
     required this.urls,
-    this.distance,
   });
 }

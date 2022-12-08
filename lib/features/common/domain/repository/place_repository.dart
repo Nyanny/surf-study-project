@@ -8,47 +8,47 @@ import 'package:surf_study_project/features/common/domain/repository/place_mappe
 class PlaceRepository implements IPlaceRepository {
   final PlaceApi _apiClient;
 
-  /// constructor
   PlaceRepository(this._apiClient);
 
-  /// Function argument is [FilteredPlaces]
-  /// Returns [List] of [Place]
+  /// Function argument is [FilteredPlacesEntity]
+  /// Returns [List] of [PlaceEntity]
   @override
-  Future<List<Place>> getFilteredPlaces(
-    FilteredPlaces filteredPlacesEntity,
+  Future<List<PlaceEntity>> getFilteredPlaces(
+    FilteredPlacesEntity filteredPlacesEntity,
   ) {
     return _apiClient
         .getFilteredPlaces(
           PlaceMapper.placesFilterRequestDtoMapper(filteredPlacesEntity),
         )
         .then((value) => value
-            .map<Place>(PlaceMapper.placeEntityMapperFromPlaceDTO)
+            .map<PlaceEntity>(PlaceMapper.placeEntityMapperFromPlaceDTO)
             .toList());
   }
 
   /// Function argument is [placeId]
-  /// Returns [Place]
+  /// Returns [PlaceEntity]
   @override
-  Future<Place> getPlaceById({required int placeId}) {
+  Future<PlaceEntity> getPlaceById({required int placeId}) {
     return _apiClient
         .getPlaceById(placeId.toString())
         .then(PlaceMapper.placeEntityMapperFromPlace);
   }
 
   /// Function argument are [count], [offset]
-  /// Returns [List] of [Place]
+  /// Returns [List] of [PlaceEntity]
   @override
-  Future<List<Place>> getPlaces({int count = 1, int offset = 0}) {
-    return _apiClient.getPlace(count, offset).then((value) =>
-        value.map<Place>(PlaceMapper.placeEntityMapperFromPlace).toList());
+  Future<List<PlaceEntity>> getPlaces({int count = 1, int offset = 0}) {
+    return _apiClient.getPlace(count, offset).then((value) => value
+        .map<PlaceEntity>(PlaceMapper.placeEntityMapperFromPlace)
+        .toList());
   }
 
-  /// Function argument is [Place]
-  /// Returns [Place]
+  /// Function argument is [PlaceEntity]
+  /// Returns [PlaceEntity]
   @override
-  Future<Place> postPlace(Place placeEntity) {
+  Future<PlaceEntity> postPlace(PlaceEntity placeEntity) {
     return _apiClient
         .postPlace(PlaceMapper.placeMapper(placeEntity))
-        .then<Place>(PlaceMapper.placeEntityMapperFromPlace);
+        .then<PlaceEntity>(PlaceMapper.placeEntityMapperFromPlace);
   }
 }
