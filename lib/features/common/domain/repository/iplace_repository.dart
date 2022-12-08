@@ -1,5 +1,5 @@
-import 'package:surf_study_project/features/common/domain/entity/filtered_places_entity.dart';
-import 'package:surf_study_project/features/common/domain/entity/place_entity.dart';
+import 'package:surf_study_project/features/common/domain/entity/filtered_places.dart';
+import 'package:surf_study_project/features/common/domain/entity/place.dart';
 
 /// Basic Place repository interface.
 abstract class IPlaceRepository {
