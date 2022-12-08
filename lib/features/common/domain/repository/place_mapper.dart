@@ -1,8 +1,8 @@
 import 'package:surf_study_project/api/data/place_request.dart';
 import 'package:surf_study_project/api/data/place_response.dart';
 import 'package:surf_study_project/api/data/places_filter_request.dart';
-import 'package:surf_study_project/features/common/domain/entity/filtered_places_entity.dart';
-import 'package:surf_study_project/features/common/domain/entity/place_entity.dart';
+import 'package:surf_study_project/features/common/domain/entity/filtered_places.dart';
+import 'package:surf_study_project/features/common/domain/entity/place.dart';
 import 'package:surf_study_project/features/common/domain/entity/place_type.dart';
 
 /// Mapper class for Place feature
