@@ -4,7 +4,7 @@ import 'package:surf_study_project/features/common/domain/entity/place_type.dart
 
 /// Entity of Place
 @immutable
-class PlaceEntity {
+class Place {
   final int id;
   final double lat;
   final double lng;
@@ -14,7 +14,7 @@ class PlaceEntity {
   final String description;
   final List<String> urls;
 
-  const PlaceEntity({
+  const Place({
     required this.id,
     required this.lat,
     required this.lng,

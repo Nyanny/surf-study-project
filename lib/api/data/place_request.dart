@@ -2,12 +2,12 @@
 import 'package:flutter/foundation.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-part 'place.g.dart';
+part 'place_request.g.dart';
 
 /// Модель для POST request
 @JsonSerializable()
 @immutable
-class Place {
+class PlaceRequest {
   final int id;
   final double lat;
   final double lng;
@@ -16,7 +16,7 @@ class Place {
   final String placeType;
   final String description;
 
-  const Place({
+  const PlaceRequest({
     required this.id,
     required this.lat,
     required this.lng,
@@ -26,7 +26,8 @@ class Place {
     required this.description,
   });
 
-  factory Place.fromJson(Map<String, dynamic> json) => _$PlaceFromJson(json);
+  factory PlaceRequest.fromJson(Map<String, dynamic> json) =>
+      _$PlaceRequestFromJson(json);
 
-  Map<String, dynamic> toJson() => _$PlaceToJson(this);
+  Map<String, dynamic> toJson() => _$PlaceRequestToJson(this);
 }
