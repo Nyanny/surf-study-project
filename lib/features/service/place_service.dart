@@ -33,7 +33,6 @@ class PlaceService implements IPlaceService {
     return _placeRepository.getPlaceById(placeId: id);
   }
 
-  /// Fu
   /// Function argument are [count], [offset]
   /// Returns [List] of [Place]
   @override
