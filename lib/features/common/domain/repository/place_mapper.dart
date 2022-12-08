@@ -8,68 +8,68 @@ import 'package:surf_study_project/features/common/domain/entity/place_type.dart
 /// Mapper class for Place feature
 class PlaceMapper {
   /// Converts [PlaceResponse] to [Place]
-  static Place placeEntityMapperFromPlaceDTO(PlaceResponse placeDTO) {
+  static Place placeMapperFromPlaceResponse(PlaceResponse placeResponse) {
     return Place(
-      id: placeDTO.id,
-      lat: placeDTO.lat,
-      lng: placeDTO.lng,
-      distance: placeDTO.distance,
-      name: placeDTO.name,
-      placeType: placeTypeMapper(placeDTO.placeType),
-      description: placeDTO.description,
-      urls: placeDTO.urls,
+      id: placeResponse.id,
+      lat: placeResponse.lat,
+      lng: placeResponse.lng,
+      distance: placeResponse.distance,
+      name: placeResponse.name,
+      placeType: placeTypeMapper(placeResponse.placeType),
+      description: placeResponse.description,
+      urls: placeResponse.urls,
     );
   }
 
   /// Converts [PlaceRequest] to [Place]
-  static Place placeEntityMapperFromPlace(PlaceRequest place) {
+  static Place placeMapperFromPlaceRequest(PlaceRequest placeRequest) {
     return Place(
+      id: placeRequest.id,
+      lat: placeRequest.lat,
+      lng: placeRequest.lng,
+      name: placeRequest.name,
+      placeType: placeTypeMapper(placeRequest.placeType),
+      description: placeRequest.description,
+      urls: placeRequest.urls,
+    );
+  }
+
+  /// Converts [Place] to [PlaceRequest]
+  static PlaceRequest placeRequestMapperFromPlace(Place place) {
+    return PlaceRequest(
       id: place.id,
       lat: place.lat,
       lng: place.lng,
       name: place.name,
-      placeType: placeTypeMapper(place.placeType),
+      placeType: place.placeType.name,
       description: place.description,
       urls: place.urls,
     );
   }
 
-  /// Converts [Place] to [PlaceRequest]
-  static PlaceRequest placeMapper(Place placeEntity) {
-    return PlaceRequest(
-      id: placeEntity.id,
-      lat: placeEntity.lat,
-      lng: placeEntity.lng,
-      name: placeEntity.name,
-      placeType: placeEntity.placeType.name,
-      description: placeEntity.description,
-      urls: placeEntity.urls,
-    );
-  }
-
   /// Converts [Place] to [PlaceResponse]
-  static PlaceResponse placeDTOMapper(Place placeEntity) {
+  static PlaceResponse placeResponseMapperFromPlace(Place place) {
     return PlaceResponse(
-      id: placeEntity.id,
-      lat: placeEntity.lat,
-      lng: placeEntity.lng,
-      name: placeEntity.name,
-      placeType: placeEntity.placeType.name,
-      description: placeEntity.description,
-      urls: placeEntity.urls,
+      id: place.id,
+      lat: place.lat,
+      lng: place.lng,
+      name: place.name,
+      placeType: place.placeType.name,
+      description: place.description,
+      urls: place.urls,
     );
   }
 
   /// Converts [FilteredPlaces] to [PlacesFilterRequest]
-  static PlacesFilterRequest placesFilterRequestDtoMapper(
-    FilteredPlaces filteredPlacesEntity,
+  static PlacesFilterRequest placesFilterRequestMapperFromFilteredPlaces(
+    FilteredPlaces filteredPlaces,
   ) {
     return PlacesFilterRequest(
-      lat: filteredPlacesEntity.lat,
-      lng: filteredPlacesEntity.lng,
-      radius: filteredPlacesEntity.radius,
-      typeFilter: filteredPlacesEntity.typeFilter?.map((e) => e.name).toList(),
-      nameFilter: filteredPlacesEntity.nameFilter,
+      lat: filteredPlaces.lat,
+      lng: filteredPlaces.lng,
+      radius: filteredPlaces.radius,
+      typeFilter: filteredPlaces.typeFilter?.map((e) => e.name).toList(),
+      nameFilter: filteredPlaces.nameFilter,
     );
   }
 
