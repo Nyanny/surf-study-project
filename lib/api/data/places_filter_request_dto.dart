@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs
 import 'package:flutter/foundation.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -15,7 +16,7 @@ class PlacesFilterRequestDto {
   final List<String>? typeFilter;
   final String? nameFilter;
 
-  PlacesFilterRequestDto({
+  const PlacesFilterRequestDto({
     required this.lat,
     required this.lng,
     required this.radius,
