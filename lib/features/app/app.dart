@@ -43,10 +43,12 @@ class _AppState extends State<App> {
         /// Themes
         theme: AppThemes.lightTheme,
         darkTheme: AppThemes.darkTheme,
+
         /// Localization.
         locale: _localizations.first,
         localizationsDelegates: _localizationsDelegates,
         supportedLocales: _localizations,
+
         /// This is for navigation.
         routeInformationParser: _scope.router.defaultRouteParser(),
         routerDelegate: _scope.router.delegate(),
