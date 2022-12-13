@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:surf_study_project/features/screens/onboarding/onboarding_screen_export.dart';
-import 'package:surf_study_project/features/widgets/onboarding_widgets/skip_button_widget.dart';
-import 'package:surf_study_project/features/widgets/onboarding_widgets/start_button_widget.dart';
+import 'package:surf_study_project/features/onboarding/screens/onboarding_screen/onboarding_screen_export.dart';
+import 'package:surf_study_project/features/onboarding/widgets/skip_button_widget.dart';
+import 'package:surf_study_project/features/onboarding/widgets/start_button_widget.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();

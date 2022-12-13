@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:surf_study_project/assets/res/app_typography.dart';
 import 'package:surf_study_project/assets/strings/app_strings.dart';
+import 'package:surf_study_project/assets/themes/themes_flavours/onboarding_colors.dart';
 
 /// Class [StartButtonWidget] - a start button that ends
 /// Presents [ElevatedButton]
@@ -10,11 +11,15 @@ class StartButtonWidget extends StatelessWidget {
   final VoidCallback? onPressed;
 
   /// [StartButtonWidget] constructor
-  const StartButtonWidget({required this.onPressed, Key? key})
-      : super(key: key);
+  const StartButtonWidget({
+    required this.onPressed,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context).extension<OnboardingColors>();
+
     return Container(
       padding: const EdgeInsets.symmetric(
         horizontal: 16,
@@ -25,13 +30,15 @@ class StartButtonWidget extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),
-          backgroundColor: Theme.of(context).colorScheme.secondary,
+          backgroundColor: theme?.startButtonColor,
           minimumSize: const Size.fromHeight(48),
         ),
         onPressed: onPressed,
-        child: const Text(
+        child: Text(
           AppStrings.startButton,
-          style: AppTypography.smallBoldText,
+          style: AppTypography.smallBoldText.copyWith(
+            color: theme?.startButtonTitleColor,
+          ),
         ),
       ),
     );

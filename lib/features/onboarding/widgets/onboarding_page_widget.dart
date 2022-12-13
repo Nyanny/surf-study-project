@@ -1,34 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:surf_study_project/features/widgets/onboarding_widgets/skip_button_widget.dart';
-import 'package:surf_study_project/features/widgets/onboarding_widgets/start_button_widget.dart';
+import 'package:surf_study_project/assets/res/app_typography.dart';
+import 'package:surf_study_project/assets/themes/themes_flavours/onboarding_colors.dart';
 
 /// Class [OnboardingPageWidget] is the page shows [SvgPicture], a description with [title] and [subtitle].
 class OnboardingPageWidget extends StatelessWidget {
-  /// [picture] that shows on page, above all other elements
-  final SvgPicture picture;
+  /// [assetPath] path to the asset, that shows on page, above all other elements
+  final String assetPath;
 
-  /// [title] of the page, below [picture]
-  final Text title;
+  /// [title] of the page, below [assetPath]
+  final String title;
 
   /// [subtitle] of the page, below [title]
-  final Text subtitle;
-
-  /// [onPressed] is a callback of the button
-  /// Can be animation to next page for [SkipButtonWidget] or action of [StartButtonWidget]
-  final VoidCallback? onPressed;
+  final String subtitle;
 
   /// [OnboardingPageWidget] constructor
   const OnboardingPageWidget({
-    required this.picture,
+    required this.assetPath,
     required this.title,
     required this.subtitle,
-    required this.onPressed,
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context).extension<OnboardingColors>()!;
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -46,7 +43,10 @@ class OnboardingPageWidget extends StatelessWidget {
                     child: SizedBox(
                       height: 104,
                       width: 104,
-                      child: picture,
+                      child: SvgPicture.asset(
+                        assetPath,
+                        color: theme.iconColor,
+                      ),
                     ),
                   ),
 
@@ -56,14 +56,26 @@ class OnboardingPageWidget extends StatelessWidget {
                     child: Column(
                       children: [
                         /// Title
-                        title,
+                        Text(
+                          title,
+                          style: AppTypography.title.copyWith(
+                            color: theme.titleColor,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
                         const Divider(
                           color: Colors.transparent,
                           height: 8,
                         ),
 
                         /// Subtitle
-                        subtitle,
+                        Text(
+                          subtitle,
+                          style: AppTypography.smallText.copyWith(
+                            color: theme.descriptionColor,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
                       ],
                     ),
                   ),

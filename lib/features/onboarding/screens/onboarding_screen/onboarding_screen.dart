@@ -1,9 +1,10 @@
 import 'package:elementary/elementary.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:surf_study_project/features/screens/onboarding/onboarding_screen_wm.dart';
-import 'package:surf_study_project/features/widgets/onboarding_widgets/skip_button_widget.dart';
-import 'package:surf_study_project/features/widgets/onboarding_widgets/start_button_widget.dart';
+import 'package:surf_study_project/features/onboarding/screens/onboarding_screen/onboarding_screen_wm.dart';
+import 'package:surf_study_project/features/onboarding/widgets/onboarding_page_widget.dart';
+import 'package:surf_study_project/features/onboarding/widgets/skip_button_widget.dart';
+import 'package:surf_study_project/features/onboarding/widgets/start_button_widget.dart';
 
 /// Main widget for OnboardingScreen feature
 class OnboardingScreen extends ElementaryWidget<IOnboardingScreenWidgetModel> {
@@ -23,7 +24,9 @@ class OnboardingScreen extends ElementaryWidget<IOnboardingScreenWidgetModel> {
             listenableState: wm.isLastPage,
             builder: (_, isLastPage) {
               return !isLastPage!
-                  ? SkipButtonWidget(onPressed: wm.skipButtonAction)
+                  ? SkipButtonWidget(
+                      onPressed: wm.skipButtonAction,
+                    )
                   : const SizedBox.shrink();
             },
           ),
@@ -37,21 +40,27 @@ class OnboardingScreen extends ElementaryWidget<IOnboardingScreenWidgetModel> {
                 PageView.builder(
                   onPageChanged: wm.onPageChanged,
                   itemCount: wm.itemCount,
-                  itemBuilder: wm.itemBuilder,
+                  itemBuilder: (context, index) {
+                    return OnboardingPageWidget(
+                      assetPath: wm.pageData[index].picturePath,
+                      title: wm.pageData[index].title,
+                      subtitle: wm.pageData[index].subtitle,
+                    );
+                  },
                   controller: wm.pageController,
                 ),
                 Container(
-                  alignment: Alignment(wm.dotsPositionHorizontal, -1),
-                  padding: EdgeInsets.only(top: wm.dotsPaddingVerticalTop),
+                  alignment: Alignment.topCenter,
+                  padding: const EdgeInsets.only(top: 536),
                   child: SmoothPageIndicator(
                     controller: wm.pageController,
                     count: wm.itemCount,
                     effect: ExpandingDotsEffect(
-                      dotHeight: wm.dotSize,
-                      dotWidth: wm.dotSize,
-                      dotColor: wm.dotColor,
-                      activeDotColor: wm.activeDotColor,
-                      radius: wm.dotSize,
+                      dotHeight: 8.0,
+                      dotWidth: 8.0,
+                      dotColor: wm.onboardingTheme.dotsColor,
+                      activeDotColor: wm.onboardingTheme.dotsActiveColor,
+                      radius: 8.0,
                     ),
                   ),
                 ),
