@@ -4,28 +4,28 @@ import 'package:flutter/material.dart';
 /// colors set by design
 class AppColors {
   /// White theme colors
-  static const greenWhiteTheme = _fruitSalad;
-  static const yellowWhiteTheme = _brightSun;
-  static const redWhiteTheme = _flamingo;
-  static const whiteWhiteTheme = _white;
+  static const greenLightTheme = _fruitSalad;
+  static const yellowLightTheme = _brightSun;
+  static const redLightTheme = _flamingo;
+  static const whiteLightTheme = _white;
 
-  static const mainColorWhiteTheme = _martinique;
-  static const secondaryColorWhiteTheme = _oxfordBlue;
-  static const secondary2ColorWhiteTheme = _waterloo;
-  static const secondary2WithOpactiryColorWhiteTheme = _waterloo56op;
-  static const backgroundColorWhiteTheme = _wildSand;
+  static const mainColorLightTheme = _martinique;
+  static const secondaryColorLightTheme = _oxfordBlue;
+  static const secondary2ColorLightTheme = _waterloo;
+  static const secondary2WithOpactiryColorLightTheme = _waterloo56op;
+  static const backgroundColorLightTheme = _wildSand;
 
   /// Black theme colors
-  static const greenBlackTheme = _pastelGreen;
-  static const yellowBlackTheme = _kournikova;
-  static const redBlackTheme = _persianRed;
-  static const whiteBlackTheme = _white;
+  static const greenDarkTheme = _pastelGreen;
+  static const yellowDarkTheme = _kournikova;
+  static const redDarkTheme = _persianRed;
+  static const whiteDarkTheme = _white;
 
-  static const darkColorBlackTheme = _shark;
-  static const mainColorBlackTheme = _charade;
-  static const secondaryColorBlackTheme = _oxfordBlue;
-  static const secondary2ColorBlackTheme = _waterloo;
-  static const secondary2WithOpactiryColorBlackTheme = _waterloo56op;
+  static const darkColorDarkTheme = _shark;
+  static const mainColorDarkTheme = _charade;
+  static const secondaryColorDarkTheme = _oxfordBlue;
+  static const secondary2ColorDarkTheme = _waterloo;
+  static const secondary2WithOpactiryColorDarkTheme = _waterloo56op;
 
   static const _white = Colors.white;
   static const _fruitSalad = Color(0xFF4CAF50);
