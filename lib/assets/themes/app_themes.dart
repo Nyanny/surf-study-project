@@ -7,7 +7,7 @@ import 'package:surf_study_project/assets/res/app_typography.dart';
 /// class [AppThemes] defines App themes: light and dark
 class AppThemes {
   /// defines default [TextTheme]
-  static const _defaultTextTheme = TextTheme(
+  static final _defaultTextTheme = TextTheme(
     /// Extremely large text.
     headline1: AppTypography.largeTitle,
 
