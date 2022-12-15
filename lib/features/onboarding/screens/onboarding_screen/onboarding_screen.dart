@@ -1,5 +1,6 @@
 import 'package:elementary/elementary.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:surf_study_project/features/onboarding/screens/onboarding_screen/onboarding_screen_wm.dart';
 import 'package:surf_study_project/features/onboarding/widgets/onboarding_page_widget.dart';
@@ -32,55 +33,67 @@ class OnboardingScreen extends ElementaryWidget<IOnboardingScreenWidgetModel> {
           ),
         ],
       ),
-      body: Column(
-        children: [
-          Expanded(
-            child: Stack(
-              children: [
-                PageView.builder(
-                  onPageChanged: wm.onPageChanged,
-                  itemCount: wm.itemCount,
-                  itemBuilder: (context, index) {
-                    return OnboardingPageWidget(
-                      assetPath: wm.pageData[index].picturePath,
-                      title: wm.pageData[index].title,
-                      subtitle: wm.pageData[index].subtitle,
-                    );
-                  },
-                  controller: wm.pageController,
-                ),
-                Container(
-                  alignment: Alignment.topCenter,
-                  padding: const EdgeInsets.only(top: 536),
-                  child: SmoothPageIndicator(
-                    controller: wm.pageController,
-                    count: wm.itemCount,
-                    effect: ExpandingDotsEffect(
-                      dotHeight: 8.0,
-                      dotWidth: 8.0,
-                      dotColor: wm.onboardingTheme.dotsColor,
-                      activeDotColor: wm.onboardingTheme.dotsActiveColor,
-                      radius: 8.0,
-                    ),
+      body: Center(
+        child: Stack(
+          children: [
+            PageView.builder(
+              padEnds: false,
+              onPageChanged: wm.onPageChanged,
+              itemCount: wm.itemCount,
+              itemBuilder: (context, index) {
+                return Center(
+                  child: OnboardingPageWidget(
+                    assetPath: wm.pageData[index].picturePath,
+                    title: wm.pageData[index].title,
+                    subtitle: wm.pageData[index].subtitle,
                   ),
-                ),
-              ],
+                );
+              },
+              controller: wm.pageController,
             ),
-          ),
-          StateNotifierBuilder<bool>(
-            listenableState: wm.isLastPage,
-            builder: (_, isLastPage) {
-              return isLastPage!
-                  ? Padding(
-                      padding: const EdgeInsets.only(right: 16),
-                      child: StartButtonWidget(
-                        onPressed: wm.startButtonAction,
-                      ),
-                    )
-                  : const SizedBox.shrink();
-            },
-          ),
-        ],
+            Container(
+              alignment: Alignment.bottomCenter,
+              padding: EdgeInsets.only(
+                bottom: 88.w,
+              ),
+              child: SmoothPageIndicator(
+                controller: wm.pageController,
+                count: wm.itemCount,
+                effect: ExpandingDotsEffect(
+                  dotHeight: 8.w,
+                  dotWidth: 8.w,
+                  dotColor: wm.onboardingTheme.dotsColor,
+                  activeDotColor: wm.onboardingTheme.dotsActiveColor,
+                  radius: 8.w,
+                ),
+              ),
+            ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: StateNotifierBuilder<bool>(
+                listenableState: wm.isLastPage,
+                builder: (_, isLastPage) {
+                  return isLastPage!
+                      ? Padding(
+                          padding: EdgeInsets.only(
+                            right: 16.w,
+                            left: 16.w,
+                            bottom: 8.w,
+                          ),
+                          child: SizedBox(
+                            height: 48.w,
+                            width: 328.w,
+                            child: StartButtonWidget(
+                              onPressed: wm.startButtonAction,
+                            ),
+                          ),
+                        )
+                      : const SizedBox.shrink();
+                },
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

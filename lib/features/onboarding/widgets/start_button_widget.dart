@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:surf_study_project/assets/res/app_typography.dart';
 import 'package:surf_study_project/assets/strings/app_strings.dart';
 import 'package:surf_study_project/assets/themes/themes_flavours/onboarding_colors.dart';
@@ -20,25 +21,19 @@ class StartButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<OnboardingColors>();
 
-    return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 16,
-        vertical: 8,
-      ),
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
-          backgroundColor: theme?.startButtonColor,
-          minimumSize: const Size.fromHeight(48),
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12.w),
         ),
-        onPressed: onPressed,
-        child: Text(
-          AppStrings.startButton,
-          style: AppTypography.smallBoldText.copyWith(
-            color: theme?.startButtonTitleColor,
-          ),
+        backgroundColor: theme?.startButtonColor,
+        minimumSize: Size.fromHeight(48.w),
+      ),
+      onPressed: onPressed,
+      child: Text(
+        AppStrings.startButton,
+        style: AppTypography.smallBoldText.copyWith(
+          color: theme?.startButtonTitleColor,
         ),
       ),
     );

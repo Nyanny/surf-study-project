@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:surf_study_project/assets/res/app_typography.dart';
 import 'package:surf_study_project/assets/themes/themes_flavours/onboarding_colors.dart';
@@ -24,67 +25,60 @@ class OnboardingPageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context).extension<OnboardingColors>()!;
+    final theme = Theme.of(context).extension<OnboardingColors>();
 
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Expanded(
-          child: Container(
-            alignment: Alignment.topCenter,
-            padding: const EdgeInsets.only(top: 172),
-            child: SizedBox(
-              width: 244,
-              height: 246,
-              child: Column(
-                /// Picture
-                children: [
-                  Expanded(
-                    child: SizedBox(
-                      height: 104,
-                      width: 104,
-                      child: SvgPicture.asset(
-                        assetPath,
-                        color: theme.iconColor,
-                      ),
-                    ),
-                  ),
+    return SizedBox(
+      width: 244.w,
+      height: 246.w + kToolbarHeight,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
 
-                  /// Description block
-                  Padding(
-                    padding: const EdgeInsets.only(top: 40),
-                    child: Column(
-                      children: [
-                        /// Title
-                        Text(
-                          title,
-                          style: AppTypography.title.copyWith(
-                            color: theme.titleColor,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                        const Divider(
-                          color: Colors.transparent,
-                          height: 8,
-                        ),
-
-                        /// Subtitle
-                        Text(
-                          subtitle,
-                          style: AppTypography.smallText.copyWith(
-                            color: theme.descriptionColor,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
+        /// Picture
+        children: [
+          SizedBox(
+            // height: 104,
+            // width: 104,
+            height: 104.w,
+            width: 104.w,
+            child: SvgPicture.asset(
+              assetPath,
+              color: theme?.iconColor,
             ),
           ),
-        ),
-      ],
+          SizedBox(
+            height: 40.w,
+          ),
+
+          /// Description block
+          Column(
+            children: [
+              /// Title
+              Text(
+                title,
+                style: AppTypography.title.copyWith(
+                  color: theme?.titleColor,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              Divider(
+                color: Colors.transparent,
+                height: 8.w,
+              ),
+
+              /// Subtitle
+              Text(
+                subtitle,
+                style: AppTypography.smallText.copyWith(
+                  color: theme?.descriptionColor,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
+
+          const SizedBox(height: kToolbarHeight),
+        ],
+      ),
     );
   }
 }
