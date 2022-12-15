@@ -8,21 +8,22 @@ class AppStrings {
   static const imagesAsset = '/images';
 
   /// Onboarding page with "map" and map image - "first" onboarding page
-  static const onboardingScreenMapPageTitle = 'Добро пожаловать в Путеводитель';
+  static const onboardingScreenMapPageTitle =
+      'Добро пожаловать\nв Путеводитель';
   static const onboardingScreenMapPageSubitle =
-      'Ищи новые локации и сохраняй самые любимые.';
+      'Ищи новые локации и сохраняй\nсамые любимые.';
 
   /// Onboarding page with "route" and backpack image - "second" onboarding page
   static const onboardingScreenRoutePageTitle =
-      'Построй маршрут и отправляйся в путь';
+      'Построй маршрут\nи отправляйся в путь';
   static const onboardingScreenRoutePageSubitle =
-      'Достигай цели максимально быстро и комфортно.';
+      'Достигай цели максимально\nбыстро и комфортно.';
 
   /// Onboarding page with "places" and tap image - "third" onboarding page
   static const onboardingScreenPlacesPageTitle =
-      'Добавляй места, которые нашёл сам';
+      'Добавляй места,\nкоторые нашёл сам';
   static const onboardingScreenPlacesPageSubitle =
-      'Делись самыми интересными и помоги нам стать лучше!';
+      'Делись самыми интересными\nи помоги нам стать лучше!';
 
   /// Buttons strings
   static const skipButton = 'Пропустить';
