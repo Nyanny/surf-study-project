@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:surf_study_project/assets/themes/app_themes.dart';
 import 'package:surf_study_project/assets/themes/themes_flavours/add_button_colors.dart';
 import 'package:surf_study_project/assets/themes/themes_flavours/loader_colors.dart';
@@ -43,37 +44,44 @@ class _AppState extends State<App> {
       factory: () {
         return _scope;
       },
-      child: MaterialApp.router(
-        /// Themes
+      child: ScreenUtilInit(
+        designSize: const Size(360, 760),
+        minTextAdapt: true,
+        splitScreenMode: true,
+        builder: (context, child) {
+          return MaterialApp.router(
+            /// Themes
 
-        /// light theme
-        theme: AppThemes.lightTheme.copyWith(
-          extensions: <ThemeExtension<dynamic>>[
-            OnboardingColors.light,
-            PlaceListColors.light,
-            AddButtonColors.light,
-            LoaderColors.light,
-          ],
-        ),
+            /// light theme
+            theme: AppThemes.lightTheme.copyWith(
+              extensions: <ThemeExtension<dynamic>>[
+                OnboardingColors.light,
+                PlaceListColors.light,
+                AddButtonColors.light,
+                LoaderColors.light,
+              ],
+            ),
 
-        /// dark theme
-        darkTheme: AppThemes.darkTheme.copyWith(
-          extensions: <ThemeExtension<dynamic>>[
-            OnboardingColors.dark,
-            PlaceListColors.dark,
-            AddButtonColors.dark,
-            LoaderColors.dark,
-          ],
-        ),
+            /// dark theme
+            darkTheme: AppThemes.darkTheme.copyWith(
+              extensions: <ThemeExtension<dynamic>>[
+                OnboardingColors.dark,
+                PlaceListColors.dark,
+                AddButtonColors.dark,
+                LoaderColors.dark,
+              ],
+            ),
 
-        /// Localization.
-        locale: _localizations.first,
-        localizationsDelegates: _localizationsDelegates,
-        supportedLocales: _localizations,
+            /// Localization.
+            locale: _localizations.first,
+            localizationsDelegates: _localizationsDelegates,
+            supportedLocales: _localizations,
 
-        /// This is for navigation.
-        routeInformationParser: _scope.router.defaultRouteParser(),
-        routerDelegate: _scope.router.delegate(),
+            /// This is for navigation.
+            routeInformationParser: _scope.router.defaultRouteParser(),
+            routerDelegate: _scope.router.delegate(),
+          );
+        },
       ),
     );
   }
