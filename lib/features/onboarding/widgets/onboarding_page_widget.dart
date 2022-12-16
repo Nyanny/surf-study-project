@@ -53,25 +53,32 @@ class OnboardingPageWidget extends StatelessWidget {
           Column(
             children: [
               /// Title
-              Text(
-                title,
-                style: AppTypography.title.copyWith(
-                  color: theme?.titleColor,
+              SizedBox(
+                width: 244.w,
+                height: 58.w,
+                child: Text(
+                  title,
+                  style: AppTypography.title.copyWith(
+                    color: theme?.titleColor,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
-                textAlign: TextAlign.center,
               ),
-              Divider(
-                color: Colors.transparent,
+              SizedBox(
                 height: 8.w,
               ),
 
               /// Subtitle
-              Text(
-                subtitle,
-                style: AppTypography.smallText.copyWith(
-                  color: theme?.descriptionColor,
+              SizedBox(
+                width: 244.w,
+                height: 36.w,
+                child: Text(
+                  subtitle,
+                  style: AppTypography.smallText.copyWith(
+                    color: theme?.descriptionColor,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
-                textAlign: TextAlign.center,
               ),
             ],
           ),
