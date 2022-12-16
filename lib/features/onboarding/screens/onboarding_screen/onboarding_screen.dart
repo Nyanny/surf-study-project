@@ -80,12 +80,8 @@ class OnboardingScreen extends ElementaryWidget<IOnboardingScreenWidgetModel> {
                             left: 16.w,
                             bottom: 8.w,
                           ),
-                          child: SizedBox(
-                            height: 48.w,
-                            width: 328.w,
-                            child: StartButtonWidget(
-                              onPressed: wm.startButtonAction,
-                            ),
+                          child: StartButtonWidget(
+                            onPressed: wm.startButtonAction,
                           ),
                         )
                       : const SizedBox.shrink();

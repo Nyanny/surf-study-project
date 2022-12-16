@@ -24,7 +24,8 @@ class OnboardingScreenWidgetModel
   final StateNotifier<bool> _isLastPage = StateNotifier<bool>(initValue: false);
 
   @override
-  OnboardingColors get onboardingTheme => _onboardingTheme;
+  OnboardingColors get onboardingTheme =>
+      Theme.of(context).extension<OnboardingColors>()!;
 
   @override
   List<OnboardingPageData> get pageData => _pageData;
@@ -47,16 +48,12 @@ class OnboardingScreenWidgetModel
   @override
   VoidCallback get startButtonAction => _onStartButtonPressed;
 
-  /// initializing in [initWidgetModel] method
-  late OnboardingColors _onboardingTheme;
-
   /// Create an instance [OnboardingScreenModel].
   OnboardingScreenWidgetModel(OnboardingScreenModel model) : super(model);
 
   /// [initWidgetModel] method
   @override
   void initWidgetModel() {
-    _onboardingTheme = Theme.of(context).extension<OnboardingColors>()!;
     super.initWidgetModel();
   }
 

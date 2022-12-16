@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:surf_study_project/assets/themes/app_themes.dart';
-import 'package:surf_study_project/assets/themes/themes_flavours/add_button_colors.dart';
-import 'package:surf_study_project/assets/themes/themes_flavours/loader_colors.dart';
-import 'package:surf_study_project/assets/themes/themes_flavours/onboarding_colors.dart';
-import 'package:surf_study_project/assets/themes/themes_flavours/place_list_colors.dart';
+import 'package:surf_study_project/assets/themes/themes_holder.dart';
 import 'package:surf_study_project/config/app_config.dart';
 import 'package:surf_study_project/config/environment/environment.dart';
 import 'package:surf_study_project/features/app/di/app_scope.dart';
@@ -54,22 +51,12 @@ class _AppState extends State<App> {
 
             /// light theme
             theme: AppThemes.lightTheme.copyWith(
-              extensions: <ThemeExtension<dynamic>>[
-                OnboardingColors.light,
-                PlaceListColors.light,
-                AddButtonColors.light,
-                LoaderColors.light,
-              ],
+              extensions: ThemesHolder.lightThemesList,
             ),
 
             /// dark theme
             darkTheme: AppThemes.darkTheme.copyWith(
-              extensions: <ThemeExtension<dynamic>>[
-                OnboardingColors.dark,
-                PlaceListColors.dark,
-                AddButtonColors.dark,
-                LoaderColors.dark,
-              ],
+              extensions: ThemesHolder.darkThemesList,
             ),
 
             /// Localization.
