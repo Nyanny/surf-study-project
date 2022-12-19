@@ -12,7 +12,7 @@ class AppColors {
   static const mainColorLightTheme = _martinique;
   static const secondaryColorLightTheme = _oxfordBlue;
   static const secondary2ColorLightTheme = _waterloo;
-  static const secondary2WithOpactiryColorLightTheme = _waterloo56op;
+  static const secondary2WithOpacityColorLightTheme = _waterloo56op;
   static const backgroundColorLightTheme = _wildSand;
 
   /// Black theme colors
@@ -21,11 +21,11 @@ class AppColors {
   static const redDarkTheme = _persianRed;
   static const whiteDarkTheme = _white;
 
-  static const darkColorDarkTheme = _shark;
+  static const blackColorDarkTheme = _shark;
   static const mainColorDarkTheme = _charade;
   static const secondaryColorDarkTheme = _oxfordBlue;
   static const secondary2ColorDarkTheme = _waterloo;
-  static const secondary2WithOpactiryColorDarkTheme = _waterloo56op;
+  static const secondary2WithOpacityColorDarkTheme = _waterloo56op;
 
   static const _white = Colors.white;
   static const _fruitSalad = Color(0xFF4CAF50);

@@ -11,14 +11,14 @@ class LoaderColors extends ThemeExtension<LoaderColors> {
   static const light = LoaderColors(
     defaultIndicatorBaseColor: AppColors.backgroundColorLightTheme,
     defaultIndicatorGradientColor:
-        AppColors.secondary2WithOpactiryColorLightTheme,
+        AppColors.secondary2WithOpacityColorLightTheme,
     fancyIndicatorBaseColor: AppColors.greenLightTheme,
     fancyIndicatorGradientColor: AppColors.yellowLightTheme,
   );
 
   // the dark theme
   static const dark = LoaderColors(
-    defaultIndicatorBaseColor: AppColors.darkColorDarkTheme,
+    defaultIndicatorBaseColor: AppColors.blackColorDarkTheme,
     defaultIndicatorGradientColor: AppColors.mainColorLightTheme,
     fancyIndicatorBaseColor: AppColors.greenDarkTheme,
     fancyIndicatorGradientColor: AppColors.yellowDarkTheme,
