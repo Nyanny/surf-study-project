@@ -9,56 +9,39 @@ import 'package:surf_study_project/assets/colors/app_colors.dart';
 class PlaceListColors extends ThemeExtension<PlaceListColors> {
   // the light theme
   static const light = PlaceListColors(
-    tagColor: AppColors.whiteLightTheme,
-    favoriteIconColor: AppColors.whiteLightTheme,
     filterIconColor: AppColors.greenLightTheme,
-    cardTitleColor: AppColors.secondaryColorLightTheme,
-    cardDescriptionColor: AppColors.secondary2WithOpactiryColorLightTheme,
-    searchColor: AppColors.secondary2WithOpactiryColorLightTheme,
+    searchColor: AppColors.secondary2WithOpacityColorLightTheme,
+    searchBackgroundColor: AppColors.backgroundColorLightTheme,
   );
 
   // the dark theme
   static const dark = PlaceListColors(
-    tagColor: AppColors.whiteDarkTheme,
-    favoriteIconColor: AppColors.whiteDarkTheme,
     filterIconColor: AppColors.greenDarkTheme,
-    cardTitleColor: AppColors.whiteDarkTheme,
-    cardDescriptionColor: AppColors.secondary2ColorDarkTheme,
-    searchColor: AppColors.secondary2WithOpactiryColorDarkTheme,
+    searchColor: AppColors.secondary2WithOpacityColorDarkTheme,
+    searchBackgroundColor: AppColors.blackColorDarkTheme,
   );
 
-  final Color tagColor;
-  final Color favoriteIconColor;
   final Color filterIconColor;
-  final Color cardTitleColor;
-  final Color cardDescriptionColor;
   final Color searchColor;
+  final Color searchBackgroundColor;
 
   const PlaceListColors({
-    required this.tagColor,
-    required this.favoriteIconColor,
     required this.filterIconColor,
-    required this.cardTitleColor,
-    required this.cardDescriptionColor,
     required this.searchColor,
+    required this.searchBackgroundColor,
   });
 
   @override
   PlaceListColors copyWith({
-    Color? tagColor,
-    Color? favoriteIconColor,
     Color? filterIconColor,
-    Color? cardTitleColor,
-    Color? cardDescriptionColor,
     Color? searchColor,
+    Color? searchBackgroundColor,
   }) {
     return PlaceListColors(
-      tagColor: tagColor ?? this.tagColor,
-      favoriteIconColor: favoriteIconColor ?? this.favoriteIconColor,
       filterIconColor: filterIconColor ?? this.filterIconColor,
-      cardTitleColor: cardTitleColor ?? this.cardTitleColor,
-      cardDescriptionColor: cardDescriptionColor ?? this.cardDescriptionColor,
       searchColor: searchColor ?? this.searchColor,
+      searchBackgroundColor:
+          searchBackgroundColor ?? this.searchBackgroundColor,
     );
   }
 
@@ -69,14 +52,10 @@ class PlaceListColors extends ThemeExtension<PlaceListColors> {
       return this;
     }
     return PlaceListColors(
-      tagColor: Color.lerp(tagColor, other.tagColor, t)!,
-      favoriteIconColor:
-          Color.lerp(favoriteIconColor, other.favoriteIconColor, t)!,
       filterIconColor: Color.lerp(filterIconColor, other.filterIconColor, t)!,
-      cardTitleColor: Color.lerp(cardTitleColor, other.cardTitleColor, t)!,
-      cardDescriptionColor:
-          Color.lerp(cardDescriptionColor, other.cardDescriptionColor, t)!,
       searchColor: Color.lerp(searchColor, other.searchColor, t)!,
+      searchBackgroundColor:
+          Color.lerp(searchBackgroundColor, other.searchBackgroundColor, t)!,
     );
   }
 
@@ -84,7 +63,6 @@ class PlaceListColors extends ThemeExtension<PlaceListColors> {
   // to the `print()` method.
   @override
   String toString() => 'CustomColors('
-      'tagColor: $tagColor, favoriteIconColor: $favoriteIconColor, filterIconColor: $filterIconColor, '
-      'cardTitleColor: $cardTitleColor, cardDescriptionColor: $cardDescriptionColor, searchColor: $searchColor, '
+      'filterIconColor: $filterIconColor, searchColor: $searchColor, searchBackgroundColor: $searchBackgroundColor,  '
       ')';
 }
