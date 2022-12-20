@@ -40,6 +40,8 @@ class CardDescription extends StatelessWidget {
           /// description
           Text(
             description,
+            overflow: TextOverflow.ellipsis,
+            maxLines: 1,
             style: AppTypography.superSmallText.copyWith(
               color: Theme.of(context)
                   .extension<CardColors>()
