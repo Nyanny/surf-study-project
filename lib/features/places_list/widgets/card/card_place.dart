@@ -28,13 +28,13 @@ class CardPlace extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context).extension<CardColors>()!;
+    final theme = Theme.of(context).extension<CardColors>();
 
     return AspectRatio(
       aspectRatio: 3 / 2,
       child: Card(
         elevation: 0,
-        color: theme.cardBackgroundColor,
+        color: theme?.cardBackgroundColor,
         clipBehavior: Clip.antiAliasWithSaveLayer,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(
@@ -80,7 +80,7 @@ class CardPlace extends StatelessWidget {
                   Text(
                     place.placeType.name,
                     style: AppTypography.smallBoldText
-                        .copyWith(height: 1.w, color: theme.tagColor),
+                        .copyWith(height: 1.w, color: theme?.tagColor),
                   ),
                   FavoriteButtonWidget(
                     place: place,
