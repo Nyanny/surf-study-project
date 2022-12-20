@@ -1,6 +1,5 @@
 import 'package:elementary/elementary.dart';
 import 'package:flutter/material.dart';
-import 'package:surf_study_project/assets/themes/themes_flavours/card_colors.dart';
 import 'package:surf_study_project/features/places_list/widgets/favorite_button/favorite_button_export.dart';
 
 /// Factory for [FavoriteButtonWidgetModel].
@@ -23,9 +22,6 @@ class FavoriteButtonWidgetModel
   @override
   VoidCallback get onFavoriteButtonPressed => _onFavoriteButtonPressed;
 
-  @override
-  Color get iconColor => Theme.of(context).extension<CardColors>()!.iconColor;
-
   /// Create an instance [FavoriteButtonWidgetModel].
   FavoriteButtonWidgetModel(FavoriteButtonModel model) : super(model);
 
@@ -44,7 +40,4 @@ abstract class IFavoriteButtonWidgetModel extends IWidgetModel {
 
   /// [VoidCallback] that called when the button is pressed
   VoidCallback get onFavoriteButtonPressed;
-
-  /// icon color
-  Color get iconColor;
 }

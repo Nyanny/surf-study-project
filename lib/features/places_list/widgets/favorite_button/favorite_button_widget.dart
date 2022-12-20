@@ -26,7 +26,6 @@ class FavoriteButtonWidget extends ElementaryWidget<FavoriteButtonWidgetModel> {
         return CardIconButton(
           iconPath: !isFavorite! ? AppAssets.heart : AppAssets.heartFull,
           onPressed: wm.onFavoriteButtonPressed,
-          color: wm.iconColor,
           buttonSize: Size(24.w, 24.w),
         );
       },

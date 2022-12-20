@@ -10,9 +10,6 @@ class CardIconButton extends StatelessWidget {
   /// onPressed callback
   final VoidCallback? onPressed;
 
-  /// icon color
-  final Color color;
-
   /// size of whole button
   final Size buttonSize;
 
@@ -20,7 +17,6 @@ class CardIconButton extends StatelessWidget {
   const CardIconButton({
     required this.iconPath,
     required this.onPressed,
-    required this.color,
     required this.buttonSize,
     Key? key,
   }) : super(key: key);
@@ -34,7 +30,6 @@ class CardIconButton extends StatelessWidget {
         width: buttonSize.width,
         child: SvgPicture.asset(
           iconPath,
-          color: color,
         ),
       ),
     );
