@@ -13,23 +13,15 @@ class CardIconButton extends StatelessWidget {
   /// icon color
   final Color color;
 
-  /// icon size
-  final Size iconSize;
-
   /// size of whole button
   final Size buttonSize;
-
-  /// padding between icon and button edges
-  final EdgeInsetsGeometry iconPadding;
 
   /// constructor
   const CardIconButton({
     required this.iconPath,
     required this.onPressed,
     required this.color,
-    required this.iconSize,
     required this.buttonSize,
-    required this.iconPadding,
     Key? key,
   }) : super(key: key);
 
@@ -37,15 +29,12 @@ class CardIconButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onPressed,
-      child: Container(
+      child: SizedBox(
         height: buttonSize.height,
         width: buttonSize.width,
-        padding: iconPadding,
         child: SvgPicture.asset(
           iconPath,
           color: color,
-          height: iconSize.height,
-          width: iconSize.width,
         ),
       ),
     );

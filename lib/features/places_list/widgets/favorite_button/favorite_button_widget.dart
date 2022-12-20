@@ -27,9 +27,7 @@ class FavoriteButtonWidget extends ElementaryWidget<FavoriteButtonWidgetModel> {
           iconPath: !isFavorite! ? AppAssets.heart : AppAssets.heartFull,
           onPressed: wm.onFavoriteButtonPressed,
           color: wm.iconColor,
-          iconSize: Size(20.w, 18.w),
           buttonSize: Size(24.w, 24.w),
-          iconPadding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 3.w),
         );
       },
     );
