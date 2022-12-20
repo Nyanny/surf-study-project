@@ -20,6 +20,8 @@ class CardDescription extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context).extension<CardColors>();
+
     return Padding(
       padding: EdgeInsets.all(16.w),
       child: Column(
@@ -29,7 +31,7 @@ class CardDescription extends StatelessWidget {
           Text(
             title,
             style: AppTypography.text.copyWith(
-              color: Theme.of(context).extension<CardColors>()?.cardTitleColor,
+              color: theme?.cardTitleColor,
             ),
           ),
           SizedBox(
@@ -43,9 +45,7 @@ class CardDescription extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
             maxLines: 1,
             style: AppTypography.superSmallText.copyWith(
-              color: Theme.of(context)
-                  .extension<CardColors>()
-                  ?.cardDescriptionColor,
+              color: theme?.cardDescriptionColor,
             ),
           ),
         ],
