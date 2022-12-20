@@ -45,27 +45,11 @@ class CardPlace extends StatelessWidget {
           children: [
             Column(children: [
               /// top card content
-              Expanded(
-                child: Stack(
-                  children: [
-                    Positioned.fill(
-                      child: CachedNetworkImage(
-                        height: 96.w,
-                        fit: BoxFit.fill,
-                        imageUrl: place.urls.first,
-                      ),
-                    ),
-                    Positioned(
-                      left: 16.w,
-                      top: 16.w,
-                      child: Text(
-                        place.placeType.name,
-                        style: AppTypography.smallBoldText
-                            .copyWith(color: theme.tagColor),
-                      ),
-                    ),
-                  ],
-                ),
+              CachedNetworkImage(
+                height: 96.w,
+                width: double.infinity,
+                fit: BoxFit.fill,
+                imageUrl: place.urls.first,
               ),
 
               /// bottom card content
@@ -86,13 +70,22 @@ class CardPlace extends StatelessWidget {
                 ),
               ),
             ),
-
-            /// [FavoriteButtonWidget]
             Positioned(
+              left: 16.w,
               top: 16.w,
               right: 16.w,
-              child: FavoriteButtonWidget(
-                place: place,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    place.placeType.name,
+                    style: AppTypography.smallBoldText
+                        .copyWith(height: 1.w, color: theme.tagColor),
+                  ),
+                  FavoriteButtonWidget(
+                    place: place,
+                  ),
+                ],
               ),
             ),
           ],
