@@ -44,7 +44,7 @@ class TempScreenWidgetModel extends WidgetModel<TempScreen, ITempScreenModel>
   List<PageRouteInfo> get _routes {
     // final defaultRoutes = <PageRouteInfo>[DashRouter(), InfoRouter()];
     final defaultRoutes = <PageRouteInfo>[
-      OnboardingRouter(),
+      PlacesListRouter(),
     ];
     // if (_isDebugMode) defaultRoutes.add(DebugRouter());
     return defaultRoutes;

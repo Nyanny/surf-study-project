@@ -20,4 +20,7 @@ abstract class AppRouteNames {
 
   /// OnboardingScreen route name
   static const String onboardingScreen = 'onboardingRouter';
+
+  /// PlacesListScreen route name
+  static const String placesListScreen = 'placesListRouter';
 }
