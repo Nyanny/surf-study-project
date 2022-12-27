@@ -67,7 +67,7 @@ class AddButtonColors extends ThemeExtension<AddButtonColors> {
   // Controls how it displays when the instance is being passed
   // to the `print()` method.
   @override
-  String toString() => 'CustomColors('
+  String toString() => 'AddButtonColors('
       'iconColor: $iconColor, buttonTextColor: $buttonTextColor, buttonColor: $buttonColor, colorToLinear: $colorToLinear, '
       ')';
 }
