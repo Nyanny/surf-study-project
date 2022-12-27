@@ -10,8 +10,7 @@ class LoaderColors extends ThemeExtension<LoaderColors> {
   // the light theme
   static const light = LoaderColors(
     defaultIndicatorBaseColor: AppColors.backgroundColorLightTheme,
-    defaultIndicatorGradientColor:
-        AppColors.secondary2WithOpacityColorLightTheme,
+    defaultIndicatorGradientColor: AppColors.secondary2ColorLightTheme,
     fancyIndicatorBaseColor: AppColors.greenLightTheme,
     fancyIndicatorGradientColor: AppColors.yellowLightTheme,
   );
@@ -88,7 +87,7 @@ class LoaderColors extends ThemeExtension<LoaderColors> {
   // Controls how it displays when the instance is being passed
   // to the `print()` method.
   @override
-  String toString() => 'CustomColors( '
+  String toString() => 'LoaderColors( '
       'defaultIndicatorBaseColor: $defaultIndicatorBaseColor, defaultIndicatorGradientColor: $defaultIndicatorGradientColor, '
       'fancyIndicatorBaseColor: $fancyIndicatorBaseColor, fancyIndicatorGradientColor: $fancyIndicatorGradientColor, '
       ')';
