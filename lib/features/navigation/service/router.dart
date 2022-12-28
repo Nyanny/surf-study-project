@@ -1,8 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:elementary/elementary.dart';
 import 'package:flutter/material.dart';
-import 'package:surf_study_project/features/navigation/domain/entity/onboarding/onboarding_routes.dart';
-import 'package:surf_study_project/features/onboarding/screens/onboarding_screen/onboarding_screen_export.dart';
+import 'package:surf_study_project/features/navigation/domain/entity/places_list/places_list_routes.dart';
+import 'package:surf_study_project/features/places_list/screens/places_list_screen/places_list_screen_export.dart';
 
 part 'router.gr.dart';
 
@@ -12,7 +12,7 @@ part 'router.gr.dart';
 @MaterialAutoRouter(
   replaceInRouteName: 'ScreenWidget|Screen,Route',
   routes: <AutoRoute>[
-    onboardingRoutes,
+    placesListRoutes,
   ],
 )
 

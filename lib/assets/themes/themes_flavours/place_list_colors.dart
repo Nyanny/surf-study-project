@@ -62,7 +62,7 @@ class PlaceListColors extends ThemeExtension<PlaceListColors> {
   // Controls how it displays when the instance is being passed
   // to the `print()` method.
   @override
-  String toString() => 'CustomColors('
+  String toString() => 'PlaceListColors('
       'filterIconColor: $filterIconColor, searchColor: $searchColor, searchBackgroundColor: $searchBackgroundColor,  '
       ')';
 }

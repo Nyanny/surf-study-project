@@ -100,7 +100,7 @@ class OnboardingColors extends ThemeExtension<OnboardingColors> {
   // Controls how it displays when the instance is being passed
   // to the `print()` method.
   @override
-  String toString() => 'CustomColors('
+  String toString() => 'OnboardingColors('
       'iconColor: $iconColor, titleColor: $titleColor, descriptionColor: $descriptionColor,  '
       'dotsColor: $dotsColor, dotsActiveColor: $dotsActiveColor,  startButtonColor: $startButtonColor, '
       'startButtonTitleColor: $startButtonTitleColor, skipButtonTitleColor: $skipButtonTitleColor '

@@ -76,7 +76,7 @@ class CardColors extends ThemeExtension<CardColors> {
   // Controls how it displays when the instance is being passed
   // to the `print()` method.
   @override
-  String toString() => 'CustomColors('
+  String toString() => 'CardColors('
       'tagColor: $tagColor, iconColor: $iconColor, cardTitleColor: $cardTitleColor, '
       'cardDescriptionColor: $cardDescriptionColor, cardBackgroundColor: $cardBackgroundColor, '
       ')';

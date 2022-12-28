@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:surf_study_project/assets/res/app_assets.dart';
 import 'package:surf_study_project/assets/res/app_typography.dart';
 import 'package:surf_study_project/assets/themes/themes_flavours/card_colors.dart';
 import 'package:surf_study_project/features/common/domain/entity/place.dart';
@@ -33,6 +35,7 @@ class CardPlace extends StatelessWidget {
     return AspectRatio(
       aspectRatio: 3 / 2,
       child: Card(
+        margin: EdgeInsets.zero,
         elevation: 0,
         color: theme?.cardBackgroundColor,
         clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -48,8 +51,11 @@ class CardPlace extends StatelessWidget {
               CachedNetworkImage(
                 height: 96.w,
                 width: double.infinity,
-                fit: BoxFit.fill,
-                imageUrl: place.urls.first,
+                fit: BoxFit.cover,
+                imageUrl: place.urls.isNotEmpty ? place.urls.first : '',
+                placeholder: (_, __) => SvgPicture.asset(AppAssets.photo),
+                // ignore: implicit_dynamic_parameter
+                errorWidget: (_, __, ___) => SvgPicture.asset(AppAssets.photo),
               ),
 
               /// bottom card content
