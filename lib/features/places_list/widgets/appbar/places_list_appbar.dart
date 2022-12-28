@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:surf_study_project/assets/strings/app_strings.dart';
 
 /// Class [PlacesListAppBar] is [SliverAppBar] with [LayoutBuilder] implemented in [_Header]
 class PlacesListAppBar extends StatelessWidget {
@@ -102,7 +103,7 @@ class _TitleWidget extends StatelessWidget {
           animation.value,
         ),
         child: Text(
-          'Список интересных мест',
+          AppStrings.interestingPlaces,
           style: TextStyle(
             fontSize: fontSize,
             height: height,

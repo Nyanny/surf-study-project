@@ -32,4 +32,7 @@ class AppStrings {
   /// Error strings
   static const error = 'Ошибка';
   static const errorMessage = 'Что то пошло не так\nПопробуйте позже.';
+
+  /// Places list strings
+  static const interestingPlaces = 'Список интересных мест';
 }
