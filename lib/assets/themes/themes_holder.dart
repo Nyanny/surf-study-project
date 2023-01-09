@@ -5,6 +5,7 @@ import 'package:surf_study_project/assets/themes/themes_flavours/loader_colors.d
 import 'package:surf_study_project/assets/themes/themes_flavours/onboarding_colors.dart';
 import 'package:surf_study_project/assets/themes/themes_flavours/place_list_colors.dart';
 import 'package:surf_study_project/assets/themes/themes_flavours/placeholder_colors.dart';
+import 'package:surf_study_project/assets/themes/themes_flavours/settings_colors.dart';
 
 /// Class [ThemesHolder] theme extensions used in app
 class ThemesHolder {
@@ -15,6 +16,7 @@ class ThemesHolder {
     AddButtonColors.light,
     LoaderColors.light,
     PlaceholderColors.light,
+    SettingsColors.light,
   ];
 
   static const List<ThemeExtension<dynamic>> _darkThemesList = [
@@ -24,6 +26,7 @@ class ThemesHolder {
     AddButtonColors.dark,
     LoaderColors.dark,
     PlaceholderColors.dark,
+    SettingsColors.dark,
   ];
 
   /// light theme extensions
