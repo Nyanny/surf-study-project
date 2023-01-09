@@ -17,17 +17,23 @@ class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
-    PlacesListRouter.name: (routeData) {
-      final args = routeData.argsAs<PlacesListRouterArgs>(
-          orElse: () => const PlacesListRouterArgs());
+    SettingsRouter.name: (routeData) {
       return MaterialPageX<dynamic>(
         routeData: routeData,
-        child: PlacesListScreen(
+        child: const SettingsScreen(),
+      );
+    },
+    OnboardingRouter.name: (routeData) {
+      final args = routeData.argsAs<OnboardingRouterArgs>(
+          orElse: () => const OnboardingRouterArgs());
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: OnboardingScreen(
           key: args.key,
           wmFactory: args.wmFactory,
         ),
       );
-    }
+    },
   };
 
   @override
@@ -35,40 +41,56 @@ class _$AppRouter extends RootStackRouter {
         RouteConfig(
           '/#redirect',
           path: '/',
-          redirectTo: 'placesList',
+          redirectTo: 'settings',
           fullMatch: true,
         ),
         RouteConfig(
-          PlacesListRouter.name,
-          path: 'placesList',
+          SettingsRouter.name,
+          path: 'settings',
+        ),
+        RouteConfig(
+          OnboardingRouter.name,
+          path: 'onboarding',
         ),
       ];
 }
 
 /// generated route for
-/// [PlacesListScreen]
-class PlacesListRouter extends PageRouteInfo<PlacesListRouterArgs> {
-  PlacesListRouter({
+/// [SettingsScreen]
+class SettingsRouter extends PageRouteInfo<void> {
+  const SettingsRouter()
+      : super(
+          SettingsRouter.name,
+          path: 'settings',
+        );
+
+  static const String name = 'SettingsRouter';
+}
+
+/// generated route for
+/// [OnboardingScreen]
+class OnboardingRouter extends PageRouteInfo<OnboardingRouterArgs> {
+  OnboardingRouter({
     Key? key,
     WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
             BuildContext)
-        wmFactory = placesListScreenWmFactory,
+        wmFactory = onboardingScreenWmFactory,
   }) : super(
-          PlacesListRouter.name,
-          path: 'placesList',
-          args: PlacesListRouterArgs(
+          OnboardingRouter.name,
+          path: 'onboarding',
+          args: OnboardingRouterArgs(
             key: key,
             wmFactory: wmFactory,
           ),
         );
 
-  static const String name = 'PlacesListRouter';
+  static const String name = 'OnboardingRouter';
 }
 
-class PlacesListRouterArgs {
-  const PlacesListRouterArgs({
+class OnboardingRouterArgs {
+  const OnboardingRouterArgs({
     this.key,
-    this.wmFactory = placesListScreenWmFactory,
+    this.wmFactory = onboardingScreenWmFactory,
   });
 
   final Key? key;
@@ -78,6 +100,6 @@ class PlacesListRouterArgs {
 
   @override
   String toString() {
-    return 'PlacesListRouterArgs{key: $key, wmFactory: $wmFactory}';
+    return 'OnboardingRouterArgs{key: $key, wmFactory: $wmFactory}';
   }
 }
