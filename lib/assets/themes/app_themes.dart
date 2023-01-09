@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:surf_study_project/assets/colors/app_colors.dart';
 import 'package:surf_study_project/assets/res/app_typography.dart';
+import 'package:surf_study_project/assets/themes/themes_holder.dart';
 
 // ignore_for_file: public_member_api_docs
 
@@ -148,10 +149,14 @@ class AppThemes {
   );
 
   /// LIGHT theme getter
-  static ThemeData get lightTheme => _lightTheme;
+  static ThemeData get lightTheme => _lightTheme.copyWith(
+        extensions: ThemesHolder.lightThemesList,
+      );
 
   /// DARK theme getter
-  static ThemeData get darkTheme => _darkTheme;
+  static ThemeData get darkTheme => _darkTheme.copyWith(
+        extensions: ThemesHolder.darkThemesList,
+      );
 
   /// [ThemeData] used to make light and dark instances
   static ThemeData _themeData({

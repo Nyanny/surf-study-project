@@ -19,15 +19,15 @@ class ThemeSwitcherWidgetModel
     extends WidgetModel<ThemeSwitcherWidget, ThemeSwitcherModel>
     implements IThemeSwitcherWidgetModel {
   /// bool [StateNotifier] for theme feature
-  final _themeLightingState = StateNotifier<bool>();
+  final _themeState = StateNotifier<bool>();
 
   /// returns [_themeLightingChanged]
   @override
   ValueChanged<bool> get themeLightingChanged => _themeLightingChanged;
 
-  /// returns [_themeLightingState]
+  /// returns [_themeState]
   @override
-  ListenableState<bool> get themeLightingState => _themeLightingState;
+  ListenableState<bool> get themeState => _themeState;
 
   /// constructor
   ThemeSwitcherWidgetModel(ThemeSwitcherModel model) : super(model);
@@ -37,12 +37,12 @@ class ThemeSwitcherWidgetModel
     super.initWidgetModel();
 
     final isDark = model.initData();
-    _themeLightingState.accept(isDark);
+    _themeState.accept(isDark);
   }
 
   /// sets new theme boolean value
   void _themeLightingChanged(bool isDark) {
-    _themeLightingState.accept(isDark);
+    _themeState.accept(isDark);
     model.setThemeLighting(isDark: isDark);
   }
 }
@@ -50,7 +50,7 @@ class ThemeSwitcherWidgetModel
 /// Interface of [IThemeSwitcherWidgetModel].
 abstract class IThemeSwitcherWidgetModel extends IWidgetModel {
   /// [ListenableState] that returns theme value to listen
-  ListenableState<bool> get themeLightingState;
+  ListenableState<bool> get themeState;
 
   /// [ValueChanged] callback to set theme value
   ValueChanged<bool> get themeLightingChanged;

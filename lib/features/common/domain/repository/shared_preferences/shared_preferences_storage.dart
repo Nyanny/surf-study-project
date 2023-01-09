@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:surf_study_project/assets/strings/app_strings.dart';
+import 'package:surf_study_project/assets/strings/shared_preferences_strings.dart';
 import 'package:surf_study_project/features/filter/domain/entity/place_filter.dart';
 
 /// Class [SharedPreferencesStorage] is a storage using shared_preferences package
@@ -16,7 +16,7 @@ class SharedPreferencesStorage {
   }) async {
     await _initPrefs();
     await _prefs?.setBool(
-      AppStrings.onboardingPassedStatusKey,
+      SharedPreferencesStrings.onboardingPassedStatusKey,
       onboardingPassed,
     );
   }
@@ -27,7 +27,7 @@ class SharedPreferencesStorage {
   }) async {
     await _initPrefs();
     return _prefs?.getBool(
-          AppStrings.onboardingPassedStatusKey,
+          SharedPreferencesStrings.onboardingPassedStatusKey,
         ) ??
         false;
   }
@@ -36,15 +36,15 @@ class SharedPreferencesStorage {
   ///
   /// Save theme in storage
   /// true is dark
-  Future<void> setThemeLighting({required bool isDark}) async {
+  Future<void> setTheme({required bool isDark}) async {
     await _initPrefs();
-    await _prefs?.setBool(AppStrings.themeLightingKey, isDark);
+    await _prefs?.setBool(SharedPreferencesStrings.themeLightingKey, isDark);
   }
 
   /// Gets theme from storage
-  Future<bool> getThemeLighting() async {
+  Future<bool> getTheme() async {
     await _initPrefs();
-    return _prefs?.getBool(AppStrings.themeLightingKey) ?? false;
+    return _prefs?.getBool(SharedPreferencesStrings.themeLightingKey) ?? false;
   }
 
   /// Tabs index
@@ -52,13 +52,13 @@ class SharedPreferencesStorage {
   /// save tabs index to storage
   Future<void> setTabsIndex(int index) async {
     await _initPrefs();
-    await _prefs?.setInt(AppStrings.tabsIndexKey, index);
+    await _prefs?.setInt(SharedPreferencesStrings.tabsIndexKey, index);
   }
 
   /// gets tabs index
   Future<int> getTabsIndex(int index) async {
     await _initPrefs();
-    return _prefs?.getInt(AppStrings.tabsIndexKey) ?? 0;
+    return _prefs?.getInt(SharedPreferencesStrings.tabsIndexKey) ?? 0;
   }
 
   /// Filters
@@ -73,7 +73,7 @@ class SharedPreferencesStorage {
     final encodedPlaceFilter = jsonEncode(placeFilterJson);
 
     await _prefs?.setString(
-      AppStrings.placeFilterKey,
+      SharedPreferencesStrings.placeFilterKey,
       encodedPlaceFilter,
     );
   }
@@ -84,7 +84,7 @@ class SharedPreferencesStorage {
   Future<PlaceFilter> getPlaceFilter() async {
     await _initPrefs();
     final placeFilterFromSharedPrefs =
-        _prefs?.getString(AppStrings.placeFilterKey);
+        _prefs?.getString(SharedPreferencesStrings.placeFilterKey);
 
     final decoded =
         jsonDecode(placeFilterFromSharedPrefs!) as Map<String, dynamic>;

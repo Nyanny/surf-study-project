@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:surf_study_project/assets/themes/app_themes.dart';
-import 'package:surf_study_project/assets/themes/themes_holder.dart';
 import 'package:surf_study_project/config/app_config.dart';
 import 'package:surf_study_project/config/environment/environment.dart';
 import 'package:surf_study_project/features/app/di/app_scope.dart';
@@ -48,18 +47,14 @@ class _AppState extends State<App> {
         splitScreenMode: true,
         builder: (context, child) {
           return EntityStateNotifierBuilder<bool>(
-            listenableEntityState: _scope.appSettingsService.themeLighting,
-            builder: (context, data) {
+            listenableEntityState: _scope.appSettingsService.themeState,
+            builder: (context, isDark) {
               return MaterialApp.router(
                 /// Themes
 
-                theme: !data!
-                    ? AppThemes.lightTheme.copyWith(
-                        extensions: ThemesHolder.lightThemesList,
-                      )
-                    : AppThemes.darkTheme.copyWith(
-                        extensions: ThemesHolder.darkThemesList,
-                      ),
+                theme: (isDark ?? true)
+                    ? AppThemes.darkTheme
+                    : AppThemes.lightTheme,
 
                 /// Localization.
                 locale: _localizations.first,

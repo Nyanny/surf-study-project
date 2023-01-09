@@ -11,11 +11,11 @@ class ThemeSwitcherModel extends ElementaryModel {
 
   /// sets theme
   Future<void> setThemeLighting({required bool isDark}) async {
-    await _appSettingsService.setThemeLighting(isDark: isDark);
+    await _appSettingsService.setTheme(isDark: isDark);
   }
 
   /// initialize theme's data
   bool? initData() {
-    return _appSettingsService.themeLighting.value?.data;
+    return _appSettingsService.themeState.value?.data;
   }
 }

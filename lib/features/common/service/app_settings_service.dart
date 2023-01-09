@@ -4,7 +4,7 @@ import 'package:surf_study_project/features/common/domain/repository/shared_pref
 /// Class [AppSettingsService] is service class for settings feature
 class AppSettingsService {
   /// EntityStateNotifier for theme
-  final themeLighting = EntityStateNotifier<bool>();
+  final themeState = EntityStateNotifier<bool>();
 
   final SharedPreferencesStorage _sharedPreferencesStorage;
 
@@ -15,20 +15,20 @@ class AppSettingsService {
 
   /// initialization
   Future<void> init() async {
-    themeLighting.loading();
-    await getThemeLighting();
-    themeLighting.content(await _sharedPreferencesStorage.getThemeLighting());
+    themeState.loading();
+    await getTheme();
+    themeState.content(await _sharedPreferencesStorage.getTheme());
   }
 
   /// get current theme
-  Future<void> getThemeLighting() async {
-    final isLight = await _sharedPreferencesStorage.getThemeLighting();
-    themeLighting.content(isLight);
+  Future<void> getTheme() async {
+    final isLight = await _sharedPreferencesStorage.getTheme();
+    themeState.content(isLight);
   }
 
   /// set new theme
-  Future<void> setThemeLighting({required bool isDark}) async {
-    await _sharedPreferencesStorage.setThemeLighting(isDark: isDark);
-    themeLighting.content(await _sharedPreferencesStorage.getThemeLighting());
+  Future<void> setTheme({required bool isDark}) async {
+    await _sharedPreferencesStorage.setTheme(isDark: isDark);
+    themeState.content(await _sharedPreferencesStorage.getTheme());
   }
 }

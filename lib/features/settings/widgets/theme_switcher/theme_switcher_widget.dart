@@ -29,9 +29,9 @@ class ThemeSwitcherWidget extends ElementaryWidget<IThemeSwitcherWidgetModel> {
         AppStrings.settingsTheme,
       ),
       trailing: StateNotifierBuilder<bool>(
-        listenableState: wm.themeLightingState,
-        builder: (_, data) => CupertinoSwitch(
-          value: data ?? false,
+        listenableState: wm.themeState,
+        builder: (_, isDark) => CupertinoSwitch(
+          value: isDark ?? false,
           onChanged: wm.themeLightingChanged,
         ),
       ),
