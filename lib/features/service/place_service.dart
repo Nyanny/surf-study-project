@@ -1,6 +1,6 @@
 import 'package:surf_study_project/features/common/domain/entity/filtered_places.dart';
 import 'package:surf_study_project/features/common/domain/entity/place.dart';
-import 'package:surf_study_project/features/common/domain/repository/place_repository.dart';
+import 'package:surf_study_project/features/common/domain/repository/place_repository/place_repository.dart';
 import 'package:surf_study_project/features/service/iplace_service.dart';
 
 /// Class [PlaceService] is a service that implements the [IPlaceService] interface
