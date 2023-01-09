@@ -41,4 +41,9 @@ class AppStrings {
   static const themeLightingKey = 'theme_lighting_key';
   static const tabsIndexKey = 'tabs_index_key';
   static const placeFilterKey = 'place_filter_key';
+
+  /// Settings strings
+  static const settingsAppbarTitle = 'Настройки';
+  static const settingsTheme = 'Тёмная тема';
+  static const settingsTutorial = 'Смотреть туториал';
 }
