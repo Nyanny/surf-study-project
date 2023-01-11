@@ -16,6 +16,6 @@ class ThemeSwitcherModel extends ElementaryModel {
 
   /// initialize theme's data
   bool? initData() {
-    return _appSettingsService.themeState.value?.data;
+    return _appSettingsService.themeState.value;
   }
 }

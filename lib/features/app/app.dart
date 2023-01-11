@@ -46,8 +46,8 @@ class _AppState extends State<App> {
         minTextAdapt: true,
         splitScreenMode: true,
         builder: (context, child) {
-          return EntityStateNotifierBuilder<bool>(
-            listenableEntityState: _scope.appSettingsService.themeState,
+          return StateNotifierBuilder<bool>(
+            listenableState: _scope.appSettingsService.themeState,
             builder: (context, isDark) {
               return MaterialApp.router(
                 /// Themes
@@ -66,7 +66,6 @@ class _AppState extends State<App> {
                 routerDelegate: _scope.router.delegate(),
               );
             },
-            loadingBuilder: (_, __) => const SizedBox.shrink(),
           );
         },
       ),
