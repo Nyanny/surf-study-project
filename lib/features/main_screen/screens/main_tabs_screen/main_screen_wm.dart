@@ -3,7 +3,7 @@ import 'package:elementary/elementary.dart';
 import 'package:flutter/material.dart';
 import 'package:surf_study_project/assets/res/app_assets.dart';
 import 'package:surf_study_project/features/main_screen/screens/main_tabs_screen/main_screen_export.dart';
-import 'package:surf_study_project/features/main_screen/widgets/tab_icon.dart';
+import 'package:surf_study_project/features/main_screen/widgets/tab_svg_icon.dart';
 import 'package:surf_study_project/features/navigation/service/router.dart';
 
 /// Factory for [MainScreenWidgetModel].
@@ -45,14 +45,14 @@ final _defaultNavBarItems = [
   /// tab for PlacesListScreen
   const BottomNavigationBarItem(
     label: '',
-    activeIcon: TabIcon(iconSVGPath: AppAssets.listFull),
-    icon: TabIcon(iconSVGPath: AppAssets.list),
+    activeIcon: TabSvgIcon(iconSVGPath: AppAssets.listFull),
+    icon: TabSvgIcon(iconSVGPath: AppAssets.list),
   ),
 
   /// tab for SettingsScreen
   const BottomNavigationBarItem(
     label: '',
-    activeIcon: TabIcon(iconSVGPath: AppAssets.settingsFill),
-    icon: TabIcon(iconSVGPath: AppAssets.settings),
+    activeIcon: TabSvgIcon(iconSVGPath: AppAssets.settingsFill),
+    icon: TabSvgIcon(iconSVGPath: AppAssets.settings),
   ),
 ];

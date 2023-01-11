@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:surf_study_project/assets/themes/themes_flavours/main_colors.dart';
 
-/// Class [TabIcon] is class that creates default icon for [BottomNavigationBar] in the Main feature
-class TabIcon extends StatelessWidget {
+/// Class [TabSvgIcon] is class that creates default icon for [BottomNavigationBar] in the Main feature
+class TabSvgIcon extends StatelessWidget {
   /// path to svg icon to show
   final String iconSVGPath;
 
   /// Constructor
-  const TabIcon({
+  const TabSvgIcon({
     required this.iconSVGPath,
     Key? key,
   }) : super(key: key);
@@ -18,6 +19,8 @@ class TabIcon extends StatelessWidget {
     final theme = Theme.of(context).extension<MainColors>();
     return SvgPicture.asset(
       iconSVGPath,
+      height: 24.w,
+      width: 24.w,
       color: theme?.bottomNavBarItemColor,
     );
   }
