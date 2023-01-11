@@ -3,6 +3,11 @@ import 'package:surf_study_project/assets/strings/app_strings.dart';
 // ignore_for_file: public_member_api_docs
 /// Assets semantic aliases.
 class AppAssets {
+  /// Splash
+  /// splash logo
+  static const splashLogo =
+      '${AppStrings.baseAsset}${AppStrings.iconsAsset}/splash_logo.svg';
+
   /// Icons
   /// root (icons) folder
   static const card =
