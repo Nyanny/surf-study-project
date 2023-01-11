@@ -1,8 +1,8 @@
+import 'package:elementary/elementary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:surf_study_project/assets/themes/app_themes.dart';
-import 'package:surf_study_project/assets/themes/themes_holder.dart';
 import 'package:surf_study_project/config/app_config.dart';
 import 'package:surf_study_project/config/environment/environment.dart';
 import 'package:surf_study_project/features/app/di/app_scope.dart';
@@ -46,27 +46,26 @@ class _AppState extends State<App> {
         minTextAdapt: true,
         splitScreenMode: true,
         builder: (context, child) {
-          return MaterialApp.router(
-            /// Themes
+          return StateNotifierBuilder<bool>(
+            listenableState: _scope.appSettingsService.themeState,
+            builder: (context, isDark) {
+              return MaterialApp.router(
+                /// Themes
 
-            /// light theme
-            theme: AppThemes.lightTheme.copyWith(
-              extensions: ThemesHolder.lightThemesList,
-            ),
+                theme: (isDark ?? true)
+                    ? AppThemes.darkTheme
+                    : AppThemes.lightTheme,
 
-            /// dark theme
-            darkTheme: AppThemes.darkTheme.copyWith(
-              extensions: ThemesHolder.darkThemesList,
-            ),
+                /// Localization.
+                locale: _localizations.first,
+                localizationsDelegates: _localizationsDelegates,
+                supportedLocales: _localizations,
 
-            /// Localization.
-            locale: _localizations.first,
-            localizationsDelegates: _localizationsDelegates,
-            supportedLocales: _localizations,
-
-            /// This is for navigation.
-            routeInformationParser: _scope.router.defaultRouteParser(),
-            routerDelegate: _scope.router.delegate(),
+                /// This is for navigation.
+                routeInformationParser: _scope.router.defaultRouteParser(),
+                routerDelegate: _scope.router.delegate(),
+              );
+            },
           );
         },
       ),

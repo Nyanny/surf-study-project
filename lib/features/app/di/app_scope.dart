@@ -6,7 +6,9 @@ import 'package:elementary/elementary.dart';
 import 'package:surf_study_project/api/service/place_api.dart';
 import 'package:surf_study_project/config/app_config.dart';
 import 'package:surf_study_project/config/environment/environment.dart';
-import 'package:surf_study_project/features/common/domain/repository/place_repository.dart';
+import 'package:surf_study_project/features/common/domain/repository/place_repository/place_repository.dart';
+import 'package:surf_study_project/features/common/domain/repository/shared_preferences/shared_preferences_storage.dart';
+import 'package:surf_study_project/features/common/service/app_settings_service.dart';
 import 'package:surf_study_project/features/navigation/service/router.dart';
 import 'package:surf_study_project/features/service/place_service.dart';
 import 'package:surf_study_project/util/default_error_handler.dart';
@@ -20,6 +22,8 @@ class AppScope implements IAppScope {
   late final PlaceApi _placeApi;
   late final PlaceRepository _placeRepository;
   late final PlaceService _placeService;
+  late final SharedPreferencesStorage _sharedPreferencesStorage;
+  late final AppSettingsService _appSettingsService;
 
   @override
   VoidCallback get applicationRebuilder => _applicationRebuilder;
@@ -42,6 +46,9 @@ class AppScope implements IAppScope {
   @override
   PlaceService get placeService => _placeService;
 
+  @override
+  AppSettingsService get appSettingsService => _appSettingsService;
+
   /// Create an instance [AppScope].
   AppScope({
     required VoidCallback applicationRebuilder,
@@ -56,6 +63,9 @@ class AppScope implements IAppScope {
     _placeApi = PlaceApi(dio);
     _placeRepository = PlaceRepository(placeApi);
     _placeService = PlaceService(placeRepository);
+
+    _sharedPreferencesStorage = SharedPreferencesStorage();
+    _appSettingsService = AppSettingsService(_sharedPreferencesStorage);
   }
 
   Dio _initDio(Iterable<Interceptor> additionalInterceptors) {
@@ -118,4 +128,7 @@ abstract class IAppScope {
 
   /// Place Service dependency
   PlaceService get placeService;
+
+  /// Service with global app settings
+  AppSettingsService get appSettingsService;
 }

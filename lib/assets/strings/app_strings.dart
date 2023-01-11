@@ -35,4 +35,9 @@ class AppStrings {
 
   /// Places list strings
   static const interestingPlaces = 'Список интересных мест';
+
+  /// Settings strings
+  static const settingsAppbarTitle = 'Настройки';
+  static const settingsTheme = 'Тёмная тема';
+  static const settingsTutorial = 'Смотреть туториал';
 }

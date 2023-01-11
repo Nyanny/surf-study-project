@@ -1,8 +1,8 @@
 import 'package:surf_study_project/api/service/place_api.dart';
 import 'package:surf_study_project/features/common/domain/entity/filtered_places.dart';
 import 'package:surf_study_project/features/common/domain/entity/place.dart';
-import 'package:surf_study_project/features/common/domain/repository/iplace_repository.dart';
-import 'package:surf_study_project/features/common/domain/repository/place_mapper.dart';
+import 'package:surf_study_project/features/common/domain/repository/place_repository/iplace_repository.dart';
+import 'package:surf_study_project/features/common/domain/repository/place_repository/place_mapper.dart';
 
 /// Class [PlaceRepository] is a repository that implements the [IPlaceRepository] interface
 class PlaceRepository implements IPlaceRepository {
