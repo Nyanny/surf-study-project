@@ -33,8 +33,8 @@ class OnboardingScreenWidgetModel
   final StateNotifier<bool> _isLastPage = StateNotifier<bool>(initValue: false);
 
   @override
-  OnboardingColors get onboardingTheme =>
-      Theme.of(context).extension<OnboardingColors>()!;
+  OnboardingColors? get onboardingTheme =>
+      Theme.of(context).extension<OnboardingColors>();
 
   @override
   List<OnboardingPageData> get pageData => _pageData;
@@ -99,7 +99,7 @@ class OnboardingScreenWidgetModel
 /// Interface of [IOnboardingScreenWidgetModel].
 abstract class IOnboardingScreenWidgetModel extends IWidgetModel {
   /// theme of Onboarding feature
-  OnboardingColors get onboardingTheme;
+  OnboardingColors? get onboardingTheme;
 
   /// data displayed on OnboardingPage
   List<OnboardingPageData> get pageData;
