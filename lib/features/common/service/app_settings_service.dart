@@ -32,12 +32,14 @@ class AppSettingsService {
   }
 
   /// onboarding status
+  /// gets onboarding status
   Future<void> setOnboardingStatus({required bool onboardingPassed}) async {
     await _sharedPreferencesStorage.setOnboardingPassedStatus(
       onboardingPassed: onboardingPassed,
     );
   }
 
+  /// sets onboarding status
   Future<bool> getOnboardingStatus() async {
     return _sharedPreferencesStorage.getOnboardingPassedStatus();
   }
