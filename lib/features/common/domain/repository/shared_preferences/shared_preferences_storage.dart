@@ -22,9 +22,7 @@ class SharedPreferencesStorage {
   }
 
   /// Gets onboarding status
-  Future<bool> getOnboardingPassedStatus({
-    required bool onboardingPassed,
-  }) async {
+  Future<bool> getOnboardingPassedStatus() async {
     await _initPrefs();
     return _prefs?.getBool(
           SharedPreferencesStrings.onboardingPassedStatusKey,
@@ -45,20 +43,6 @@ class SharedPreferencesStorage {
   Future<bool> getTheme() async {
     await _initPrefs();
     return _prefs?.getBool(SharedPreferencesStrings.themeLightingKey) ?? false;
-  }
-
-  /// Tabs index
-  ///
-  /// save tabs index to storage
-  Future<void> setTabsIndex(int index) async {
-    await _initPrefs();
-    await _prefs?.setInt(SharedPreferencesStrings.tabsIndexKey, index);
-  }
-
-  /// gets tabs index
-  Future<int> getTabsIndex(int index) async {
-    await _initPrefs();
-    return _prefs?.getInt(SharedPreferencesStrings.tabsIndexKey) ?? 0;
   }
 
   /// Filters
