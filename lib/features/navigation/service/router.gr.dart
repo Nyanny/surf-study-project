@@ -17,10 +17,15 @@ class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
-    SettingsRouter.name: (routeData) {
+    SplashRouter.name: (routeData) {
+      final args = routeData.argsAs<SplashRouterArgs>(
+          orElse: () => const SplashRouterArgs());
       return MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const SettingsScreen(),
+        child: SplashScreen(
+          key: args.key,
+          wmFactory: args.wmFactory,
+        ),
       );
     },
     OnboardingRouter.name: (routeData) {
@@ -34,6 +39,34 @@ class _$AppRouter extends RootStackRouter {
         ),
       );
     },
+    MainRouter.name: (routeData) {
+      final args = routeData.argsAs<MainRouterArgs>(
+          orElse: () => const MainRouterArgs());
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: MainScreen(
+          key: args.key,
+          wmFactory: args.wmFactory,
+        ),
+      );
+    },
+    PlacesListRouter.name: (routeData) {
+      final args = routeData.argsAs<PlacesListRouterArgs>(
+          orElse: () => const PlacesListRouterArgs());
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: PlacesListScreen(
+          key: args.key,
+          wmFactory: args.wmFactory,
+        ),
+      );
+    },
+    SettingsRouter.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const SettingsScreen(),
+      );
+    },
   };
 
   @override
@@ -41,30 +74,78 @@ class _$AppRouter extends RootStackRouter {
         RouteConfig(
           '/#redirect',
           path: '/',
-          redirectTo: 'settings',
+          redirectTo: 'splash',
           fullMatch: true,
         ),
         RouteConfig(
-          SettingsRouter.name,
-          path: 'settings',
+          SplashRouter.name,
+          path: 'splash',
         ),
         RouteConfig(
           OnboardingRouter.name,
           path: 'onboarding',
         ),
+        RouteConfig(
+          MainRouter.name,
+          path: 'main',
+          children: [
+            RouteConfig(
+              '#redirect',
+              path: '',
+              parent: MainRouter.name,
+              redirectTo: 'placesList',
+              fullMatch: true,
+            ),
+            RouteConfig(
+              PlacesListRouter.name,
+              path: 'placesList',
+              parent: MainRouter.name,
+            ),
+            RouteConfig(
+              SettingsRouter.name,
+              path: 'settings',
+              parent: MainRouter.name,
+            ),
+          ],
+        ),
       ];
 }
 
 /// generated route for
-/// [SettingsScreen]
-class SettingsRouter extends PageRouteInfo<void> {
-  const SettingsRouter()
-      : super(
-          SettingsRouter.name,
-          path: 'settings',
+/// [SplashScreen]
+class SplashRouter extends PageRouteInfo<SplashRouterArgs> {
+  SplashRouter({
+    Key? key,
+    WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
+            BuildContext)
+        wmFactory = splashScreenWmFactory,
+  }) : super(
+          SplashRouter.name,
+          path: 'splash',
+          args: SplashRouterArgs(
+            key: key,
+            wmFactory: wmFactory,
+          ),
         );
 
-  static const String name = 'SettingsRouter';
+  static const String name = 'SplashRouter';
+}
+
+class SplashRouterArgs {
+  const SplashRouterArgs({
+    this.key,
+    this.wmFactory = splashScreenWmFactory,
+  });
+
+  final Key? key;
+
+  final WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
+      BuildContext) wmFactory;
+
+  @override
+  String toString() {
+    return 'SplashRouterArgs{key: $key, wmFactory: $wmFactory}';
+  }
 }
 
 /// generated route for
@@ -102,4 +183,92 @@ class OnboardingRouterArgs {
   String toString() {
     return 'OnboardingRouterArgs{key: $key, wmFactory: $wmFactory}';
   }
+}
+
+/// generated route for
+/// [MainScreen]
+class MainRouter extends PageRouteInfo<MainRouterArgs> {
+  MainRouter({
+    Key? key,
+    WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
+            BuildContext)
+        wmFactory = mainScreenWmFactory,
+    List<PageRouteInfo>? children,
+  }) : super(
+          MainRouter.name,
+          path: 'main',
+          args: MainRouterArgs(
+            key: key,
+            wmFactory: wmFactory,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'MainRouter';
+}
+
+class MainRouterArgs {
+  const MainRouterArgs({
+    this.key,
+    this.wmFactory = mainScreenWmFactory,
+  });
+
+  final Key? key;
+
+  final WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
+      BuildContext) wmFactory;
+
+  @override
+  String toString() {
+    return 'MainRouterArgs{key: $key, wmFactory: $wmFactory}';
+  }
+}
+
+/// generated route for
+/// [PlacesListScreen]
+class PlacesListRouter extends PageRouteInfo<PlacesListRouterArgs> {
+  PlacesListRouter({
+    Key? key,
+    WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
+            BuildContext)
+        wmFactory = placesListScreenWmFactory,
+  }) : super(
+          PlacesListRouter.name,
+          path: 'placesList',
+          args: PlacesListRouterArgs(
+            key: key,
+            wmFactory: wmFactory,
+          ),
+        );
+
+  static const String name = 'PlacesListRouter';
+}
+
+class PlacesListRouterArgs {
+  const PlacesListRouterArgs({
+    this.key,
+    this.wmFactory = placesListScreenWmFactory,
+  });
+
+  final Key? key;
+
+  final WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
+      BuildContext) wmFactory;
+
+  @override
+  String toString() {
+    return 'PlacesListRouterArgs{key: $key, wmFactory: $wmFactory}';
+  }
+}
+
+/// generated route for
+/// [SettingsScreen]
+class SettingsRouter extends PageRouteInfo<void> {
+  const SettingsRouter()
+      : super(
+          SettingsRouter.name,
+          path: 'settings',
+        );
+
+  static const String name = 'SettingsRouter';
 }

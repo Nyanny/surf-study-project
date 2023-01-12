@@ -29,7 +29,7 @@ class OnboardingPageWidget extends StatelessWidget {
 
     return SizedBox(
       width: 244.w,
-      height: 246.w + kToolbarHeight,
+      height: 246.w + 56.0.w,
       child: Column(
         mainAxisSize: MainAxisSize.min,
 
@@ -83,7 +83,7 @@ class OnboardingPageWidget extends StatelessWidget {
             ],
           ),
 
-          const SizedBox(height: kToolbarHeight),
+          SizedBox(height: 56.0.w),
         ],
       ),
     );

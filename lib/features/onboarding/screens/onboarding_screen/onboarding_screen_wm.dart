@@ -1,8 +1,12 @@
 import 'package:elementary/elementary.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:surf_study_project/assets/res/app_assets.dart';
 import 'package:surf_study_project/assets/strings/app_strings.dart';
 import 'package:surf_study_project/assets/themes/themes_flavours/onboarding_colors.dart';
+import 'package:surf_study_project/features/app/di/app_scope.dart';
+import 'package:surf_study_project/features/navigation/domain/entity/app_route_paths.dart';
+import 'package:surf_study_project/features/navigation/service/router.dart';
 import 'package:surf_study_project/features/onboarding/domain/onboarding_page_data.dart';
 import 'package:surf_study_project/features/onboarding/screens/onboarding_screen/onboarding_screen.dart';
 import 'package:surf_study_project/features/onboarding/screens/onboarding_screen/onboarding_screen_model.dart';
@@ -11,21 +15,26 @@ import 'package:surf_study_project/features/onboarding/screens/onboarding_screen
 OnboardingScreenWidgetModel onboardingScreenWmFactory(
   BuildContext context,
 ) {
-  final model = OnboardingScreenModel();
-  return OnboardingScreenWidgetModel(model);
+  final appDependencies = context.read<IAppScope>();
+  final router = appDependencies.router;
+  final appSettingsService = appDependencies.appSettingsService;
+  final model = OnboardingScreenModel(appSettingsService);
+  return OnboardingScreenWidgetModel(model, router);
 }
 
 /// Widget model for [OnboardingScreen].
 class OnboardingScreenWidgetModel
     extends WidgetModel<OnboardingScreen, OnboardingScreenModel>
     implements IOnboardingScreenWidgetModel {
+  /// [AppRouter] instance
+  final AppRouter router;
   final PageController _pageController = PageController();
 
   final StateNotifier<bool> _isLastPage = StateNotifier<bool>(initValue: false);
 
   @override
-  OnboardingColors get onboardingTheme =>
-      Theme.of(context).extension<OnboardingColors>()!;
+  OnboardingColors? get onboardingTheme =>
+      Theme.of(context).extension<OnboardingColors>();
 
   @override
   List<OnboardingPageData> get pageData => _pageData;
@@ -49,7 +58,10 @@ class OnboardingScreenWidgetModel
   VoidCallback get startButtonAction => _onStartButtonPressed;
 
   /// Create an instance [OnboardingScreenModel].
-  OnboardingScreenWidgetModel(OnboardingScreenModel model) : super(model);
+  OnboardingScreenWidgetModel(
+    OnboardingScreenModel model,
+    this.router,
+  ) : super(model);
 
   /// [initWidgetModel] method
   @override
@@ -76,13 +88,18 @@ class OnboardingScreenWidgetModel
   }
 
   /// action on StartButton
-  void _onStartButtonPressed() {}
+  /// Passes to new screen - main
+  Future<void> _onStartButtonPressed() async {
+    await model.setOnboardingIsPassed();
+    router.removeLast();
+    await router.replaceNamed(AppRoutePaths.mainPath);
+  }
 }
 
 /// Interface of [IOnboardingScreenWidgetModel].
 abstract class IOnboardingScreenWidgetModel extends IWidgetModel {
   /// theme of Onboarding feature
-  OnboardingColors get onboardingTheme;
+  OnboardingColors? get onboardingTheme;
 
   /// data displayed on OnboardingPage
   List<OnboardingPageData> get pageData;
