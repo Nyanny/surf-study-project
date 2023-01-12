@@ -1,12 +1,6 @@
 // ignore_for_file: public_member_api_docs
 
 class AppStrings {
-  /// Asset strings
-  static const baseAsset = 'assets';
-  static const iconsAsset = '/icons';
-  static const fontsAsset = '/fonts';
-  static const imagesAsset = '/images';
-
   /// Onboarding page with "map" and map image - "first" onboarding page
   static const onboardingScreenMapPageTitle =
       'Добро пожаловать\nв Путеводитель';
