@@ -2,10 +2,10 @@
 
 /// supported by API types
 enum PlaceType {
-  museum,
-  park,
-  cafe,
-  restaurant,
   hotel,
+  restaurant,
   other,
+  park,
+  museum,
+  cafe,
 }
