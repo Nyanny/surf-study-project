@@ -40,4 +40,20 @@ class AppStrings {
   static const settingsAppbarTitle = 'Настройки';
   static const settingsTheme = 'Тёмная тема';
   static const settingsTutorial = 'Смотреть туториал';
+
+  /// Filter
+  static const filterClearButton = 'Очистить';
+  static const filterShowButton = 'ПОКАЗАТЬ';
+  static const filterCategory = 'КАТЕГОРИИ';
+  static const filterDistanceName = 'Расстояние';
+  static const filterDistanceValueTo= 'до';
+  static const filterDistanceUnit= 'км';
+
+  /// Filter categories
+  static const hotelFilterCategory = 'Отель';
+  static const restaurantFilterCategory = 'Ресторан';
+  static const specialPlaceFilterCategory = 'Особое место';
+  static const parkFilterCategory = 'Парк';
+  static const museumFilterCategory = 'Музей';
+  static const cafeFilterCategory = 'Кафе';
 }
