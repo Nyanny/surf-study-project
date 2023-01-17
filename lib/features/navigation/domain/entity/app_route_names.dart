@@ -20,4 +20,7 @@ abstract class AppRouteNames {
 
   /// SplashScreen route name
   static const String splashScreen = 'splashRouter';
+
+  /// FilterScreen route name
+  static const String filterScreen = 'filterRouter';
 }

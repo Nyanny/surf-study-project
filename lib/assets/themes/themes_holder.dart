@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:surf_study_project/assets/themes/themes_flavours/add_button_colors.dart';
 import 'package:surf_study_project/assets/themes/themes_flavours/card_colors.dart';
+import 'package:surf_study_project/assets/themes/themes_flavours/filters_colors.dart';
 import 'package:surf_study_project/assets/themes/themes_flavours/loader_colors.dart';
 import 'package:surf_study_project/assets/themes/themes_flavours/main_colors.dart';
 import 'package:surf_study_project/assets/themes/themes_flavours/onboarding_colors.dart';
@@ -19,6 +20,7 @@ class ThemesHolder {
     PlaceholderColors.light,
     SettingsColors.light,
     MainColors.light,
+    FilterColors.light,
   ];
 
   static const List<ThemeExtension<dynamic>> _darkThemesList = [
@@ -30,6 +32,7 @@ class ThemesHolder {
     PlaceholderColors.dark,
     SettingsColors.dark,
     MainColors.dark,
+    FilterColors.dark,
   ];
 
   /// light theme extensions
