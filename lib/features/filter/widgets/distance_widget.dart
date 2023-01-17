@@ -8,12 +8,16 @@ import 'package:surf_study_project/assets/themes/themes_flavours/filters_colors.
 class DistanceWidget extends StatelessWidget {
   /// min instance
   final double minDistanceValue;
+
   /// max distance
   final double maxDistanceValue;
+
   /// slider value
   final double sliderValue;
+
   /// used theme
   final FilterColors? colors;
+
   /// onSliderChanged callback
   final ValueChanged<double>? onSliderChanged;
 

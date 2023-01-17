@@ -40,8 +40,8 @@ class AppStrings {
   static const filterShowButton = 'ПОКАЗАТЬ';
   static const filterCategory = 'КАТЕГОРИИ';
   static const filterDistanceName = 'Расстояние';
-  static const filterDistanceValueTo= 'до';
-  static const filterDistanceUnit= 'км';
+  static const filterDistanceValueTo = 'до';
+  static const filterDistanceUnit = 'км';
 
   /// Filter categories
   static const hotelFilterCategory = 'Отель';

@@ -44,13 +44,14 @@ class CategoriesWidget extends StatelessWidget {
         SizedBox(
           height: 24.w,
         ),
+
         /// Categories grid
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 24.0.w),
           child: GridView(
             shrinkWrap: true,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              childAspectRatio: 96.w/92.w,
+              childAspectRatio: 96.w / 92.w,
               mainAxisSpacing: 40.w,
               crossAxisSpacing: 12.w,
               crossAxisCount: 3,
