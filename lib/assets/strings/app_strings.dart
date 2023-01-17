@@ -41,7 +41,8 @@ class AppStrings {
   static const filterCategory = 'КАТЕГОРИИ';
   static const filterDistanceName = 'Расстояние';
   static const filterDistanceValueTo = 'до';
-  static const filterDistanceUnit = 'км';
+  static const filterDistanceUnitKilometers = 'км';
+  static const filterDistanceUnitMeters = 'м';
 
   /// Filter categories
   static const hotelFilterCategory = 'Отель';
