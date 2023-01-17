@@ -4,7 +4,6 @@ import 'package:surf_study_project/assets/res/app_typography.dart';
 import 'package:surf_study_project/assets/strings/app_strings.dart';
 import 'package:surf_study_project/assets/themes/themes_flavours/filters_colors.dart';
 import 'package:surf_study_project/features/common/domain/entity/place_type.dart';
-import 'package:surf_study_project/features/filter/domain/entity/filter_place_type_extension.dart';
 import 'package:surf_study_project/features/filter/widgets/category_element_widget.dart';
 
 /// Class [CategoriesWidget] shows categories grid with title
@@ -58,8 +57,8 @@ class CategoriesWidget extends StatelessWidget {
             ),
             children: PlaceType.values
                 .map<CategoryElementWidget>((e) => CategoryElementWidget(
-                      svgPicturePath: e.getPlaceTypeData.iconPath,
-                      categoryName: e.getPlaceTypeData.title,
+                      svgPicturePath: e.iconPath,
+                      categoryName: e.title,
                       colors: colors,
                       onTap: onCategoryTap,
                       categoryIsSet: placeTypeActiveList.elementAt(e.index),
