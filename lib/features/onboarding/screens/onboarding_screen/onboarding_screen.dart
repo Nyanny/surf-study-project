@@ -62,8 +62,9 @@ class OnboardingScreen extends ElementaryWidget<IOnboardingScreenWidgetModel> {
                 effect: ExpandingDotsEffect(
                   dotHeight: 8.w,
                   dotWidth: 8.w,
-                  dotColor: wm.onboardingTheme.dotsColor,
-                  activeDotColor: wm.onboardingTheme.dotsActiveColor,
+                  dotColor: wm.onboardingTheme?.dotsColor ?? Colors.transparent,
+                  activeDotColor:
+                      wm.onboardingTheme?.dotsActiveColor ?? Colors.transparent,
                   radius: 8.w,
                 ),
               ),

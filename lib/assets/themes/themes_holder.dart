@@ -3,6 +3,7 @@ import 'package:surf_study_project/assets/themes/themes_flavours/add_button_colo
 import 'package:surf_study_project/assets/themes/themes_flavours/card_colors.dart';
 import 'package:surf_study_project/assets/themes/themes_flavours/filters_colors.dart';
 import 'package:surf_study_project/assets/themes/themes_flavours/loader_colors.dart';
+import 'package:surf_study_project/assets/themes/themes_flavours/main_colors.dart';
 import 'package:surf_study_project/assets/themes/themes_flavours/onboarding_colors.dart';
 import 'package:surf_study_project/assets/themes/themes_flavours/place_list_colors.dart';
 import 'package:surf_study_project/assets/themes/themes_flavours/placeholder_colors.dart';
@@ -18,6 +19,7 @@ class ThemesHolder {
     LoaderColors.light,
     PlaceholderColors.light,
     SettingsColors.light,
+    MainColors.light,
     FilterColors.light,
   ];
 
@@ -29,6 +31,7 @@ class ThemesHolder {
     LoaderColors.dark,
     PlaceholderColors.dark,
     SettingsColors.dark,
+    MainColors.dark,
     FilterColors.dark,
   ];
 

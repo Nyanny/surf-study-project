@@ -12,8 +12,14 @@ abstract class AppRouteNames {
   /// PlacesListScreen route name
   static const String placesListScreen = 'placesListRouter';
 
-  /// PlacesListScreen route name
+  /// SettingsListScreen route name
   static const String settingsScreen = 'settingsRouter';
+
+  /// MainListScreen route name
+  static const String mainScreen = 'mainRouter';
+
+  /// SplashScreen route name
+  static const String splashScreen = 'splashRouter';
 
   /// FilterScreen route name
   static const String filterScreen = 'filterRouter';

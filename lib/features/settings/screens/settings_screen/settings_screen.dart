@@ -61,7 +61,9 @@ class _ListItem extends StatelessWidget {
     return Column(
       children: [
         listItemWidget,
-        const Divider(),
+        const Divider(
+          height: 0,
+        ),
       ],
     );
   }

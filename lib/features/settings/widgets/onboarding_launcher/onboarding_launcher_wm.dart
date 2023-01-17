@@ -34,11 +34,6 @@ class OnboardingLauncherWidgetModel
   OnboardingLauncherWidgetModel(OnboardingLauncherModel model, this.router)
       : super(model);
 
-  @override
-  void initWidgetModel() {
-    super.initWidgetModel();
-  }
-
   /// launches onboarding
   /// uses [router] to push to new page
   void _launchOnboarding() {

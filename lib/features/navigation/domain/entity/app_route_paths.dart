@@ -12,8 +12,14 @@ abstract class AppRoutePaths {
   ///Path to places list screen
   static const String placesListPath = 'placesList';
 
-  ///Path to places settings screen
+  ///Path to settings screen
   static const String settingsPath = 'settings';
+
+  ///Path to main screen
+  static const String mainPath = 'main';
+
+  ///Path to splash screen
+  static const String splashPath = 'splash';
 
   ///Path to  filter screen
   static const String filterPath = 'filter';
