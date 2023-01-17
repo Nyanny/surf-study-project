@@ -57,8 +57,6 @@ class CategoriesWidget extends StatelessWidget {
             ),
             children: PlaceType.values
                 .map<CategoryElementWidget>((e) => CategoryElementWidget(
-                      svgPicturePath: e.iconPath,
-                      categoryName: e.title,
                       colors: colors,
                       onTap: onCategoryTap,
                       categoryIsSet: placeTypeActiveList.elementAt(e.index),

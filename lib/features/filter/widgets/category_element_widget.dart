@@ -9,12 +9,6 @@ import 'package:surf_study_project/features/common/domain/entity/place_type.dart
 /// Class [CategoryElementWidget]
 /// Tappable Column with icon, name and 'vote'
 class CategoryElementWidget extends StatelessWidget {
-  /// path to svg asset
-  final String svgPicturePath;
-
-  /// Name of the current category
-  final String categoryName;
-
   /// Used theme
   final FilterColors? colors;
 
@@ -29,12 +23,10 @@ class CategoryElementWidget extends StatelessWidget {
 
   /// Constructor
   const CategoryElementWidget({
-    required this.svgPicturePath,
-    required this.categoryName,
     required this.colors,
-    required this.onTap,
     required this.categoryIsSet,
     required this.placeType,
+    required this.onTap,
     Key? key,
   }) : super(key: key);
 
@@ -60,7 +52,7 @@ class CategoryElementWidget extends StatelessWidget {
                     ),
                   ),
                   SvgPicture.asset(
-                    svgPicturePath,
+                    placeType.iconPath,
                     color: colors?.buttonColor,
                     height: 32.w,
                     width: 32.w,
@@ -72,7 +64,7 @@ class CategoryElementWidget extends StatelessWidget {
                 height: 12.w,
               ),
               Text(
-                categoryName,
+                placeType.title,
                 style: AppTypography.superSmallText
                     .copyWith(color: colors?.categoryButtonTitle),
               ),
