@@ -52,7 +52,7 @@ class DistanceWidget extends StatelessWidget {
                     .copyWith(fontWeight: FontWeight.w400, color: colors?.main),
               ),
               Text(
-                '${AppStrings.filterDistanceValueTo} ${maxDistanceValue.toInt()} ${AppStrings.filterDistanceUnit}',
+                '${AppStrings.filterDistanceValueTo} ${maxDistanceValue.toInt()} ${AppStrings.filterDistanceUnitKilometers}',
                 style: AppTypography.text
                     .copyWith(color: colors?.distanceInformationColor),
               ),
