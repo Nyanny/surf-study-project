@@ -7,8 +7,8 @@ dependencies:
   auto_route: 5.0.1
   cached_network_image: 3.2.3
   dio: 4.0.6
-  equatable: 2.0.5
   elementary: 1.5.0
+  equatable: 2.0.5
   firebase_crashlytics: 3.0.6
   flutter:
     sdk: flutter
