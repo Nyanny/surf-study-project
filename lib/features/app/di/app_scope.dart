@@ -6,11 +6,11 @@ import 'package:elementary/elementary.dart';
 import 'package:surf_study_project/api/service/place_api.dart';
 import 'package:surf_study_project/config/app_config.dart';
 import 'package:surf_study_project/config/environment/environment.dart';
-import 'package:surf_study_project/features/common/domain/repository/geolocator_repository/geolocator_repository.dart';
 import 'package:surf_study_project/features/common/domain/repository/place_repository/place_repository.dart';
 import 'package:surf_study_project/features/common/domain/repository/shared_preferences/shared_preferences_storage.dart';
 import 'package:surf_study_project/features/common/service/app_settings_service.dart';
-import 'package:surf_study_project/features/common/service/geolocation_service.dart';
+import 'package:surf_study_project/features/common/service/geolocation/geolocation_service.dart';
+import 'package:surf_study_project/features/geolocation/bloc/geolocation_bloc.dart';
 import 'package:surf_study_project/features/navigation/service/router.dart';
 import 'package:surf_study_project/features/service/place_service.dart';
 import 'package:surf_study_project/util/default_error_handler.dart';
@@ -26,8 +26,8 @@ class AppScope implements IAppScope {
   late final PlaceService _placeService;
   late final SharedPreferencesStorage _sharedPreferencesStorage;
   late final AppSettingsService _appSettingsService;
-  late final GeolocatorRepository _geolocatorRepository;
   late final GeolocationService _geolocationService;
+  late final GeolocationBloc _geolocationBloc;
 
   @override
   VoidCallback get applicationRebuilder => _applicationRebuilder;
@@ -54,10 +54,10 @@ class AppScope implements IAppScope {
   AppSettingsService get appSettingsService => _appSettingsService;
 
   @override
-  GeolocatorRepository get geolocatorRepository => _geolocatorRepository;
+  GeolocationService get geolocationService => _geolocationService;
 
   @override
-  GeolocationService get geolocationService => _geolocationService;
+  GeolocationBloc get geolocationBloc => _geolocationBloc;
 
   /// Create an instance [AppScope].
   AppScope({
@@ -78,8 +78,8 @@ class AppScope implements IAppScope {
     _appSettingsService = AppSettingsService(_sharedPreferencesStorage);
 
     ///geolocation
-    _geolocatorRepository = GeolocatorRepository();
-    _geolocationService = GeolocationService(_geolocatorRepository);
+    _geolocationService = GeolocationService();
+    _geolocationBloc = GeolocationBloc(_geolocationService);
   }
 
   Dio _initDio(Iterable<Interceptor> additionalInterceptors) {
@@ -146,9 +146,9 @@ abstract class IAppScope {
   /// Service with global app settings
   AppSettingsService get appSettingsService;
 
-  /// Geolocation repository
-  GeolocatorRepository get geolocatorRepository;
-
   /// Service with geolocation
   GeolocationService get geolocationService;
+
+  /// Geolocation bloc
+  GeolocationBloc get geolocationBloc;
 }
