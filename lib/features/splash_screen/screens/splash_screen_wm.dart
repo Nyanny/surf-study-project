@@ -32,7 +32,7 @@ class SplashScreenWidgetModel
   /// [AppRouter] router for navigation
   final AppRouter router;
 
-  /// subsctition to the [GeolocationState]
+  /// subscription to the [GeolocationState]
   late final StreamSubscription<GeolocationState> _stateGeolocationSubscription;
 
   @override
