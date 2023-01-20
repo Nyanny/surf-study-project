@@ -7,5 +7,8 @@ class GeolocationCoordinates {
   final double latitude;
 
   /// constructor
-  const GeolocationCoordinates({required this.longitude, required this.latitude});
+  const GeolocationCoordinates({
+    required this.longitude,
+    required this.latitude,
+  });
 }
