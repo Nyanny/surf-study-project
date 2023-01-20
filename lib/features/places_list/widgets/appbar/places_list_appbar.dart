@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:surf_study_project/assets/strings/app_strings.dart';
+import 'package:surf_study_project/features/places_list/widgets/search_widget/search_widget.dart';
 
 /// Class [PlacesListAppBar] is [SliverAppBar] with [LayoutBuilder] implemented in [_Header]
 class PlacesListAppBar extends StatelessWidget {
+  /// callback onTap search button
+  final VoidCallback onSearchButtonTap;
+
+  /// callback onTap filter button
+  final VoidCallback onFilterButtonTap;
+
   /// max expanded height
   final double maxHeight;
 
@@ -12,6 +19,8 @@ class PlacesListAppBar extends StatelessWidget {
 
   /// constructor
   const PlacesListAppBar({
+    required this.onSearchButtonTap,
+    required this.onFilterButtonTap,
     required this.maxHeight,
     required this.minHeight,
     Key? key,
@@ -28,6 +37,16 @@ class PlacesListAppBar extends StatelessWidget {
         minHeight: minHeight,
       ),
       expandedHeight: maxHeight - MediaQuery.of(context).padding.top,
+      bottom: PreferredSize(
+        preferredSize: Size.fromHeight(62.w),
+        child: Padding(
+          padding: EdgeInsets.symmetric(vertical: 6.w, horizontal: 8.w),
+          child: SearchWidget(
+            onSearchButtonTap: onSearchButtonTap,
+            onFilterButtonTap: onFilterButtonTap,
+          ),
+        ),
+      ),
     );
   }
 }

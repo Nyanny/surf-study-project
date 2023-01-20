@@ -44,6 +44,11 @@ class AppStrings {
   static const filterDistanceUnitKilometers = 'км';
   static const filterDistanceUnitMeters = 'м';
   static const hintSearch = 'Поиск';
+  static const filterAlertClose = 'Закрыть';
+  static const filterAlertGotoSettings = 'Перейти в настройки';
+  static const filterAlertTitle = 'Проблема с доступом к геолокации';
+  static const filterAlertMessage =
+      'У приложения не обнаружено доступа к геолокации.\nДля работы сервиса предоставьте доступ к геолокации.';
 
   /// Filter categories
   static const hotelFilterCategory = 'Отель';

@@ -15,6 +15,9 @@ class PlacesListScreenModel extends ElementaryModel {
   /// verifies locations service and app permission
   VoidCallback get verifyPermissions => _verifyPermissions;
 
+  /// opens app settings
+  VoidCallback get openAppSettings => _openAppSettings;
+
   /// Stream of [GeolocationState]
   Stream<GeolocationState> get geolocationStateStream => geolocationBloc.stream;
 
@@ -31,5 +34,9 @@ class PlacesListScreenModel extends ElementaryModel {
 
   void _verifyPermissions() {
     geolocationBloc.add(VerifyThenRequestPermissionEvent());
+  }
+
+  void _openAppSettings() {
+    geolocationBloc.add(OpenAppSettingsEvent());
   }
 }
