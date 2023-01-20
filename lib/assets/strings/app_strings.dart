@@ -43,6 +43,7 @@ class AppStrings {
   static const filterDistanceValueTo = 'до';
   static const filterDistanceUnitKilometers = 'км';
   static const filterDistanceUnitMeters = 'м';
+  static const hintSearch = 'Поиск';
 
   /// Filter categories
   static const hotelFilterCategory = 'Отель';
