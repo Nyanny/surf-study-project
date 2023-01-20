@@ -25,7 +25,7 @@ class PlacesListScreen extends ElementaryWidget<IPlacesListScreenWidgetModel> {
         onRefresh: wm.onRefresh,
         child: CustomScrollView(
           slivers: [
-            // TODO (nyanny): некорректный layot будет исправлен в рамках таски SI-2633, https://jira.surfstudio.ru/browse/SI-2633
+            // TODO(nyanny): некорректный layot будет исправлен в рамках таски SI-2633 (https://jira.surfstudio.ru/browse/SI-2633)
             /// appbar
             PlacesListAppBar(
               onSearchButtonTap: wm.onSearchButtonTap,
