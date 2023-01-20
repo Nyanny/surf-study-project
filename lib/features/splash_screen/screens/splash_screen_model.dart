@@ -7,8 +7,6 @@ import 'package:surf_study_project/features/geolocation/bloc/geolocation_bloc.da
 
 /// Class [SplashScreenModel] is model class for SplashScreen
 class SplashScreenModel extends ElementaryModel {
-  late final Stream<GeolocationState> _geolocationStateStream;
-
   /// [AppSettingsService]
   AppSettingsService appSettingsService;
 
@@ -19,8 +17,7 @@ class SplashScreenModel extends ElementaryModel {
   GeolocationState get currentState => geolocationBloc.state;
 
   /// Stream of [GeolocationState]
-  Stream<GeolocationState> get geolocationStateStream =>
-      _geolocationStateStream;
+  Stream<GeolocationState> get geolocationStateStream => geolocationBloc.stream;
 
   /// verifies locations service and app permission
   VoidCallback get verifyPermissions => _verifyPermissions;
@@ -30,12 +27,6 @@ class SplashScreenModel extends ElementaryModel {
     required this.appSettingsService,
     required this.geolocationBloc,
   });
-
-  @override
-  void init() {
-    super.init();
-    _geolocationStateStream = geolocationBloc.stream;
-  }
 
   /// function that get onboarding status: is passed or not
   Future<bool> onboardingPassed() async =>
