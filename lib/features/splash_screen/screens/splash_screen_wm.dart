@@ -84,7 +84,11 @@ class SplashScreenWidgetModel
   }
 
   Future<void> _updateState(GeolocationState state) async {
-    await _routeToScreen();
+    if (state is GeolocationPermissionGranted || state is GeolocationError) {
+      Future.delayed(const Duration(milliseconds: 1500), () async {
+        await _routeToScreen();
+      });
+    }
   }
 
   /// chooses router to navigate
