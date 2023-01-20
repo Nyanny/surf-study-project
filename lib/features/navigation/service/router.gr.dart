@@ -50,6 +50,23 @@ class _$AppRouter extends RootStackRouter {
         ),
       );
     },
+    FilterRouter.name: (routeData) {
+      final args = routeData.argsAs<FilterRouterArgs>(
+          orElse: () => const FilterRouterArgs());
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: FilterScreen(
+          key: args.key,
+          wmFactory: args.wmFactory,
+        ),
+      );
+    },
+    SearchRouter.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const SearchScreen(),
+      );
+    },
     PlacesListRouter.name: (routeData) {
       final args = routeData.argsAs<PlacesListRouterArgs>(
           orElse: () => const PlacesListRouterArgs());
@@ -107,6 +124,14 @@ class _$AppRouter extends RootStackRouter {
               parent: MainRouter.name,
             ),
           ],
+        ),
+        RouteConfig(
+          FilterRouter.name,
+          path: 'filter',
+        ),
+        RouteConfig(
+          SearchRouter.name,
+          path: 'search',
         ),
       ];
 }
@@ -222,6 +247,55 @@ class MainRouterArgs {
   String toString() {
     return 'MainRouterArgs{key: $key, wmFactory: $wmFactory}';
   }
+}
+
+/// generated route for
+/// [FilterScreen]
+class FilterRouter extends PageRouteInfo<FilterRouterArgs> {
+  FilterRouter({
+    Key? key,
+    WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
+            BuildContext)
+        wmFactory = filterScreenWmFactory,
+  }) : super(
+          FilterRouter.name,
+          path: 'filter',
+          args: FilterRouterArgs(
+            key: key,
+            wmFactory: wmFactory,
+          ),
+        );
+
+  static const String name = 'FilterRouter';
+}
+
+class FilterRouterArgs {
+  const FilterRouterArgs({
+    this.key,
+    this.wmFactory = filterScreenWmFactory,
+  });
+
+  final Key? key;
+
+  final WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
+      BuildContext) wmFactory;
+
+  @override
+  String toString() {
+    return 'FilterRouterArgs{key: $key, wmFactory: $wmFactory}';
+  }
+}
+
+/// generated route for
+/// [SearchScreen]
+class SearchRouter extends PageRouteInfo<void> {
+  const SearchRouter()
+      : super(
+          SearchRouter.name,
+          path: 'search',
+        );
+
+  static const String name = 'SearchRouter';
 }
 
 /// generated route for
