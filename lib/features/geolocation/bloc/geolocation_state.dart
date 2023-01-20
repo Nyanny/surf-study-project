@@ -26,22 +26,8 @@ class GeolocationPermissionGranted extends GeolocationState {
   List<Object> get props => [];
 }
 
-/// Permissions denied state
-/// [geolocationProblem] defines where was the problem
-class GeolocationPermissionDenied extends GeolocationState {
-  /// permissions problem
-  final GeolocationProblem geolocationProblem;
-
-  @override
-  List<Object> get props => [geolocationProblem];
-
-  /// constructor
-  GeolocationPermissionDenied({
-    required this.geolocationProblem,
-  });
-}
-
 /// geolocation error state
+/// [geolocationProblem] defines where was the problem
 class GeolocationError extends GeolocationState {
   /// [GeolocationCoordinates] data, basically some
   final GeolocationCoordinates geolocationCoordinatesOnError;

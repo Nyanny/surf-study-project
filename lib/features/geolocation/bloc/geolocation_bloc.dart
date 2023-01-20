@@ -13,7 +13,6 @@ part 'geolocation_state.dart';
 
 /// Bloc class for geolocation
 class GeolocationBloc extends Bloc<GeolocationEvent, GeolocationState> {
-
   /// GeolocationService instance
   final GeolocationService _geolocationService;
 
@@ -71,7 +70,7 @@ class GeolocationBloc extends Bloc<GeolocationEvent, GeolocationState> {
     if (permission == GeolocationProblem.noProblems) {
       emit(GeolocationPermissionGranted());
     } else {
-      emit(GeolocationPermissionDenied(geolocationProblem: permission));
+      emit(GeolocationError(geolocationProblem: permission));
     }
   }
 }
