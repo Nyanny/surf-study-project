@@ -16,6 +16,10 @@ class GeolocationBloc extends Bloc<GeolocationEvent, GeolocationState> {
   /// GeolocationService instance
   final GeolocationService _geolocationService;
 
+  /// Stream of [GeolocationState]
+  Stream<GeolocationState> get geolocationStateStream =>
+      stream.asBroadcastStream();
+
   /// constructor
   GeolocationBloc(this._geolocationService) : super(GeolocationInitial()) {
     on<VerifyThenRequestPermissionEvent>(_verifyPermissions);
