@@ -4,6 +4,7 @@ import 'package:elementary/elementary.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:surf_study_project/features/app/di/app_scope.dart';
+import 'package:surf_study_project/features/geolocation/bloc/geolocation_bloc.dart';
 import 'package:surf_study_project/features/navigation/domain/entity/app_route_paths.dart';
 import 'package:surf_study_project/features/navigation/service/router.dart';
 import 'package:surf_study_project/features/splash_screen/screens/splash_screen.dart';
@@ -14,9 +15,11 @@ SplashScreenWidgetModel splashScreenWmFactory(
   BuildContext context,
 ) {
   final appDependencies = context.read<IAppScope>();
-  final model =
-      SplashScreenModel(appSettingsService: appDependencies.appSettingsService);
-
+  final geoBloc = appDependencies.geolocationBloc;
+  final model = SplashScreenModel(
+    appSettingsService: appDependencies.appSettingsService,
+    geolocationBloc: geoBloc,
+  );
   final router = appDependencies.router;
   return SplashScreenWidgetModel(model, router: router);
 }
@@ -28,6 +31,9 @@ class SplashScreenWidgetModel
     implements ISplashScreenWidgetModel {
   /// [AppRouter] router for navigation
   final AppRouter router;
+
+  /// subscription to the [GeolocationState]
+  late final StreamSubscription<GeolocationState> _stateGeolocationSubscription;
 
   @override
   Animation<double> get animation => _animation;
@@ -47,16 +53,15 @@ class SplashScreenWidgetModel
 
     unawaited(_animationController.repeat());
 
-    final onboardingPassed = await model.onboardingPassed();
-
-    Future.delayed(const Duration(seconds: 1), () async {
-      await _routeToScreen(onboardingPassed);
-    });
+    _stateGeolocationSubscription =
+        model.geolocationStateStream.listen(_updateState);
+    model.verifyPermissions();
   }
 
   @override
   void dispose() {
     _animationController.dispose();
+    _stateGeolocationSubscription.cancel();
     super.dispose();
   }
 
@@ -78,8 +83,18 @@ class SplashScreenWidgetModel
     );
   }
 
+  Future<void> _updateState(GeolocationState state) async {
+    if (state is GeolocationPermissionGranted || state is GeolocationError) {
+      Future.delayed(const Duration(milliseconds: 1500), () async {
+        await _routeToScreen();
+      });
+    }
+  }
+
   /// chooses router to navigate
-  Future<void> _routeToScreen(bool onboardingPassed) async {
+  Future<void> _routeToScreen() async {
+    final onboardingPassed = await model.onboardingPassed();
+
     if (onboardingPassed) {
       await router.replaceNamed(AppRoutePaths.mainPath);
     } else {

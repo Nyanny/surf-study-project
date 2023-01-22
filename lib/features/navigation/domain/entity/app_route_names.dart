@@ -23,4 +23,7 @@ abstract class AppRouteNames {
 
   /// FilterScreen route name
   static const String filterScreen = 'filterRouter';
+
+  /// Search route name
+  static const String searchScreen = 'searchRouter';
 }

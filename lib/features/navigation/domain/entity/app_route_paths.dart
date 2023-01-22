@@ -21,6 +21,9 @@ abstract class AppRoutePaths {
   ///Path to splash screen
   static const String splashPath = 'splash';
 
-  ///Path to  filter screen
+  ///Path to filter screen
   static const String filterPath = 'filter';
+
+  ///Path to search screen
+  static const String searchPath = 'search';
 }
