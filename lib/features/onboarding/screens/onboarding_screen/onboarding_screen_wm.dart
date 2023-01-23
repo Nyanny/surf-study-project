@@ -25,10 +25,15 @@ OnboardingScreenWidgetModel onboardingScreenWmFactory(
 /// Widget model for [OnboardingScreen].
 class OnboardingScreenWidgetModel
     extends WidgetModel<OnboardingScreen, OnboardingScreenModel>
+    with TickerProviderWidgetModelMixin
     implements IOnboardingScreenWidgetModel {
   /// [AppRouter] instance
   final AppRouter router;
   final PageController _pageController = PageController();
+
+  late final AnimationController _animationController;
+
+  late final Animation<double> _scaleAnimation;
 
   final StateNotifier<bool> _isLastPage = StateNotifier<bool>(initValue: false);
 
@@ -57,6 +62,9 @@ class OnboardingScreenWidgetModel
   @override
   VoidCallback get startButtonAction => _onStartButtonPressed;
 
+  @override
+  Animation<double> get scaleAnimation => _scaleAnimation;
+
   /// Create an instance [OnboardingScreenModel].
   OnboardingScreenWidgetModel(
     OnboardingScreenModel model,
@@ -67,6 +75,19 @@ class OnboardingScreenWidgetModel
   @override
   void initWidgetModel() {
     super.initWidgetModel();
+    _animationController = AnimationController(
+      duration: const Duration(milliseconds: 500),
+      vsync: this,
+    );
+    _scaleAnimation =
+        CurvedAnimation(parent: _animationController, curve: Curves.ease);
+    _animationController.forward();
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
   }
 
   /// onPageChanged callback
@@ -74,22 +95,19 @@ class OnboardingScreenWidgetModel
     _isLastPage.accept(pageIndex == itemCount - 1);
   }
 
-  /// transition to a next page
-  void _onSkipButtonPressed() {
-    _animateToNextPage();
-  }
-
-  /// animation that slides to the next page
-  void _animateToNextPage() {
-    _pageController.nextPage(
-      duration: const Duration(milliseconds: 300),
-      curve: Curves.easeIn,
-    );
+  /// skips tutorial
+  Future<void> _onSkipButtonPressed() async {
+    await _routeFromOnboarding();
   }
 
   /// action on StartButton
   /// Passes to new screen - main
   Future<void> _onStartButtonPressed() async {
+    await _routeFromOnboarding();
+  }
+
+  /// routes from onboarding
+  Future<void> _routeFromOnboarding() async {
     await model.setOnboardingIsPassed();
     router.removeLast();
     await router.replaceNamed(AppRoutePaths.mainPath);
@@ -121,6 +139,9 @@ abstract class IOnboardingScreenWidgetModel extends IWidgetModel {
 
   /// action for StartButton
   VoidCallback get startButtonAction;
+
+  /// scale animation
+  Animation<double> get scaleAnimation;
 }
 
 List<OnboardingPageData> _pageData = [

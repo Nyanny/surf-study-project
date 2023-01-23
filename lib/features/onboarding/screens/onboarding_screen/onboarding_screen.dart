@@ -46,6 +46,7 @@ class OnboardingScreen extends ElementaryWidget<IOnboardingScreenWidgetModel> {
                     assetPath: wm.pageData[index].picturePath,
                     title: wm.pageData[index].title,
                     subtitle: wm.pageData[index].subtitle,
+                    scaleAnimation: wm.scaleAnimation,
                   ),
                 );
               },

@@ -15,11 +15,15 @@ class OnboardingPageWidget extends StatelessWidget {
   /// [subtitle] of the page, below [title]
   final String subtitle;
 
+  /// scale animation
+  final Animation<double> scaleAnimation;
+
   /// [OnboardingPageWidget] constructor
   const OnboardingPageWidget({
     required this.assetPath,
     required this.title,
     required this.subtitle,
+    required this.scaleAnimation,
     Key? key,
   }) : super(key: key);
 
@@ -35,14 +39,17 @@ class OnboardingPageWidget extends StatelessWidget {
 
         /// Picture
         children: [
-          SizedBox(
-            // height: 104,
-            // width: 104,
-            height: 104.w,
-            width: 104.w,
-            child: SvgPicture.asset(
-              assetPath,
-              color: theme?.iconColor,
+          ScaleTransition(
+            scale: scaleAnimation,
+            child: SizedBox(
+              // height: 104,
+              // width: 104,
+              height: 104.w,
+              width: 104.w,
+              child: SvgPicture.asset(
+                assetPath,
+                color: theme?.iconColor,
+              ),
             ),
           ),
           SizedBox(
