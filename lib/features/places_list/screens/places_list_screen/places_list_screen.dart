@@ -8,6 +8,7 @@ import 'package:surf_study_project/features/places_list/screens/places_list_scre
 import 'package:surf_study_project/features/places_list/widgets/appbar/places_list_appbar.dart';
 import 'package:surf_study_project/features/places_list/widgets/card/card_place.dart';
 import 'package:surf_study_project/features/places_list/widgets/indicators/places_list_loading_indicator.dart';
+import 'package:surf_study_project/features/places_list/widgets/search_widget/search_widget.dart';
 
 /// Class [PlacesListScreen] is main screen for placesList feature
 /// Implements [CustomScrollView] with [PlacesListAppBar] and [PagedSliverList] wrapped by [SliverPadding]
@@ -20,14 +21,19 @@ class PlacesListScreen extends ElementaryWidget<IPlacesListScreenWidgetModel> {
 
   @override
   Widget build(IPlacesListScreenWidgetModel wm) {
+    final expandedHeight = 130.w + wm.statusBarHeight;
+
     return Scaffold(
       body: NestedScrollView(
         headerSliverBuilder: (context, innerBoxIsScrolled) => [
           PlacesListAppBar(
+            colors: wm.placeListColors,
+            maxHeight: expandedHeight,
+          ),
+          SearchWidget(
             onSearchButtonTap: wm.onSearchButtonTap,
             onFilterButtonTap: wm.onFilterButtonTap,
-            maxHeight: 150.w,
-            minHeight: 0,
+            colors: wm.placeListColors,
           ),
         ],
         body: RefreshIndicator(
