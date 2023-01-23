@@ -29,6 +29,7 @@ class AppStrings {
 
   /// Places list strings
   static const interestingPlaces = 'Список интересных мест';
+  static const interestingPlacesExpanded = 'Список\nинтересных мест';
 
   /// Settings strings
   static const settingsAppbarTitle = 'Настройки';
