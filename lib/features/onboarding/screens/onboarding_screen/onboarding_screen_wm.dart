@@ -31,10 +31,6 @@ class OnboardingScreenWidgetModel
   final AppRouter router;
   final PageController _pageController = PageController();
 
-  late final AnimationController _animationController;
-
-  late final Animation<double> _scaleAnimation;
-
   final StateNotifier<bool> _isLastPage = StateNotifier<bool>(initValue: false);
 
   @override
@@ -62,33 +58,11 @@ class OnboardingScreenWidgetModel
   @override
   VoidCallback get startButtonAction => _onStartButtonPressed;
 
-  @override
-  Animation<double> get scaleAnimation => _scaleAnimation;
-
   /// Create an instance [OnboardingScreenModel].
   OnboardingScreenWidgetModel(
     OnboardingScreenModel model,
     this.router,
   ) : super(model);
-
-  /// [initWidgetModel] method
-  @override
-  void initWidgetModel() {
-    super.initWidgetModel();
-    _animationController = AnimationController(
-      duration: const Duration(milliseconds: 500),
-      vsync: this,
-    );
-    _scaleAnimation =
-        CurvedAnimation(parent: _animationController, curve: Curves.ease);
-    _animationController.forward();
-  }
-
-  @override
-  void dispose() {
-    _animationController.dispose();
-    super.dispose();
-  }
 
   /// onPageChanged callback
   void _onPageChanged(int pageIndex) {
@@ -139,9 +113,6 @@ abstract class IOnboardingScreenWidgetModel extends IWidgetModel {
 
   /// action for StartButton
   VoidCallback get startButtonAction;
-
-  /// scale animation
-  Animation<double> get scaleAnimation;
 }
 
 List<OnboardingPageData> _pageData = [
