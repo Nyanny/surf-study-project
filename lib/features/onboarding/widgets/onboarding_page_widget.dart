@@ -16,15 +16,11 @@ class OnboardingPageWidget extends StatelessWidget {
   /// [subtitle] of the page, below [title]
   final String subtitle;
 
-  /// scale animation
-  final Animation<double> scaleAnimation;
-
   /// [OnboardingPageWidget] constructor
   const OnboardingPageWidget({
     required this.assetPath,
     required this.title,
     required this.subtitle,
-    required this.scaleAnimation,
     Key? key,
   }) : super(key: key);
 
