@@ -25,7 +25,6 @@ OnboardingScreenWidgetModel onboardingScreenWmFactory(
 /// Widget model for [OnboardingScreen].
 class OnboardingScreenWidgetModel
     extends WidgetModel<OnboardingScreen, OnboardingScreenModel>
-    with TickerProviderWidgetModelMixin
     implements IOnboardingScreenWidgetModel {
   /// [AppRouter] instance
   final AppRouter router;
