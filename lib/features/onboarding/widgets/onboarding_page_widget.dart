@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:surf_study_project/assets/res/app_typography.dart';
 import 'package:surf_study_project/assets/themes/themes_flavours/onboarding_colors.dart';
+import 'package:surf_study_project/features/onboarding/widgets/onboarding_icon.dart';
 
 /// Class [OnboardingPageWidget] is the page shows [SvgPicture], a description with [title] and [subtitle].
 class OnboardingPageWidget extends StatelessWidget {
@@ -39,18 +40,9 @@ class OnboardingPageWidget extends StatelessWidget {
 
         /// Picture
         children: [
-          ScaleTransition(
-            scale: scaleAnimation,
-            child: SizedBox(
-              // height: 104,
-              // width: 104,
-              height: 104.w,
-              width: 104.w,
-              child: SvgPicture.asset(
-                assetPath,
-                color: theme?.iconColor,
-              ),
-            ),
+          OnboardingIcon(
+            assetPath: assetPath,
+            iconColor: theme?.iconColor,
           ),
           SizedBox(
             height: 40.w,
