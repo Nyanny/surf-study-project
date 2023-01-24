@@ -83,6 +83,7 @@ class OnboardingScreen extends ElementaryWidget<IOnboardingScreenWidgetModel> {
                           ),
                           child: StartButtonWidget(
                             onPressed: wm.startButtonAction,
+                            themeColors: wm.onboardingTheme,
                           ),
                         )
                       : const SizedBox.shrink();
