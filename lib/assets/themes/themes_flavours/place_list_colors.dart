@@ -12,6 +12,7 @@ class PlaceListColors extends ThemeExtension<PlaceListColors> {
     filterIconColor: AppColors.greenLightTheme,
     searchColor: AppColors.secondary2WithOpacityColorLightTheme,
     searchBackgroundColor: AppColors.backgroundColorLightTheme,
+    titleAppBarColor: AppColors.mainColorLightTheme,
   );
 
   // the dark theme
@@ -19,16 +20,19 @@ class PlaceListColors extends ThemeExtension<PlaceListColors> {
     filterIconColor: AppColors.greenDarkTheme,
     searchColor: AppColors.secondary2WithOpacityColorDarkTheme,
     searchBackgroundColor: AppColors.blackColorDarkTheme,
+    titleAppBarColor: AppColors.whiteDarkTheme,
   );
 
   final Color filterIconColor;
   final Color searchColor;
   final Color searchBackgroundColor;
+  final Color titleAppBarColor;
 
   const PlaceListColors({
     required this.filterIconColor,
     required this.searchColor,
     required this.searchBackgroundColor,
+    required this.titleAppBarColor,
   });
 
   @override
@@ -36,12 +40,14 @@ class PlaceListColors extends ThemeExtension<PlaceListColors> {
     Color? filterIconColor,
     Color? searchColor,
     Color? searchBackgroundColor,
+    Color? titleAppBarColor,
   }) {
     return PlaceListColors(
       filterIconColor: filterIconColor ?? this.filterIconColor,
       searchColor: searchColor ?? this.searchColor,
       searchBackgroundColor:
           searchBackgroundColor ?? this.searchBackgroundColor,
+      titleAppBarColor: titleAppBarColor ?? this.titleAppBarColor,
     );
   }
 
@@ -56,6 +62,8 @@ class PlaceListColors extends ThemeExtension<PlaceListColors> {
       searchColor: Color.lerp(searchColor, other.searchColor, t)!,
       searchBackgroundColor:
           Color.lerp(searchBackgroundColor, other.searchBackgroundColor, t)!,
+      titleAppBarColor:
+          Color.lerp(titleAppBarColor, other.titleAppBarColor, t)!,
     );
   }
 
@@ -63,6 +71,7 @@ class PlaceListColors extends ThemeExtension<PlaceListColors> {
   // to the `print()` method.
   @override
   String toString() => 'PlaceListColors('
-      'filterIconColor: $filterIconColor, searchColor: $searchColor, searchBackgroundColor: $searchBackgroundColor,  '
+      'filterIconColor: $filterIconColor, searchColor: $searchColor, '
+      'searchBackgroundColor: $searchBackgroundColor, titleAppBarColor: $titleAppBarColor '
       ')';
 }

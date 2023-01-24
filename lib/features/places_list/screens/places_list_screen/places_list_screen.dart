@@ -8,6 +8,7 @@ import 'package:surf_study_project/features/places_list/screens/places_list_scre
 import 'package:surf_study_project/features/places_list/widgets/appbar/places_list_appbar.dart';
 import 'package:surf_study_project/features/places_list/widgets/card/card_place.dart';
 import 'package:surf_study_project/features/places_list/widgets/indicators/places_list_loading_indicator.dart';
+import 'package:surf_study_project/features/places_list/widgets/search_widget/search_widget.dart';
 
 /// Class [PlacesListScreen] is main screen for placesList feature
 /// Implements [CustomScrollView] with [PlacesListAppBar] and [PagedSliverList] wrapped by [SliverPadding]
@@ -20,45 +21,46 @@ class PlacesListScreen extends ElementaryWidget<IPlacesListScreenWidgetModel> {
 
   @override
   Widget build(IPlacesListScreenWidgetModel wm) {
-    return Scaffold(
-      body: RefreshIndicator(
-        onRefresh: wm.onRefresh,
-        child: CustomScrollView(
-          slivers: [
-            // TODO(nyanny): некорректный layot будет исправлен в рамках таски SI-2633 (https://jira.surfstudio.ru/browse/SI-2633)
-            /// appbar
-            PlacesListAppBar(
-              onSearchButtonTap: wm.onSearchButtonTap,
-              onFilterButtonTap: wm.onFilterButtonTap,
-              maxHeight: 150.w,
-              minHeight: 0,
-            ),
+    final expandedHeight = 130.w + wm.statusBarHeight;
 
-            /// sliver list
-            SliverPadding(
-              padding: EdgeInsets.symmetric(horizontal: 24.w),
-              sliver: PagedSliverList<int, Place>.separated(
-                pagingController: wm.pagingController,
-                builderDelegate: PagedChildBuilderDelegate<Place>(
-                  firstPageProgressIndicatorBuilder: (_) =>
-                      const PlacesListLoadingIndicator(),
-                  newPageProgressIndicatorBuilder: (_) =>
-                      const _NewPageProgressIndicatorBuilder(),
-                  firstPageErrorIndicatorBuilder: (_) => const ErrorScreen(),
-                  newPageErrorIndicatorBuilder: (_) =>
-                      const _NewPageErrorIndicatorBuilder(),
-                  itemBuilder: (_, item, index) {
-                    return CardPlace(
-                      cardIndex: index,
-                      place: item,
-                      onPressedCard: wm.onPressedCard,
-                    );
-                  },
-                ),
-                separatorBuilder: (_, __) => SizedBox(height: 24.w),
+    return Scaffold(
+      body: NestedScrollView(
+        headerSliverBuilder: (context, innerBoxIsScrolled) => [
+          PlacesListAppBar(
+            colors: wm.placeListColors,
+            maxHeight: expandedHeight,
+          ),
+          SearchWidget(
+            onSearchButtonTap: wm.onSearchButtonTap,
+            onFilterButtonTap: wm.onFilterButtonTap,
+            colors: wm.placeListColors,
+          ),
+        ],
+        body: RefreshIndicator(
+          onRefresh: wm.onRefresh,
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16.w),
+            child: PagedListView<int, Place>.separated(
+              pagingController: wm.pagingController,
+              builderDelegate: PagedChildBuilderDelegate<Place>(
+                firstPageProgressIndicatorBuilder: (_) =>
+                    const PlacesListLoadingIndicator(),
+                newPageProgressIndicatorBuilder: (_) =>
+                    const _NewPageProgressIndicatorBuilder(),
+                firstPageErrorIndicatorBuilder: (_) => const ErrorScreen(),
+                newPageErrorIndicatorBuilder: (_) =>
+                    const _NewPageErrorIndicatorBuilder(),
+                itemBuilder: (_, item, index) {
+                  return CardPlace(
+                    cardIndex: index,
+                    place: item,
+                    onPressedCard: wm.onPressedCard,
+                  );
+                },
               ),
+              separatorBuilder: (_, __) => SizedBox(height: 24.w),
             ),
-          ],
+          ),
         ),
       ),
     );

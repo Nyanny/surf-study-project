@@ -1,9 +1,11 @@
 import 'dart:async';
+import 'dart:ui';
 
 import 'package:elementary/elementary.dart';
 import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
+import 'package:surf_study_project/assets/themes/themes_flavours/place_list_colors.dart';
 import 'package:surf_study_project/features/app/di/app_scope.dart';
 import 'package:surf_study_project/features/common/domain/entity/place.dart';
 import 'package:surf_study_project/features/common/widgets/alert_dialog/location_alert_dialog.dart';
@@ -48,6 +50,13 @@ class PlacesListScreenWidgetModel
 
   @override
   VoidCallback get onFilterButtonTap => _onFilterButtonTap;
+
+  @override
+  PlaceListColors? get placeListColors =>
+      Theme.of(context).extension<PlaceListColors>();
+
+  @override
+  double get statusBarHeight => MediaQueryData.fromWindow(window).padding.top;
 
   int _offsetPlaces = 0;
 
@@ -159,6 +168,12 @@ abstract class IPlacesListScreenWidgetModel extends IWidgetModel {
 
   /// Callback on filter button tap
   VoidCallback get onFilterButtonTap;
+
+  /// [PlaceListColors] is colors of the place list feature
+  PlaceListColors? get placeListColors;
+
+  /// status bar height
+  double get statusBarHeight;
 
   /// refresh list
   Future<void> onRefresh();
