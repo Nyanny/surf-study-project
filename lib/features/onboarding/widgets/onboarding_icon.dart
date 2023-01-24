@@ -33,6 +33,12 @@ class _OnboardingIconState extends State<OnboardingIcon>
   );
 
   @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return ScaleTransition(
       scale: _animation,
