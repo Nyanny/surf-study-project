@@ -63,33 +63,24 @@ class OnboardingScreenWidgetModel
     this.router,
   ) : super(model);
 
-  /// [initWidgetModel] method
-  @override
-  void initWidgetModel() {
-    super.initWidgetModel();
-  }
-
   /// onPageChanged callback
   void _onPageChanged(int pageIndex) {
     _isLastPage.accept(pageIndex == itemCount - 1);
   }
 
-  /// transition to a next page
-  void _onSkipButtonPressed() {
-    _animateToNextPage();
-  }
-
-  /// animation that slides to the next page
-  void _animateToNextPage() {
-    _pageController.nextPage(
-      duration: const Duration(milliseconds: 300),
-      curve: Curves.easeIn,
-    );
+  /// skips tutorial
+  Future<void> _onSkipButtonPressed() async {
+    await _routeFromOnboarding();
   }
 
   /// action on StartButton
   /// Passes to new screen - main
   Future<void> _onStartButtonPressed() async {
+    await _routeFromOnboarding();
+  }
+
+  /// routes from onboarding
+  Future<void> _routeFromOnboarding() async {
     await model.setOnboardingIsPassed();
     router.removeLast();
     await router.replaceNamed(AppRoutePaths.mainPath);
