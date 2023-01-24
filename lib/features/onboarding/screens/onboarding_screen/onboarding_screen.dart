@@ -24,11 +24,11 @@ class OnboardingScreen extends ElementaryWidget<IOnboardingScreenWidgetModel> {
           StateNotifierBuilder<bool>(
             listenableState: wm.isLastPage,
             builder: (_, isLastPage) {
-              return !isLastPage!
-                  ? SkipButtonWidget(
-                      onPressed: wm.skipButtonAction,
-                    )
-                  : const SizedBox.shrink();
+              return SkipButtonWidget(
+                onPressed: wm.skipButtonAction,
+                shouldDisappear: isLastPage!,
+                key: ObjectKey(isLastPage),
+              );
             },
           ),
         ],
