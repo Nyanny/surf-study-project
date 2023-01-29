@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:surf_logger/surf_logger.dart';
@@ -13,6 +14,7 @@ Future<void> run() async {
 
   /// Fix orientation.
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+
   _initLogger();
   _runApp();
 }
@@ -23,7 +25,7 @@ void _runApp() {
       runApp(const App());
     },
     (exception, stack) {
-      // FirebaseCrashlytics.instance.recordError(exception, stack);
+      FirebaseCrashlytics.instance.recordError(exception, stack);
     },
   );
 }
