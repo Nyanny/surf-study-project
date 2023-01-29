@@ -1,6 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:surf_study_project/assets/strings/app_strings.dart';
 
+/// shows alert dialog
+Future<void> showGeolocationAlertDialog({
+  required BuildContext context,
+  required VoidCallback onAlertCloseTap,
+  required VoidCallback onAlertSettingsTap,
+}) async {
+  return showDialog<void>(
+    context: context,
+    barrierDismissible: false,
+    builder: (context) {
+      return LocationAlertDialog(
+        onAlertCloseTap: onAlertCloseTap,
+        onAlertSettingsTap: onAlertSettingsTap,
+      );
+    },
+  );
+}
+
 /// [LocationAlertDialog] showing message to permit location
 class LocationAlertDialog extends StatelessWidget {
   /// [VoidCallback] on close button
