@@ -1,5 +1,6 @@
 import 'package:elementary/elementary.dart';
 import 'package:surf_study_project/features/common/domain/repository/shared_preferences/shared_preferences_storage.dart';
+import 'package:surf_study_project/features/filter/domain/entity/place_filter.dart';
 
 /// Class [AppSettingsService] is service class for settings feature
 class AppSettingsService {
@@ -42,5 +43,27 @@ class AppSettingsService {
   /// sets onboarding status
   Future<bool> getOnboardingStatus() async {
     return _sharedPreferencesStorage.getOnboardingPassedStatus();
+  }
+
+  /// sets [PlaceFilter]
+  Future<void> setPlaceFilter(PlaceFilter placeFilter) async {
+    await _sharedPreferencesStorage.setPlaceFilter(placeFilter);
+  }
+
+  /// gets [PlaceFilter]
+  Future<PlaceFilter> getPlaceFilter() async {
+    return _sharedPreferencesStorage.getPlaceFilter();
+  }
+
+  /// gets [bool] filter status
+  Future<bool> getFilterStatus() async {
+    return _sharedPreferencesStorage.getFilterStatus();
+  }
+
+  /// sets filter status
+  Future<void> setFilterStatus({required bool filterStatus}) async {
+    return _sharedPreferencesStorage.setFilterStatus(
+      filterStatus: filterStatus,
+    );
   }
 }
