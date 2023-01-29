@@ -1,3 +1,4 @@
+import 'package:elementary/elementary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:surf_study_project/assets/res/app_typography.dart';
@@ -9,19 +10,19 @@ import 'package:surf_study_project/features/filter/widgets/category_element_widg
 /// Class [CategoriesWidget] shows categories grid with title
 class CategoriesWidget extends StatelessWidget {
   /// callback category onTap
-  final Function(bool, PlaceType) onCategoryTap;
+  final Function(PlaceType) onCategoryTap;
 
   /// theme to use
   final FilterColors? colors;
 
-  /// list of bool flag is active type or not
-  final List<bool> placeTypeActiveList;
+  /// [ListenableState] of [Set] [PlaceType]
+  final ListenableState<Set<PlaceType>> categoriesListenableState;
 
   /// constructor
   const CategoriesWidget({
     required this.colors,
     required this.onCategoryTap,
-    required this.placeTypeActiveList,
+    required this.categoriesListenableState,
     Key? key,
   }) : super(key: key);
 
@@ -47,22 +48,25 @@ class CategoriesWidget extends StatelessWidget {
         /// Categories grid
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 24.0.w),
-          child: GridView(
-            shrinkWrap: true,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              childAspectRatio: 96.w / 92.w,
-              mainAxisSpacing: 40.w,
-              crossAxisSpacing: 12.w,
-              crossAxisCount: 3,
+          child: StateNotifierBuilder<Set<PlaceType>>(
+            listenableState: categoriesListenableState,
+            builder: (_, value) => GridView(
+              shrinkWrap: true,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                childAspectRatio: 96.w / 92.w,
+                mainAxisSpacing: 40.w,
+                crossAxisSpacing: 12.w,
+                crossAxisCount: 3,
+              ),
+              children: PlaceType.values
+                  .map<CategoryElementWidget>((e) => CategoryElementWidget(
+                        colors: colors,
+                        onTap: onCategoryTap,
+                        categoryIsSet: value?.contains(e) ?? false,
+                        placeType: e,
+                      ))
+                  .toList(),
             ),
-            children: PlaceType.values
-                .map<CategoryElementWidget>((e) => CategoryElementWidget(
-                      colors: colors,
-                      onTap: onCategoryTap,
-                      categoryIsSet: placeTypeActiveList.elementAt(e.index),
-                      placeType: e,
-                    ))
-                .toList(),
           ),
         ),
       ],
