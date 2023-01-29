@@ -5,4 +5,5 @@ class SharedPreferencesStrings {
   static const themeLightingKey = 'theme_lighting_key';
   static const tabsIndexKey = 'tabs_index_key';
   static const placeFilterKey = 'place_filter_key';
+  static const filterStatusKey = 'filter_status_key';
 }
