@@ -6,6 +6,19 @@ import 'package:surf_study_project/features/filter/domain/entity/place_filter.da
 
 /// Class [SharedPreferencesStorage] is a storage using shared_preferences package
 class SharedPreferencesStorage {
+  /// default place filter
+  static const placeFilterConst = PlaceFilter(
+    radius: 10,
+    placeTypeList: [
+      'hotel',
+      'restaurant',
+      'other',
+      'park',
+      'museum',
+      'cafe',
+    ],
+  );
+
   SharedPreferences? _prefs;
 
   /// Onboarding
@@ -67,13 +80,34 @@ class SharedPreferencesStorage {
   /// Might not work, will be checked and then fixed when developing filter feature.
   Future<PlaceFilter> getPlaceFilter() async {
     await _initPrefs();
-    final placeFilterFromSharedPrefs =
+    var placeFilterFromSharedPrefs =
         _prefs?.getString(SharedPreferencesStrings.placeFilterKey);
 
+    if (placeFilterFromSharedPrefs == null ||
+        placeFilterFromSharedPrefs.isEmpty) {
+      const placeFilter = placeFilterConst;
+      placeFilterFromSharedPrefs = jsonEncode(placeFilter.toJson());
+    }
     final decoded =
-        jsonDecode(placeFilterFromSharedPrefs!) as Map<String, dynamic>;
+        jsonDecode(placeFilterFromSharedPrefs) as Map<String, dynamic>;
 
     return PlaceFilter.fromJson(decoded);
+  }
+
+  /// filter status
+  ///
+  Future<void> setFilterStatus({required bool filterStatus}) async {
+    await _initPrefs();
+    await _prefs?.setBool(
+      SharedPreferencesStrings.filterStatusKey,
+      filterStatus,
+    );
+  }
+
+  /// Gets theme from storage
+  Future<bool> getFilterStatus() async {
+    await _initPrefs();
+    return _prefs?.getBool(SharedPreferencesStrings.filterStatusKey) ?? false;
   }
 
   /// prefs initialization

@@ -10,7 +10,7 @@ import 'package:surf_study_project/features/filter/widgets/categories_widget.dar
 import 'package:surf_study_project/features/filter/widgets/distance_widget.dart';
 
 /// Class [FilterScreen] is main screen for Filter feature
-/// There are [CategoriesWidget] block, [DistanceWidget] and elevated button beloew [ElevatedButton]
+/// There are [CategoriesWidget] block, [DistanceWidget] and elevated button below [ElevatedButton]
 class FilterScreen extends ElementaryWidget<IFilterScreenWidgetModel> {
   /// Create an instance [FilterScreen].
   const FilterScreen({
@@ -25,7 +25,7 @@ class FilterScreen extends ElementaryWidget<IFilterScreenWidgetModel> {
       appBar: AppBar(
         /// back button
         leading: IconButton(
-          onPressed: () {},
+          onPressed: wm.onBackButtonTap,
           icon: SvgPicture.asset(
             AppAssets.arrow,
             color: wm.filterColors?.main,
@@ -35,7 +35,7 @@ class FilterScreen extends ElementaryWidget<IFilterScreenWidgetModel> {
         /// clear button
         actions: [
           TextButton(
-            onPressed: () {},
+            onPressed: wm.onClearButtonTap,
             child: Text(
               AppStrings.filterClearButton,
               style: AppTypography.text,
@@ -55,7 +55,7 @@ class FilterScreen extends ElementaryWidget<IFilterScreenWidgetModel> {
           CategoriesWidget(
             colors: wm.filterColors,
             onCategoryTap: wm.onCategoryTap,
-            placeTypeActiveList: wm.placeTypeActiveList,
+            categoriesListenableState: wm.categoriesListenableState,
           ),
           Flexible(
             child: SizedBox(
@@ -67,7 +67,7 @@ class FilterScreen extends ElementaryWidget<IFilterScreenWidgetModel> {
           DistanceWidget(
             minDistanceValue: wm.minDistanceValue,
             maxDistanceValue: wm.maxDistanceValue,
-            sliderValue: wm.sliderValue,
+            sliderListenableValue: wm.sliderValue,
             onSliderChanged: wm.onSliderChanged,
             colors: wm.filterColors,
           ),
@@ -86,19 +86,24 @@ class FilterScreen extends ElementaryWidget<IFilterScreenWidgetModel> {
               left: 16.w,
               bottom: 8.w,
             ),
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12.w),
-                ),
-                // backgroundColor: theme?.startButtonColor,
-                minimumSize: Size.fromHeight(48.w),
-              ),
-              onPressed: () {},
-              child: Text(
-                AppStrings.filterShowButton,
-                style: AppTypography.smallBoldText,
-              ),
+            child: EntityStateNotifierBuilder<int>(
+              listenableEntityState: wm.foundPlacesCount,
+              builder: (context, data) {
+                final placesCount = data ?? 0;
+                return ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12.w),
+                    ),
+                    minimumSize: Size.fromHeight(48.w),
+                  ),
+                  onPressed: placesCount == 0 ? null : wm.onShowButtonTap,
+                  child: Text(
+                    '${AppStrings.filterShowButton} ($placesCount)',
+                    style: AppTypography.smallBoldText,
+                  ),
+                );
+              },
             ),
           ),
         ],

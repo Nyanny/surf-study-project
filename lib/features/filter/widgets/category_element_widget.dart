@@ -19,7 +19,7 @@ class CategoryElementWidget extends StatelessWidget {
   final PlaceType placeType;
 
   /// onTap callback
-  final Function(bool categorySet, PlaceType placeType) onTap;
+  final Function(PlaceType placeType) onTap;
 
   /// Constructor
   const CategoryElementWidget({
@@ -33,7 +33,7 @@ class CategoryElementWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => onTap(categoryIsSet, placeType),
+      onTap: () => onTap(placeType),
       child: Stack(
         alignment: Alignment.center,
         children: [
@@ -70,22 +70,25 @@ class CategoryElementWidget extends StatelessWidget {
               ),
             ],
           ),
-          Positioned(
-            top: 45.w,
-            left: 62.w,
-            child: Container(
-              width: 16.w,
-              height: 16.w,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: colors?.tickBackgroundColor,
+          if (categoryIsSet)
+            Positioned(
+              top: 45.w,
+              left: 62.w,
+              child: Container(
+                width: 16.w,
+                height: 16.w,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: colors?.tickBackgroundColor,
+                ),
+                child: SvgPicture.asset(
+                  AppAssets.tick,
+                  color: colors?.tickColor,
+                ),
               ),
-              child: SvgPicture.asset(
-                AppAssets.tick,
-                color: colors?.tickColor,
-              ),
-            ),
-          ),
+            )
+          else
+            const SizedBox.shrink(),
         ],
       ),
     );
