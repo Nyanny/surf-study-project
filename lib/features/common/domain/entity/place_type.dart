@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs
+// ignore_for_file: avoid_catching_errors
 
 import 'package:surf_study_project/assets/res/app_assets.dart';
 import 'package:surf_study_project/assets/strings/app_strings.dart';
@@ -31,6 +32,17 @@ enum PlaceType {
   );
 
   const PlaceType({required this.iconPath, required this.title});
+
+  factory PlaceType.fromString(String placeTypeString) {
+    late PlaceType placeType;
+
+    try {
+      placeType = PlaceType.values.byName(placeTypeString);
+    } on Error catch (_) {
+      placeType = PlaceType.other;
+    }
+    return placeType;
+  }
 
   final String iconPath;
   final String title;
