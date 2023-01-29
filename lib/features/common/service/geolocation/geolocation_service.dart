@@ -7,11 +7,29 @@ import 'package:surf_study_project/features/common/service/geolocation/igeolocat
 class GeolocationService implements IGeolocationService {
   @override
   Future<GeolocationCoordinates> getCurrentPosition() async {
-    final currentPosition = await Geolocator.getCurrentPosition();
+    final currentPosition = await Geolocator.getCurrentPosition(
+      desiredAccuracy: LocationAccuracy.high,
+    );
     return GeolocationCoordinates(
       longitude: currentPosition.longitude,
       latitude: currentPosition.latitude,
     );
+  }
+
+  @override
+  Future<GeolocationCoordinates> getLastKnownPosition() async {
+    final lastKnownPosition = await Geolocator.getLastKnownPosition();
+    if (lastKnownPosition != null) {
+      return GeolocationCoordinates(
+        longitude: lastKnownPosition.longitude,
+        latitude: lastKnownPosition.latitude,
+      );
+    } else {
+      return const GeolocationCoordinates(
+        longitude: 0,
+        latitude: 0,
+      );
+    }
   }
 
   @override
@@ -84,7 +102,7 @@ class GeolocationService implements IGeolocationService {
     }
   }
 
-  /// handles [GeolocationProblem] from funcation parameters
+  /// handles [GeolocationProblem] from function parameters
   GeolocationProblem _geolocationProblemHandler({
     required bool isPermissionGranted,
     required bool isLocationServiceGranted,
