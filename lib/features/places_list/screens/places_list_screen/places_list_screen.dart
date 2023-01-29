@@ -5,6 +5,7 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:surf_study_project/features/common/domain/entity/place.dart';
 import 'package:surf_study_project/features/common/widgets/error/error_screen.dart';
 import 'package:surf_study_project/features/places_list/screens/places_list_screen/places_list_screen_wm.dart';
+import 'package:surf_study_project/features/places_list/screens/widgets/shimmer_place_list.dart';
 import 'package:surf_study_project/features/places_list/widgets/appbar/places_list_appbar.dart';
 import 'package:surf_study_project/features/places_list/widgets/card/card_place.dart';
 import 'package:surf_study_project/features/places_list/widgets/indicators/places_list_loading_indicator.dart';
@@ -44,7 +45,7 @@ class PlacesListScreen extends ElementaryWidget<IPlacesListScreenWidgetModel> {
               pagingController: wm.pagingController,
               builderDelegate: PagedChildBuilderDelegate<Place>(
                 firstPageProgressIndicatorBuilder: (_) =>
-                    const PlacesListLoadingIndicator(),
+                    const ShimmerPlaceList(),
                 newPageProgressIndicatorBuilder: (_) =>
                     const _NewPageProgressIndicatorBuilder(),
                 firstPageErrorIndicatorBuilder: (_) => const ErrorScreen(),

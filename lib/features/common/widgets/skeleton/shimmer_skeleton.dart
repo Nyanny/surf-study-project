@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
+const _child = ColoredBox(
+  color: Colors.green,
+);
+
 /// Class [ShimmerSkeleton] is shimming skeleton using shimmer pakcage
 class ShimmerSkeleton extends StatelessWidget {
   /// is shimmer enabled
@@ -20,7 +24,7 @@ class ShimmerSkeleton extends StatelessWidget {
     required this.baseColor,
     required this.highlightColor,
     this.shimmerEnabled = true,
-    this.child = const SizedBox.expand(),
+    this.child = _child,
     Key? key,
   }) : super(key: key);
 
