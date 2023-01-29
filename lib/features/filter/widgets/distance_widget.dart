@@ -1,3 +1,4 @@
+import 'package:elementary/elementary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:surf_study_project/assets/res/app_typography.dart';
@@ -12,20 +13,21 @@ class DistanceWidget extends StatelessWidget {
   /// max distance
   final double maxDistanceValue;
 
-  /// slider value
-  final double sliderValue;
-
   /// used theme
   final FilterColors? colors;
 
   /// onSliderChanged callback
   final ValueChanged<double>? onSliderChanged;
 
+  /// [ListenableState] of [double]
+  /// value of [Slider]
+  final ListenableState<double> sliderListenableValue;
+
   /// constructor
   const DistanceWidget({
     required this.minDistanceValue,
     required this.maxDistanceValue,
-    required this.sliderValue,
+    required this.sliderListenableValue,
     required this.onSliderChanged,
     required this.colors,
     Key? key,
@@ -40,34 +42,41 @@ class DistanceWidget extends StatelessWidget {
         left: 16.w,
         right: 16.w,
       ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: StateNotifierBuilder<double>(
+        listenableState: sliderListenableValue,
+        builder: (context, value) {
+          return Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
-              Text(
-                AppStrings.filterDistanceName,
-                style: AppTypography.text
-                    .copyWith(fontWeight: FontWeight.w400, color: colors?.main),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    AppStrings.filterDistanceName,
+                    style: AppTypography.text.copyWith(
+                      fontWeight: FontWeight.w400,
+                      color: colors?.main,
+                    ),
+                  ),
+                  Text(
+                    '${AppStrings.filterDistanceValueTo} ${value?.toString()} ${AppStrings.filterDistanceUnitKilometers}',
+                    style: AppTypography.text
+                        .copyWith(color: colors?.distanceInformationColor),
+                  ),
+                ],
               ),
-              Text(
-                '${AppStrings.filterDistanceValueTo} ${maxDistanceValue.toInt()} ${AppStrings.filterDistanceUnitKilometers}',
-                style: AppTypography.text
-                    .copyWith(color: colors?.distanceInformationColor),
+              SizedBox(
+                height: 24.w,
+              ),
+              Slider(
+                min: minDistanceValue,
+                max: maxDistanceValue,
+                value: value ?? 0,
+                onChanged: onSliderChanged,
               ),
             ],
-          ),
-          SizedBox(
-            height: 24.w,
-          ),
-          Slider(
-            min: minDistanceValue,
-            max: maxDistanceValue,
-            value: sliderValue,
-            onChanged: onSliderChanged,
-          ),
-        ],
+          );
+        },
       ),
     );
   }
