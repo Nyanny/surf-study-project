@@ -7,6 +7,9 @@ abstract class IGeolocationService {
   /// returns [GeolocationCoordinates]
   Future<GeolocationCoordinates> getCurrentPosition();
 
+  /// gets last known position
+  Future<GeolocationCoordinates> getLastKnownPosition();
+
   /// Verify functions
   ///
   /// Verifies permission
