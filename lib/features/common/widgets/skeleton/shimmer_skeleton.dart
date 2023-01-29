@@ -12,14 +12,14 @@ class ShimmerSkeleton extends StatelessWidget {
   /// shimmering color
   final Color highlightColor;
 
-  /// [Widget] chi;d
+  /// [Widget] child
   final Widget child;
 
   /// constructor
   const ShimmerSkeleton({
-    this.shimmerEnabled = true,
     required this.baseColor,
     required this.highlightColor,
+    this.shimmerEnabled = true,
     this.child = const SizedBox.expand(),
     Key? key,
   }) : super(key: key);
