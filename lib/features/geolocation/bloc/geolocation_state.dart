@@ -58,6 +58,19 @@ class GeolocationLoaded extends GeolocationState {
   GeolocationLoaded({required this.geolocation});
 }
 
+/// last known geolocation state
+/// [geolocation] holds geolocation data
+class LastKnownGeolocation extends GeolocationState {
+  /// holds geolocation data
+  final GeolocationCoordinates geolocation;
+
+  @override
+  List<Object> get props => [geolocation];
+
+  /// constructor
+  LastKnownGeolocation({this.geolocation = _defaultCoordinates});
+}
+
 /// app settings openning state
 class AppSettingsIsOpenning extends GeolocationState {
   @override

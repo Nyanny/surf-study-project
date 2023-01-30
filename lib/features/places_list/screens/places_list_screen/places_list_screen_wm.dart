@@ -7,6 +7,7 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 import 'package:surf_study_project/assets/themes/themes_flavours/place_list_colors.dart';
 import 'package:surf_study_project/features/app/di/app_scope.dart';
+import 'package:surf_study_project/features/common/domain/entity/geolocator/geolocation_coordinates.dart';
 import 'package:surf_study_project/features/common/domain/entity/place.dart';
 import 'package:surf_study_project/features/common/widgets/alert_dialog/location_alert_dialog.dart';
 import 'package:surf_study_project/features/geolocation/bloc/geolocation_bloc.dart';
@@ -22,14 +23,19 @@ PlacesListScreenWidgetModel placesListScreenWmFactory(
   final appDependencies = context.read<IAppScope>();
   final router = appDependencies.router;
   final geoBloc = appDependencies.geolocationBloc;
+  final appSettingsService = appDependencies.appSettingsService;
 
-  final model = PlacesListScreenModel(appDependencies.placeService, geoBloc);
+  final model = PlacesListScreenModel(
+    appDependencies.placeService,
+    geoBloc,
+    appSettingsService,
+  );
   return PlacesListScreenWidgetModel(model, router);
 }
 
 /// Widget model for [PlacesListScreen].
 class PlacesListScreenWidgetModel
-    extends WidgetModel<PlacesListScreen, PlacesListScreenModel>
+    extends WidgetModel<PlacesListScreen, IPlacesListScreenModel>
     implements IPlacesListScreenWidgetModel {
   /// [AppRouter] instance
   final AppRouter router;
@@ -61,6 +67,12 @@ class PlacesListScreenWidgetModel
   int _offsetPlaces = 0;
 
   int _pageNumber = 0;
+
+  bool _filterButtonPressed = false;
+
+  bool _loadFiltered = false;
+
+  late GeolocationCoordinates _geolocationCoordinates;
 
   /// Create an instance [PlacesListScreenWidgetModel].
   PlacesListScreenWidgetModel(PlacesListScreenModel model, this.router)
@@ -96,32 +108,69 @@ class PlacesListScreenWidgetModel
   }
 
   Future<void> _loadPlaces(int offset) async {
-    await Future<void>.delayed(const Duration(milliseconds: 750));
+    _loadFiltered = await model.getFilterStatus();
+    if (!_loadFiltered) {
+      await Future<void>.delayed(const Duration(milliseconds: 750));
 
-    try {
-      final places = await model.getPlaces(offset: offset);
+      try {
+        final places = await model.getPlaces(offset: offset);
 
-      final isLastPage = places.length < 10;
+        final isLastPage = places.length < 10;
 
-      if (!isLastPage) {
-        _pagingController.appendPage(places, _pageNumber);
-        _pageNumber++;
-      } else {
-        _pagingController.appendLastPage(places);
+        if (!isLastPage) {
+          _pagingController.appendPage(places, _pageNumber);
+          _pageNumber++;
+        } else {
+          _pagingController.appendLastPage(places);
+        }
+      } on Exception catch (err) {
+        _pagingController.error = err;
       }
-    } on Exception catch (err) {
-      _pagingController.error = err;
+      _offsetPlaces += 10;
+    } else {
+      await model.getFilterSettings();
+      try {
+        final places = await model.getFilteredPlaces(
+          geolocationCoordinates: _geolocationCoordinates,
+        );
+
+        _pagingController.appendLastPage(places);
+      } on Exception catch (err) {
+        _pagingController.error = err;
+      }
     }
-    _offsetPlaces += 10;
   }
 
   Future<void> _onPressedCard(int index) async {}
 
   Future<void> _updateState(GeolocationState state) async {
-    if (state is GeolocationPermissionGranted) {
-      await router.pushNamed(AppRoutePaths.filterPath);
+    if (state is GeolocationLoading) {
+    } else if (state is GeolocationPermissionGranted) {
+    } else if (state is LastKnownGeolocation) {
+      _geolocationCoordinates = state.geolocation;
+      if (_filterButtonPressed) {
+        _filterButtonPressed = false;
+        final dataFromFilter = await router.pushNamed(AppRoutePaths.filterPath);
+        if (dataFromFilter is bool) {
+          if (dataFromFilter) {
+            _loadFiltered = true;
+          } else {
+            _loadFiltered = false;
+          }
+          await model.setFilterStatus(filterStatus: _loadFiltered);
+          await onRefresh();
+        }
+      }
+    } else if (state is GeolocationLoaded) {
+      _geolocationCoordinates = state.geolocation;
     } else if (state is GeolocationError) {
-      await _showGeolocationDialog();
+      _geolocationCoordinates = state.geolocationCoordinatesOnError;
+      if (_filterButtonPressed) _filterButtonPressed = false;
+      await showGeolocationAlertDialog(
+        context: context,
+        onAlertCloseTap: _onAlertCloseTap,
+        onAlertSettingsTap: _onAlertSettingsTap,
+      );
     }
   }
 
@@ -129,8 +178,9 @@ class PlacesListScreenWidgetModel
     router.pushNamed(AppRoutePaths.searchPath);
   }
 
-  void _onFilterButtonTap() {
-    model.verifyPermissions();
+  Future<void> _onFilterButtonTap() async {
+    _filterButtonPressed = true;
+    model.requestCoordinates();
   }
 
   void _onAlertCloseTap() {
@@ -139,19 +189,6 @@ class PlacesListScreenWidgetModel
 
   void _onAlertSettingsTap() {
     model.openAppSettings();
-  }
-
-  Future<void> _showGeolocationDialog() async {
-    return showDialog<void>(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) {
-        return LocationAlertDialog(
-          onAlertCloseTap: _onAlertCloseTap,
-          onAlertSettingsTap: _onAlertSettingsTap,
-        );
-      },
-    );
   }
 }
 

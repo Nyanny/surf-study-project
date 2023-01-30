@@ -40,6 +40,12 @@ class GeolocationBloc extends Bloc<GeolocationEvent, GeolocationState> {
 
       /// checks are permissions granted
       if (permissions == GeolocationProblem.noProblems) {
+        geolocation = await _geolocationService.getLastKnownPosition();
+        if (geolocation.longitude != 0 && geolocation.latitude != 0) {
+          emit(LastKnownGeolocation(geolocation: geolocation));
+        } else {
+          emit(LastKnownGeolocation());
+        }
         geolocation = await _geolocationService.getCurrentPosition();
         emit(GeolocationLoaded(geolocation: geolocation));
       } else {
